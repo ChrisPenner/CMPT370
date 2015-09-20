@@ -1,0 +1,11 @@
+September 20, 2015
+
+Attendance:
+	Evan Salter
+	Chris Penner
+	Erik Schick
+	Vishal Tomar
+	
+Discussions:
+	-Got everybody set up with Git in Eclipse
+	-Set up meeting time for Tuesday, Sept 22 at 5:30
