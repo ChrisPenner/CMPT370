@@ -1,0 +1,13 @@
+September 24, 2015
+
+Attendance:
+	Full group
+
+Discussions:
+	- Planning of upcoming meetings
+	- Requirements document
+	- Created a Google doc to organize ideas for requirements document
+		https://docs.google.com/document/d/10FE3_-_J1o5FKyytuq47EPAw372R7h2ZLEa8uJVCucs/edit#
+	- Discussed preferred roles
+	- Discussion of Robot language:
+		all members should gain an understanding before next meeting
