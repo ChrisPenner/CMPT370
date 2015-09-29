@@ -26,3 +26,6 @@ Discussions:
 		-Goals
 			-Sunday  -> Finish platform, use-case diagram, scope
 			-Tuesday -> Scenario flowpaths, storyboards, activity diagram
+	
+	Useful link for later reference:
+		http://www.gamedev.net/page/resources/_/technical/game-programming/isometric-n-hexagonal-maps-part-i-r747
