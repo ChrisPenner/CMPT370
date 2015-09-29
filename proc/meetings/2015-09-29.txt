@@ -1,0 +1,28 @@
+September 29, 2015
+
+Attendance:
+	Evan Salter
+	Erik Schick
+	Vishal Tomar
+	Chin Wang Lau 
+	
+Missing:
+	Chris Penner (in Regina)
+	
+Discussions:
+	-Requirements document
+		-Use case diagrams
+			-Shows interactions between actors, actions
+			-Can use online tools like http://creately.com/diagram-type/use-case
+		-Story boards
+		-Handing in the document
+			-One person hands it in, looks like it should be handed in for the whole group
+			-If not, everybody will hand it in individually
+		-Document format
+			-Could use Markdown
+				-Easy to format, good for use with Git
+				-Tutorial: http://markdowntutorial.com
+		-Activity Diagram
+		-Goals
+			-Sunday  -> Finish platform, use-case diagram, scope
+			-Tuesday -> Scenario flowpaths, storyboards, activity diagram
