@@ -8,20 +8,20 @@ on any platform that has the capability to run the Java Virtual Machine.
 
 ## Scope
 ### Must have
-The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the [RobotSport370 Language](RoboSport370-Language.pdf) specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#Robosport-Rules).
+The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the [RobotSport370 Language](RoboSport370-Language.pdf) specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#robosport-rules).
 
 There must exist a user interface for the program such that a user may select "RoboSport370 language" program files for
 the robots participating in any given match. This interface must also allow the user to define a match to take place,
-choosing among the various match types available as are specified below, including at minimum [Versus-Match](#Versus-Match)
-and [Tournament-Match](#Tournament-Match).
+choosing among the various match types available as are specified below, including at minimum [Versus-Match](#versus-match)
+and [Tournament-Match](#tournament-match).
 
 ### Should have
-The program should if possible contain the [Test-Bench](#Test-Bench) mode specified below.
+The program should if possible contain the [Test-Bench](#test-bench) mode specified below.
 
 ### Would Like to have
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
 Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
-provided as part of the [Test-Bench](#Test-Bench) 
+provided as part of the [Test-Bench](#test-bench) 
 
 #### Versus-Match
 This type of match must allow the user to select 2 or more robots to fight one another and must allow the user to select
@@ -33,7 +33,7 @@ be calculated and presented instantaneously and presented to the user.
 #### Tournament-Match
 This type of match must allow the user to select between (inclusive) 2 to 6 teams of robots to fight one another and must 
 allow the user to select a program file for each robot, it may also allow the user to select a robot team specification 
-for each team. This mode also contains an *interactive mode* of the same form as [Versus-Match](#Versus-Match).
+for each team. This mode also contains an *interactive mode* of the same form as [Versus-Match](#versus-match).
 If interactive mode is not selected, then the results of the match should 
 be calculated and presented instantaneously and presented to the user.
 
