@@ -13,7 +13,8 @@ The program should have tournament execution mode with 6 teams and give the resu
 
 In additions to other requirements, the program can have a testing mode where the tester can step through the program and movements once at a time and see every change in the game and with the robots happening.
 
-## Use Case Diagram
+## Use Case Diagram  
+![Use Case](use_case.png)
 
 ## Scenarios
 Robots should be able to participate and run in tournaments and perform according to rules and limitations. 
