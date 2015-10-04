@@ -8,7 +8,7 @@ on any platform that has the capability to run the Java Virtual Machine.
 
 ## Scope
 ### Must have
-The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the [RobotSport370 Language](RoboSport370-Language.pdf) specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#Robosport-Rules).
+The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the [RobotSport370 Language](RoboSport370-Language.pdf) specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#robosport-rules).
 
 There must exist a user interface for the program such that a user may select "RoboSport370 language" program files for
 the robots participating in any given match. This interface must also allow the user to define a match to take place,
@@ -81,7 +81,6 @@ Results screen:
 ## Robosport-Rules
 
 ## Modes
-
 #### Versus-Match
 This type of match must allow the user to select 2 or more robots to fight one another and must allow the user to select
 program files for each of these robots. It contains an *interactive mode* option where the user can step through the 
