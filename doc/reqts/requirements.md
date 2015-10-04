@@ -31,6 +31,17 @@ The program is supposed to run on all the operating systems or machines which ar
 ## Sequence Diagram
 
 ## Storyboards
+Main window:
+`![Main](Main.jpg)`
+
+Team selection window:
+`![Teamselect](Teamselect.jpg)`
+
+Game screen:
+`![Game](Game.jpg)`
+
+Results screen:
+`![Results](Results.jpg)`
 
 ------
 
