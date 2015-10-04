@@ -3,6 +3,7 @@ CMPT 370
 Group A3  
 
 ## Platform
+The program is supposed to run on all the operating systems or machines which are able to run .jar files since the programming language used is Java. 
 
 ## Scope
 
