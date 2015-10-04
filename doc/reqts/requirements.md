@@ -12,16 +12,75 @@ The program must have the ability to import robots via plain-text files containi
 
 There must exist a user interface for the program such that a user may select "RoboSport370 language" program files for
 the robots participating in any given match. This interface must also allow the user to define a match to take place,
-choosing among the various match types available as are specified below, including at minimum [Versus-Match](#Versus-Match)
-and [Tournament-Match](#Tournament-Match).
+choosing among the various match types available as are specified below, including at minimum [Versus-Match][]
+and [Tournament-Match][].
 
 ### Should have
-The program should if possible contain the [Test-Bench](#Test-Bench) mode specified below.
+The program should if possible contain the [Test-Bench][] mode specified below.
 
 ### Would Like to have
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
 Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
-provided as part of the [Test-Bench](#Test-Bench) 
+provided as part of the [Test-Bench][] 
+
+## Use Case Diagram
+
+- ![Use Case](use_case.png)
+
+## Scenarios
+Format Example:
+Action
+- Preconditions:
+- Flow of Events
+    - basic path
+    - alternate paths
+- Postconditions:
+- Errorconditions:
+---
+
+- When the user selects tournament mode from the main screen, an interface to select and configure robot teams will appear.
+- When the user confirms their robot team in tournament mode they will be presented with an option to choose interactive 
+  or instant mode.
+    - When the user chooses interactive mode a screen will appear showing the robot match interface.
+    - When the user chooses instant mode a screen will appear presenting the results.
+
+- When the user selects versus mode from the main screen, an interface to select and configure individual robots will appear.
+- When the user confirms their robot team in versus mode they will be presented with an option to choose interactive 
+  or instant mode.
+    - When the user chooses interactive mode a screen will appear showing the robot match interface.
+    - When the user chooses instant mode a screen will appear presenting the results.
+
+- When the user selects test-bench mode from the main screen, an interface to select and configure individual robots will appear.
+- When the user confirms their robot team in test-bench mode a screen displaying the robot match debugger interface will appear.
+
+Robots must be able to participate and run in tournaments and perform according to rules and limitations. 
+
+## Interfaces
+### Main Interface
+The main interface contains the options to select from the available modes as specified in [Modes][].
+
+## Sequence Diagram
+
+## Storyboards
+Main window:
+
+- ![Main](Main.jpg "Main")
+
+Team selection window:
+
+- ![Teamselect](Teamselect.jpg)
+
+Game screen:
+
+- ![Game](Game.jpg)
+
+Results screen:
+
+- ![Results](Results.jpg)
+
+## Robosport-Rules
+
+## Modes
 
 #### Versus-Match
 This type of match must allow the user to select 2 or more robots to fight one another and must allow the user to select
@@ -33,7 +92,7 @@ be calculated and presented instantaneously and presented to the user.
 #### Tournament-Match
 This type of match must allow the user to select between (inclusive) 2 to 6 teams of robots to fight one another and must 
 allow the user to select a program file for each robot, it may also allow the user to select a robot team specification 
-for each team. This mode also contains an *interactive mode* of the same form as [Versus-Match](#Versus-Match).
+for each team. This mode also contains an *interactive mode* of the same form as [Versus-Match][].
 If interactive mode is not selected, then the results of the match should 
 be calculated and presented instantaneously and presented to the user.
 
@@ -44,31 +103,6 @@ the program and observe the results. As the match progresses the user must be ab
 involved (e.g. their health, defense, etc.). The Test-Bench mode may provide the option to place obstacles, robots, or generally
 alter the setup of the robot arena to better assist the testing of robots.
 
-
-## Use Case Diagram  
-![Use Case](use_case.png)
-
-## Scenarios
-Robots must be able to participate and run in tournaments and perform according to rules and limitations. 
-
-## Interfaces
-
-## Sequence Diagram
-
-## Storyboards
-Main window:
-![Main](Main.jpg)
-
-Team selection window:
-![Teamselect](Teamselect.jpg)
-
-Game screen:
-![Game](Game.jpg)
-
-Results screen:
-![Results](Results.jpg)
-
-## Robosport-Rules
 
 ------
 
