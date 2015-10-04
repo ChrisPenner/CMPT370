@@ -23,6 +23,17 @@ Robots should be able to participate and run in tournaments and perform accordin
 ## Sequence Diagram
 
 ## Storyboards
+Main window:
+![Main](Main.jpg)
+
+Team selection window:
+![Teamselect](Teamselect.jpg)
+
+Game screen:
+![Game](Game.jpg)
+
+Results screen:
+![Results](Results.jpg)
 
 ------
 
