@@ -60,6 +60,7 @@ Robots must be able to participate and run in tournaments and perform according 
 The main interface contains the options to select from the available modes as specified in [Modes][].
 
 ## Sequence Diagram
+- ![Interaction Sequence](interaction-sequence.png "Interaction Sequence")
 
 ## Storyboards
 Main window:

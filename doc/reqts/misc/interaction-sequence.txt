@@ -1,0 +1,25 @@
+title Robosport Interactions
+
+Main Menu->Team Select: Tournament Mode
+Team Select->Robot Select: Customize Team
+Main Menu->Robot Select: Versus Mode
+Main Menu->Robot Select: Test-Bench Mode
+
+Robot Select->Match Confirmation:Finish
+Team Select->Match Confirmation:Finish
+
+Match Confirmation->Interactive View: Select 'Interactive'
+Match Confirmation->Debug View: (if in Test-Bench Mode)
+Match Confirmation->Results Page: Select 'Instant'
+
+Interactive View->Interactive View: Actions complete
+Debug View->Debug View: Alter Arena
+Debug View->Debug View: View Stats
+Debug View->Debug View: Step through actions
+Debug View->Main Menu: Return to Menu
+Team Select->Interactive View: Select 'Interactive'
+
+Debug View->Results Page: Match Completes
+Interactive View->Results Page: Match Completes
+Results Page->Main Menu: Return to main menu
+Interactive View->Main Menu: Return to main menu
