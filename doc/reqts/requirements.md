@@ -32,16 +32,16 @@ The program is supposed to run on all the operating systems or machines which ar
 
 ## Storyboards
 Main window:
-`![Main](Main.jpg)`
+![Main](Main.jpg)
 
 Team selection window:
-`![Teamselect](Teamselect.jpg)`
+![Teamselect](Teamselect.jpg)
 
 Game screen:
-`![Game](Game.jpg)`
+![Game](Game.jpg)
 
 Results screen:
-`![Results](Results.jpg)`
+![Results](Results.jpg)
 
 ------
 
