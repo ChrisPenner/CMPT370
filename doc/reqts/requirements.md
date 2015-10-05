@@ -25,7 +25,7 @@ provided as part of the [Test-Bench](#test-bench).
 
 ## Use Case Diagram
 
-- ![Use Case](use_case.png)
+![Use Case](use_case.png)\  
 
 ## Scenarios
 Format Example:
@@ -60,24 +60,24 @@ Robots must be able to participate and run in tournaments and perform according 
 The main interface contains the options to select from the available modes as specified in [Modes](#modes).
 
 ## Sequence Diagram
-- ![Interaction Sequence](interaction-sequence.png "Interaction Sequence")
+![Interaction Sequence](interaction-sequence.png "Interaction Sequence")\  
 
 ## Storyboards
 Main window:
 
-- ![Main](Main.jpg "Main")
+![Main](Main.jpg "Main")\  
 
 Team selection window:
 
-- ![Teamselect](Teamselect.jpg)
+![Teamselect](Teamselect.jpg)\  
 
 Game screen:
 
-- ![Game](Game.jpg)
+![Game](Game.jpg)\  
 
 Results screen:
 
-- ![Results](Results.jpg)
+![Results](Results.jpg)\  
 
 ## Robosport-Rules
 
