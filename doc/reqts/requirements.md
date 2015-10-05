@@ -25,7 +25,7 @@ provided as part of the [Test-Bench](#test-bench).
 
 ## Use Case Diagram
 
-![Use Case](use_case.png)\  
+![Use Case](images/use_case.png)\  
 
 ## Scenarios
 Format Example:
@@ -60,24 +60,24 @@ Robots must be able to participate and run in tournaments and perform according 
 The main interface contains the options to select from the available modes as specified in [Modes](#modes).
 
 ## Sequence Diagram
-![Interaction Sequence](interaction-sequence.png)\  
+![Interaction Sequence](images/interaction-sequence.png)\  
 
 ## Storyboards
 Main window:
 
-![Main](Main.jpg)\  
+![Main](images/Main.jpg)\  
 
 Team selection window:
 
-![Teamselect](Teamselect.jpg)\  
+![Teamselect](images/Teamselect.jpg)\  
 
 Game screen:
 
-![Game](Game.jpg)\  
+![Game](images/Game.jpg)\  
 
 Results screen:
 
-![Results](Results.jpg)\  
+![Results](images/Results.jpg)\  
 
 ## Robosport-Rules
 
@@ -111,7 +111,7 @@ alter the setup of the robot arena to better assist the testing of robots.
 To add diagrams to the document:
 
 1. Save it as an image  
-2. Place it in the /doc/reqts folder  
+2. Place it in the /doc/reqts/images folder  
 3. Place `![Alt-text](image.jpg)` in the area of the document you want it to appear.  "Alt-text" should be descriptive of what the image is (i.e. "Use-case diagram")
 
 Tips:
