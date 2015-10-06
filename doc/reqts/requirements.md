@@ -37,8 +37,9 @@ Higher quality graphics are also dependent on time available, as is the depth of
 provided as part of the [Test-Bench](#test-bench).
 There may have a online version which allow user use different computer control different team in a tournament.
 Have AI that calculate the move for other team and find out the best movement, base on decision diagram. from range health and weapon find out the best way to make damage to other robot in 10 step.
+
 ### Limit of Robots
-Every Robot should have following data, weapon, health, movesLeft ,fire power, fire range, team and member(name).
+Every Robot should have following data, weapon, health, movesLeft, fire power, fire range, team and member(name).
 
 Health-(int i = 3) If health go 0 the robot will be deleted from the board, otherwise the robot can keep do movement or attack.
 
@@ -51,6 +52,7 @@ Team(int 0-3) Team is for robot to recognize team mate to avoid team attack for 
 Member(int 0-3)To recognize the member inside a team
 
 MovesLeft(int 0-3) If robot move from one node to another. Moveleft will decrease one. Since the node inside the board is cycle, therefore developer will use Dijkstra Algorithm to help robot to move from one node to another(avoid robot move in cycle).
+
 ## Times
 
 There is time limit for every tournament. Every game will have 5 minuntes. After that, program will base on the number of robots leave in team. To chose the winning team.
