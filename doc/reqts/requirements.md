@@ -6,9 +6,16 @@ Group A3
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
 on any platform that has the capability to run the Java Virtual Machine. Developer will run test on different operation system such as,Linux and window. Also, developer will test the program  on tuxworld.
 
+## Goals  
+There are three main goals for the project:  
+
+1. Write a [simulator](#simulator) that executes the game.   
+2. Create a [test platform](#test-bench) to debug the robots.  
+3. Write a team of robots in RobotLanguage to compete in matches.  
 
 ## Scope
 ### Must have
+#### Simulator
 The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the RobotSport370 Language specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#robosport-rules).
 
 There must exist a user interface for the program such that a user may select "RoboSport370 language" program files for
@@ -22,7 +29,6 @@ In watch mode, user can control the robot's move and attack to versus AI or othe
 
 There will have simple AI and control on robots.
 
-
 ### Should have
 The program should if possible contain the [Test-Bench](#test-bench) mode specified below.
 There should have play and stop button when play tournament. This help user have better control when they watch the tournament.
@@ -30,9 +36,10 @@ There should have play and stop button when play tournament. This help user have
 ### Could have
 Program could have sound system, which for different weapon when they do damange. Also there could have background music to make the game is more intersting.
 
-
 ### Would Like to have
-If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.  Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally provided as part of the [Test-Bench](#test-bench).
+If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
+Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
+provided as part of the [Test-Bench](#test-bench).
 There may have a online version which allow user use different computer control different team in a tournament.
 Have AI that calculate the move for other team and find out the best movement, base on decision diagram. from range health and weapon find out the best way to make damage to other robot in 10 step.
 
@@ -104,24 +111,19 @@ The main interface contains the options to select from the available modes as sp
 ![Interaction Sequence](images/interaction-sequence.png)\  
 
 ## Storyboards
-Main window:
-
+Main window: 
 ![Main](images/Main.jpg)\  
 
-Team selection window:
-
+Team selection window:  
 ![Team Select](images/Teamselect.jpg)\  
 
-Game screen:
-
+Game screen:  
 ![Game](images/Game.jpg)\  
 
-Debug screen:
-
+Debug screen:  
 ![Debug](images/Debug.jpg)\  
 
-Results screen:
-
+Results screen:  
 ![Results](images/Results.jpg)\  
 
 ## Robosport-Rules
@@ -142,22 +144,3 @@ the ability to define a robot-language program as part of the user interface. It
 the program and observe the results. As the match progresses the user must be able to view the statistics of the robots 
 involved (e.g. their health, defense, etc.). The Test-Bench mode may provide the option to place obstacles, robots, or generally
 alter the setup of the robot arena to better assist the testing of robots.
-
-
-------
-
-# NOTE
-
-To add diagrams to the document:
-
-1. Save it as an image  
-2. Place it in the /doc/reqts/images folder  
-3. Place `![Alt-text](image.jpg)` in the area of the document you want it to appear.  "Alt-text" should be descriptive of what the image is (i.e. "Use-case diagram")
-
-Tips:
-
-* To do a paragraph break, hit 'enter' twice  
-* To do a line break, add 2 spaces to the end of the current line, and hit enter
-* Eclipse "Preview" mode for markdown seems to have trouble with nested bullets, but if you format it like I have in "Scope", it should work when we create the final document
-* Once you get the hang of Markdown, it's pretty simple.  But if you have any questions, Google is your friend.  Also feel free to ask me (Evan) or Chris.
-* Do this short tutorial to get the basics of Markdown: http://markdowntutorial.com
