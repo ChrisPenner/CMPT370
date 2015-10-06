@@ -25,6 +25,11 @@ There will have simple AI and control on robots.
 
 ### Should have
 The program should if possible contain the [Test-Bench](#test-bench) mode specified below.
+There should have play and stop button when play tournament. This help user have better control when they watch the tournament.
+
+### Could have
+Program could have sound system, which for different weapon when they do damange. Also there could have background music to make the game is more intersting.
+
 
 ### Would Like to have
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
@@ -45,7 +50,12 @@ Team(int 0-3) Team is for robot to recognize team mate to avoid team attack for 
 
 Member(int 0-3)To recognize the member inside a team
 
-MovesLeft(int 0-3) If robot move from one node to another. Moveleft will decrease one. Since the node inside the board is cycle, therefore developer will use Dijkstra Algorithm to help user to move from one node to another.
+MovesLeft(int 0-3) If robot move from one node to another. Moveleft will decrease one. Since the node inside the board is cycle, therefore developer will use Dijkstra Algorithm to help robot to move from one node to another(avoid robot move in cycle).
+## Times
+
+There is time limit for every tournament. Every game will have 5 minuntes. After that, program will base on the number of robots leave in team. To chose the winning team.
+If there is same number of robot leave in more than one team, program will count the total health of robot to determine the winning team.
+
 
 ## Use Case Diagram
 
