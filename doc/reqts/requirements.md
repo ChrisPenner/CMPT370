@@ -4,7 +4,8 @@ Group A3
 
 ## Platform
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
-on any platform that has the capability to run the Java Virtual Machine.
+on any platform that has the capability to run the Java Virtual Machine. Developer will run test on different operation system such as,Linux and window. Also, developer will test the program  on tuxworld.
+
 
 ## Scope
 ### Must have
@@ -15,6 +16,13 @@ the robots participating in any given match. This interface must also allow the 
 choosing among the various match types available as are specified below, including at minimum [Versus-Match](#versus-match).
 and [Tournament-Match](#tournament-match).
 
+There will different mode for user to choice.
+In instant mode, user will have the game result and the information on the combat after team select. 
+In watch mode, user can control the robot's move and attack to versus AI or other user. 
+
+There will have simple AI and control on robots.
+
+
 ### Should have
 The program should if possible contain the [Test-Bench](#test-bench) mode specified below.
 
@@ -22,6 +30,22 @@ The program should if possible contain the [Test-Bench](#test-bench) mode specif
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
 Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
 provided as part of the [Test-Bench](#test-bench).
+There may have a online version which allow user use different computer control different team in a tournament.
+Have AI that calculate the move for other team and find out the best movement, base on decision diagram. from range health and weapon find out the best way to make damage to other robot in 10 step.
+### Limit of Robots
+Every Robot should have following data, weapon, health, movesLeft ,fire power, fire range, team and member(name).
+
+Health-(int i = 3) If health go 0 the robot will be deleted from the board, otherwise the robot can keep do movement or attack.
+
+Weapon-(String) There is different weapon for every robot choice. Different weapon have different fire power and fire range.
+	-Fire Power(int 1 to 3) depend on the weapon
+	-Fire Range(int 1 to 3) depend on the weapon
+	
+Team(int 0-3) Team is for robot to recognize team mate to avoid team attack for user and AI.
+
+Member(int 0-3)To recognize the member inside a team
+
+MovesLeft(int 0-3) If robot move from one node to another. Moveleft will decrease one. Since the node inside the board is cycle, therefore developer will use Dijkstra Algorithm to help user to move from one node to another.
 
 ## Use Case Diagram
 
