@@ -4,7 +4,7 @@ Group A3
 
 ## Platform
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
-on any platform that has the capability to run the Java Virtual Machine. Developer will run test on different operation system such as,Linux and window. Also, developer will test the program  on tuxworld.
+on any platform that has the capability to run the Java Virtual Machine. Developer will run test on different operation system such as, Linux and window. Also, developer will test the program  on tuxworld.
 
 ## Goals  
 There are three main goals for the project:  
@@ -23,12 +23,6 @@ the robots participating in any given match. This interface must also allow the 
 choosing among the various match types available as are specified below, including at minimum [Watch Match](#watch-match).
 and [Instant Results](#instant-results).
 
-There will different mode for user to choice.
-In instant mode, user will have the game result and the information on the combat after team select. 
-In watch mode, user can control the robot's move and attack to versus AI or other user. 
-
-There will have simple AI and control on robots.
-
 ### Should have
 The program should if possible contain the [Test-Bench](#test-bench) mode specified below.
 There should have play and stop button when play tournament. This help user have better control when they watch the tournament.
@@ -40,8 +34,8 @@ Program could have sound system, which for different weapon when they do damange
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
 Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
 provided as part of the [Test-Bench](#test-bench).
-There may have a online version which allow user use different computer control different team in a tournament.
-Have AI that calculate the move for other team and find out the best movement, base on decision diagram. from range health and weapon find out the best way to make damage to other robot in 10 step.
+
+There may be a online version which allow user use different computer control different team in a tournament.
 
 ### Robot Limitations
 Every Robot has the following characteristics:
@@ -70,22 +64,11 @@ specified value at the beginning of each turn.
 
 Each robot match will terminate after a set amount of turns, this is to prevent stalemates. If a match times out, then whichever team has the most surviving robots will be declared the winner. In the case where both teams have the same number of robots, the team with the most cumulative health points is the winner. If the cumulative health points are equivalent, then the match is declared to be a tie.
 
-
 ## Use Case Diagram
 
 ![Use Case](images/use_case.png)\  
 
 ## Scenarios
-Format Example:
-Action
-- Preconditions:
-- Flow of Events
-    - basic path
-    - alternate paths
-- Postconditions:
-- Errorconditions:
----
-
 - When the user selects tournament mode from the main screen, an interface to select and configure robot teams will appear.
 - When the user confirms their robot team in tournament mode they will be presented with an option to choose interactive 
   or instant mode.
@@ -101,7 +84,7 @@ Action
 - When the user selects test-bench mode from the main screen, an interface to select and configure individual robots will appear.
 - When the user confirms their robot team in test-bench mode a screen displaying the robot match debugger interface will appear.
 
-Robots must be able to participate and run in tournaments and perform according to rules and limitations. 
+Robots must be able to participate and run in tournaments and perform according to [rules and limitations](#robot-limitations).
 
 ## Interfaces
 ### Main Interface
@@ -111,7 +94,7 @@ The main interface contains the options to select from the available modes as sp
 ![Interaction Sequence](images/interaction-sequence.png)\  
 
 ## Storyboards
-Main window: 
+Main window:  
 ![Main](images/Main.jpg)\  
 
 Team selection window:  
