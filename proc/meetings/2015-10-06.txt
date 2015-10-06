@@ -1,0 +1,16 @@
+September 29, 2015
+
+Attendance:
+	Evan Salter
+	Erik Schick
+	Chris Penner
+	Chin Wang Lau 
+	
+Missing:
+	Vishal Tomar (midterm)
+	
+Discussions:
+	- Resolved commit errors
+	- Clarified any confusions within the group
+	- Went over specification document to confirm completeness of req doc
+	- Discussed what problems need to be fixed
