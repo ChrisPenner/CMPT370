@@ -1,7 +1,7 @@
 # Requirements Document
 CMPT 370  
 Group A3  
-test
+
 ## Platform
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
 on any platform that has the capability to run the Java Virtual Machine.
@@ -69,11 +69,15 @@ Main window:
 
 Team selection window:
 
-![Teamselect](images/Teamselect.jpg)\  
+![Team Select](images/Teamselect.jpg)\  
 
 Game screen:
 
 ![Game](images/Game.jpg)\  
+
+Debug screen:
+
+![Debug](images/Debug.jpg)\  
 
 Results screen:
 
