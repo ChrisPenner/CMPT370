@@ -13,8 +13,8 @@ The program must have the ability to import robots via plain-text files containi
 
 There must exist a user interface for the program such that a user may select "RoboSport370 language" program files for
 the robots participating in any given match. This interface must also allow the user to define a match to take place,
-choosing among the various match types available as are specified below, including at minimum [Versus-Match](#versus-match).
-and [Tournament-Match](#tournament-match).
+choosing among the various match types available as are specified below, including at minimum [Watch Match](#watch-match).
+and [Instant Results](#instant-results).
 
 There will different mode for user to choice.
 In instant mode, user will have the game result and the information on the combat after team select. 
@@ -120,19 +120,14 @@ Results screen:
 ## Robosport-Rules
 
 ## Modes
-#### Versus-Match
-This type of match must allow the user to select 2 or more robots to fight one another and must allow the user to select
-program files for each of these robots. It contains an *interactive mode* option where the user can step through the 
-match one action at a time and observe the results. It also provides a print out of relevant statistics from the match, 
-including at minimum the winner of the match. If interactive mode is not selected, then the results of the match should 
-be calculated and presented instantaneously and presented to the user.
+#### Watch Match
+This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select
+program files from which to load each of these robots. The user can either watch the match or step through the 
+match one action at a time and observe the results. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
 
-#### Tournament-Match
-This type of match must allow the user to select between (inclusive) 2 to 6 teams of robots to fight one another and must 
-allow the user to select a program file for each robot, it may also allow the user to select a robot team specification 
-for each team. This mode also contains an *interactive mode* of the same form as [Versus-Match](#versus-match).
-If interactive mode is not selected, then the results of the match should 
-be calculated and presented instantaneously and presented to the user.
+#### Instant Results
+This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select
+program files from which to load each of these robots. The match will be simulated in full without any visual output to the user. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
 
 #### Test-Bench
 Test-Bench mode contains the capability for the user to define 1 or more robots by text-files, and may potentially have 
