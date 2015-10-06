@@ -6,9 +6,16 @@ Group A3
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
 on any platform that has the capability to run the Java Virtual Machine. Developer will run test on different operation system such as,Linux and window. Also, developer will test the program  on tuxworld.
 
+## Goals  
+There are three main goals for the project:  
+
+1. Write a [simulator](#simulator) that executes the game.   
+2. Create a [test platform](#test-bench) to debug the robots.  
+3. Write a team of robots in RobotLanguage to compete in matches.  
 
 ## Scope
 ### Must have
+#### Simulator
 The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the RobotSport370 Language specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#robosport-rules).
 
 There must exist a user interface for the program such that a user may select "RoboSport370 language" program files for
@@ -22,14 +29,12 @@ In watch mode, user can control the robot's move and attack to versus AI or othe
 
 There will have simple AI and control on robots.
 
-
 ### Should have
 The program should if possible contain the [Test-Bench](#test-bench) mode specified below.
 There should have play and stop button when play tournament. This help user have better control when they watch the tournament.
 
 ### Could have
 Program could have sound system, which for different weapon when they do damange. Also there could have background music to make the game is more intersting.
-
 
 ### Would Like to have
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
@@ -99,24 +104,19 @@ The main interface contains the options to select from the available modes as sp
 ![Interaction Sequence](images/interaction-sequence.png)\  
 
 ## Storyboards
-Main window:
-
+Main window:  
 ![Main](images/Main.jpg)\  
 
-Team selection window:
-
+Team selection window:  
 ![Team Select](images/Teamselect.jpg)\  
 
-Game screen:
-
+Game screen:  
 ![Game](images/Game.jpg)\  
 
-Debug screen:
-
+Debug screen:  
 ![Debug](images/Debug.jpg)\  
 
-Results screen:
-
+Results screen:  
 ![Results](images/Results.jpg)\  
 
 ## Robosport-Rules
