@@ -142,5 +142,5 @@ program files from which to load each of these robots. The match will be simulat
 Test-Bench mode contains the capability for the user to define 1 or more robots by text-files, and may potentially have 
 the ability to define a robot-language program as part of the user interface. It must then allow the user to step through 
 the program and observe the results. As the match progresses the user must be able to view the statistics of the robots 
-involved (e.g. their health, defense, etc.). The Test-Bench mode may provide the option to place obstacles, robots, or generally
-alter the setup of the robot arena to better assist the testing of robots.
+involved (e.g. their health, defense, etc.) and change the state of the robots
+via a command terminal. Robots may be loaded in via command.
