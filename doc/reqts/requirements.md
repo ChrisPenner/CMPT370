@@ -1,6 +1,6 @@
 # Requirements Document
-CMPT 370  
-Group A3  
+CMPT 370
+Group A3
 
 ## Platform
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
@@ -32,31 +32,36 @@ Program could have sound system, which for different weapon when they do damange
 
 
 ### Would Like to have
-If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
-Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
-provided as part of the [Test-Bench](#test-bench).
+If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.  Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally provided as part of the [Test-Bench](#test-bench).
 There may have a online version which allow user use different computer control different team in a tournament.
 Have AI that calculate the move for other team and find out the best movement, base on decision diagram. from range health and weapon find out the best way to make damage to other robot in 10 step.
 
-### Limit of Robots
-Every Robot should have following data, weapon, health, movesLeft, fire power, fire range, team and member(name).
+### Robot Limitations
+Every Robot has the following characteristics:
+- Health Points
+- Movement Range
+- Weapon power
+- Weapon range
+- Team number
+- Robot number
 
-Health-(int i = 3) If health go 0 the robot will be deleted from the board, otherwise the robot can keep do movement or attack.
+Health: If health is 0 or below the robot disappears from the board
 
-Weapon-(String) There is different weapon for every robot choice. Different weapon have different fire power and fire range.
-	-Fire Power(int 1 to 3) depend on the weapon
-	-Fire Range(int 1 to 3) depend on the weapon
-	
-Team(int 0-3) Team is for robot to recognize team mate to avoid team attack for user and AI.
+Weapon power: The robot will deal this many points of damage when they deal a successful hit to another 
+robot.
 
-Member(int 0-3)To recognize the member inside a team
+Weapon range: The robot can successfully hit a robot which is within this many squares of the robot.
 
-MovesLeft(int 0-3) If robot move from one node to another. Moveleft will decrease one. Since the node inside the board is cycle, therefore developer will use Dijkstra Algorithm to help robot to move from one node to another(avoid robot move in cycle).
+Team number: Each team is assigned a number which will allow the robots to identify who is an ally and who is a foe.
 
-## Times
+Robot number: Each robot is assigned a number which will allow the robots and user to identify each robot on a team.
 
-There is time limit for every tournament. Every game will have 5 minuntes. After that, program will base on the number of robots leave in team. To chose the winning team.
-If there is same number of robot leave in more than one team, program will count the total health of robot to determine the winning team.
+Movement Range: Each time a robot moves one square its "Movement Range" is decreased by one. It replenishes to its 
+specified value at the beginning of each turn.
+
+## Time Limit
+
+Each robot match will terminate after a set amount of turns, this is to prevent stalemates. If a match times out, then whichever team has the most surviving robots will be declared the winner. In the case where both teams have the same number of robots, the team with the most cumulative health points is the winner. If the cumulative health points are equivalent, then the match is declared to be a tie.
 
 
 ## Use Case Diagram
