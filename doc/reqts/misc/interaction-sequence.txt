@@ -5,18 +5,17 @@ Main Menu->Team Select: Instant Mode
 Main Menu->Team Select: Test-Bench Mode
 
 Team Select->Game View: Start (if in Watch mode)
-Team Select->Debug View: Start (if in Test-Bench Mode)
+Team Select->Test View: Start (if in Test-Bench Mode)
 Team Select->Results Page: Start (if in Instant mode)
 
 Game View->Game View: Turns execute
 Game View->Game View: Step through actions
-Debug View->Debug View: Turns execute
-Debug View->Debug View: Enter command
-Debug View->Debug View: Step through actions
+Test View->Test View: Turns execute
+Test View->Test View: Enter command
+Test View->Test View: Step through actions
 
-Debug View->Results Page: Match Completes
 Game View->Results Page: Match Completes
 
 Game View->Main Menu: Return to main menu
-Debug View->Main Menu: Return to Menu
+Test View->Main Menu: Return to Menu
 Results Page->Main Menu: Return to main menu

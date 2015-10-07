@@ -68,22 +68,20 @@ Each robot match will terminate after a set amount of turns, this is to prevent 
 ![Use Case](images/use_case.png)\  
 
 ## Scenarios
-- When the user selects tournament mode from the main screen, an interface to select and configure robot teams will appear.
-- When the user confirms their robot team in tournament mode they will be presented with an option to choose interactive 
-  or instant mode.
-    - When the user chooses interactive mode a screen will appear showing the robot match interface.
-    - When the user chooses instant mode a screen will appear presenting the results.
+- When the user selects watch mode from the main screen, an interface to select and configure robot teams will appear.
+- When the user confirms their robot team in watch mode, the game window will open up and simulation will begin
+	- The user can press the step button to advance a single step, or let the match play
+	- When the match ends, a screen showing the match results is shown.
 
-- When the user selects versus mode from the main screen, an interface to select and configure individual robots will appear.
-- When the user confirms their robot team in versus mode they will be presented with an option to choose interactive 
-  or instant mode.
-    - When the user chooses interactive mode a screen will appear showing the robot match interface.
-    - When the user chooses instant mode a screen will appear presenting the results.
+- When the user selects instant results mode from the main screen, an interface to select and configure individual robots will appear.
+- When the user confirms their robot team in instant results mode, the match will be invisibly simulated and a screen showing the match results is shown.
 
 - When the user selects test-bench mode from the main screen, an interface to select and configure individual robots will appear.
-- When the user confirms their robot team in test-bench mode a screen displaying the robot match debugger interface will appear.
-
-Robots must be able to participate and run in tournaments and perform according to [rules and limitations](#robot-limitations).
+- When the user confirms their robot team in test-bench mode, the test-bench interface will open
+	- The user can press the step button to advance a single step, or let the match play
+	- The user can enter commands to alter the state of the test
+	
+Robots must be able to participate in matches and perform according to [rules and limitations](#robot-limitations).
 
 ## Interfaces
 ### Main Interface
@@ -102,8 +100,8 @@ Team selection window:
 Game screen:  
 ![Game](images/Game.jpg)\  
 
-Debug screen:  
-![Debug](images/Debug.jpg)\  
+Test-Bench screen:  
+![Test-Bench](images/Debug.jpg)\  
 
 Results screen:  
 ![Results](images/Results.jpg)\  
