@@ -35,7 +35,7 @@ If development time permits, it would be desirable to have the ability to import
 Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
 provided as part of the [Test-Bench](#test-bench).
 
-There may be a online version which allow user use different computer control different team in a tournament.
+There may be a online version which allow user use different computer control the program.
 
 ### Robot Limitations
 Every Robot has the following characteristics:
