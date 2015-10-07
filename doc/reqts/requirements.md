@@ -4,7 +4,8 @@ Group A3
 
 ## Platform
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
-on any platform that has the capability to run the Java Virtual Machine. Developer will run test on different operation system such as, Linux and window. Also, developer will test the program  on tuxworld.
+on any platform that has the capability to run the Java Virtual Machine. Robosport will not require a
+powerful computer to run on, it will run on common hardware (it will be able to run on a laptop).
 
 ## Goals  
 There are three main goals for the project:  
@@ -18,24 +19,22 @@ There are three main goals for the project:
 #### Simulator
 The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the RobotSport370 Language specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#robosport-rules).
 
-There must exist a user interface for the program such that a user may select "RoboSport370 language" program files for
+There must exist a user interface for the program such that a user may select "RoboSport370 Language" program files for
 the robots participating in any given match. This interface must also allow the user to define a match to take place,
 choosing among the various match types available as are specified below, including at minimum [Watch Match](#watch-match).
 and [Instant Results](#instant-results).
 
 ### Should have
 The program should if possible contain the [Test-Bench](#test-bench) mode specified below.
-There should have play and stop button when play tournament. This help user have better control when they watch the tournament.
+There should be a rate control to set how fast a match will execute.
 
 ### Could have
-Program could have sound system, which for different weapon when they do damange. Also there could have background music to make the game is more intersting.
+The program could have sound effects and music to improve the experience.
 
 ### Would Like to have
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.
-Higher quality graphics are also dependent on time available, as is the depth of the robolanguage debugger optionally 
+Higher quality graphics are also dependent on time available, as is the depth of the RoboSport terminal optionally 
 provided as part of the [Test-Bench](#test-bench).
-
-There may be a online version which allow user use different computer control the program.
 
 ### Robot Limitations
 Every Robot has the following characteristics:
@@ -51,7 +50,7 @@ Health: If health is 0 or below the robot disappears from the board
 Weapon power: The robot will deal this many points of damage when they deal a successful hit to another 
 robot.
 
-Weapon range: The robot can successfully hit a robot which is within this many squares of the robot.
+Weapon range: The robot can successfully hit a robot which is within this many tiles of the robot.
 
 Team number: Each team is assigned a number which will allow the robots to identify who is an ally and who is a foe.
 
