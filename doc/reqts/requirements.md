@@ -62,18 +62,14 @@ Number of teams should not be more than 6 in a single match.
 All the teams must start with 4 robots on their team.
 
 ## Modes
-#### Watch Mode
+### Watch Mode
 This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select program files from which to load each of these robots. The user can either watch the match or step through the match one action at a time and observe the results. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
 
-#### Instant Results Mode
+### Instant Results Mode
 This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select program files from which to load each of these robots. The match will be simulated in full without any visual output to the user. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
 
-#### Test-Bench Mode
+### Test-Bench Mode
 Test-Bench mode contains the capability for the user to load robots from files. It must then allow the user to step through the program and observe the results. As the match progresses the user must be able to view the statistics of the robots involved (e.g. their health, defense, etc.) and change the state of the robots (stats, position) via a command terminal. Robots may be loaded in via command.
-
-## Interfaces
-### Main Interface
-The main interface contains the options to select from the available modes as specified in [Modes](#modes).
 
 ## Scenarios
 ### Sequence Diagram
@@ -96,6 +92,10 @@ The main interface contains the options to select from the available modes as sp
 	- The user can enter commands to alter the state of the test
 	
 Robots must be able to participate in matches and perform according to [rules and limitations](#robot-limitations).
+
+## Interfaces
+### Main Interface
+The main interface contains the options to select from the available modes as specified in [Modes](#modes).
 
 ## Storyboards
 Main window:  
