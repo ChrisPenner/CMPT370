@@ -5,7 +5,7 @@ Group A3
 ## Platform
 Robosport must have the capability to run on the Java Virtual Machine, and therefore will run 
 on any platform that has the capability to run the Java Virtual Machine. Robosport will not require a
-powerful computer to run on, it will run on common hardware (it will be able to run on a laptop).
+powerful computer to run on, it will be able to run on any common hardware like a laptop.
 
 ## Goals  
 There are three main goals for the project:  
@@ -65,7 +65,7 @@ Each robot match will terminate after a set amount of turns, this is to prevent 
 
 ## Use Case Diagram
 
-![Use Case](images/use_case.png)\  
+![Use Case](images/use_case.png)
 
 ## Scenarios
 - When the user selects watch mode from the main screen, an interface to select and configure robot teams will appear.
@@ -88,25 +88,30 @@ Robots must be able to participate in matches and perform according to [rules an
 The main interface contains the options to select from the available modes as specified in [Modes](#modes).
 
 ## Sequence Diagram
-![Interaction Sequence](images/interaction-sequence.png)\  
+![Interaction Sequence](images/interaction-sequence.png)  
 
 ## Storyboards
 Main window:  
-![Main](images/Main.jpg)\  
+![Main](images/Main.jpg)  
 
 Team selection window:  
-![Team Select](images/Teamselect.jpg)\  
+![Team Select](images/Teamselect.jpg)  
 
 Game screen:  
-![Game](images/Game.jpg)\  
+![Game](images/Game.jpg)  
 
 Test-Bench screen:  
-![Test-Bench](images/Debug.jpg)\  
+![Test-Bench](images/Debug.jpg)  
 
 Results screen:  
-![Results](images/Results.jpg)\  
+![Results](images/Results.jpg)  
 
 ## Robosport-Rules
+All robots must be perform under their [limitations](#robot-limitations).
+
+Number of teams should not be more than 6 in a single match.
+
+All the teams must start with 4 robots on their team.
 
 ## Modes
 #### Watch Match
