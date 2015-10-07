@@ -9,7 +9,7 @@ Robosport must have the capability to run on the Java Virtual Machine, and there
 There are three main goals for the project:  
 
 1. Write a [simulator](#simulator) that executes the game.   
-2. Create a [test platform](#test-bench) to debug the robots.  
+2. Create a [test platform](#test-bench-mode) to debug the robots.  
 3. Write a team of robots in RobotLanguage to compete in matches.  
 
 ## Scope
@@ -17,16 +17,16 @@ There are three main goals for the project:
 #### Simulator
 The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the RobotSport370 Language specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#robosport-rules).
 
-There must exist a user interface for the program such that a user may select "RoboSport370 Language" program files for the robots participating in any given match. This interface must also allow the user to define a match to take place, choosing among the various match types available as are specified below, including at minimum [Watch Match](#watch-match) and [Instant Results](#instant-results).
+There must exist a user interface for the program such that a user may select "RoboSport370 Language" program files for the robots participating in any given match. This interface must also allow the user to define a match to take place, choosing among the various match types available as are specified below, including at minimum [Watch Match](#watch-mode) and [Instant Results](#instant-results-mode).
 
 ### Should have
-The program should if possible contain the [Test-Bench](#test-bench) mode specified below.  There should be a rate control to set how fast a match will execute.
+The program should if possible contain the [Test-Bench](#test-bench-mode) mode specified below.  There should be a rate control to set how fast a match will execute.
 
 ### Could have
 The program could have sound effects and music to improve the experience.
 
 ### Would Like to have
-If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.  Higher quality graphics are also dependent on time available, as is the depth of the RoboSport terminal optionally provided as part of the [Test-Bench](#test-bench).
+If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.  Higher quality graphics are also dependent on time available, as is the depth of the RoboSport terminal optionally provided as part of the [Test-Bench](#test-bench-mode).
 
 ### Robot Limitations
 Every Robot has the following characteristics:
@@ -54,32 +54,47 @@ Movement Range: Each time a robot moves one square its "Movement Range" is decre
 
 Each robot match will terminate after a set amount of turns, this is to prevent stalemates. If a match times out, then whichever team has the most surviving robots will be declared the winner. In the case where both teams have the same number of robots, the team with the most cumulative health points is the winner. If the cumulative health points are equivalent, then the match is declared to be a tie.
 
-## Use Case Diagram
+## Robosport Rules
+All robots must perform under their [limitations](#robot-limitations).
 
-![Use Case](images/use_case.png)\  
+Number of teams should not be more than 6 in a single match.
 
-## Scenarios
-- When the user selects [watch mode](#watch-match) from the main screen, an interface to select and configure robot teams will appear.
-- When the user confirms their robot team in watch mode, the game window will open up and simulation will begin
-	- The user can press the step button to advance a single step, or let the match play
-	- When the match ends, a screen showing the match results is shown.
+All the teams must start with 4 robots on their team.
 
-- When the user selects [instant results](#instant-results) mode from the main screen, an interface to select and configure individual robots will appear.
-- When the user confirms their robot team in instant results mode, the match will be invisibly simulated and a screen showing the match results is shown.
+## Modes
+#### Watch Mode
+This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select program files from which to load each of these robots. The user can either watch the match or step through the match one action at a time and observe the results. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
 
-- When the user selects [test-bench](#test-bench) mode from the main screen, an interface to select and configure individual robots will appear.
-- When the user confirms their robot team in test-bench mode, the test-bench interface will open
-	- The user can press the step button to advance a single step, or let the match play
-	- The user can enter commands to alter the state of the test
-	
-Robots must be able to participate in matches and perform according to [rules and limitations](#robot-limitations).
+#### Instant Results Mode
+This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select program files from which to load each of these robots. The match will be simulated in full without any visual output to the user. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
+
+#### Test-Bench Mode
+Test-Bench mode contains the capability for the user to load robots from files. It must then allow the user to step through the program and observe the results. As the match progresses the user must be able to view the statistics of the robots involved (e.g. their health, defense, etc.) and change the state of the robots (stats, position) via a command terminal. Robots may be loaded in via command.
 
 ## Interfaces
 ### Main Interface
 The main interface contains the options to select from the available modes as specified in [Modes](#modes).
 
-## Sequence Diagram
+## Scenarios
 ![Interaction Sequence](images/interaction-sequence.png)\    
+
+### Watch Mode
+- When the user selects [watch mode](#watch-mode) from the main screen, an interface to select and configure robot teams will appear.
+- When the user confirms their robot team in watch mode, the game window will open up and simulation will begin
+	- The user can press the step button to advance a single step, or let the match play
+	- When the match ends, a screen showing the match results is shown.
+
+### Instant Results Mode
+- When the user selects [instant results](#instant-results-mode) mode from the main screen, an interface to select and configure individual robots will appear.
+- When the user confirms their robot team in instant results mode, the match will be invisibly simulated and a screen showing the match results is shown.
+
+### Test-Bench Mode
+- When the user selects [test-bench](#test-bench-mode) mode from the main screen, an interface to select and configure individual robots will appear.
+- When the user confirms their robot team in test-bench mode, the test-bench interface will open
+	- The user can press the step button to advance a single step, or let the match play
+	- The user can enter commands to alter the state of the test
+	
+Robots must be able to participate in matches and perform according to [rules and limitations](#robot-limitations).
 
 ## Storyboards
 Main window:  
@@ -97,19 +112,6 @@ Test-Bench screen:
 Results screen:  
 ![Results](images/Results.jpg)\  
 
-## Robosport-Rules
-All robots must perform under their [limitations](#robot-limitations).
+## Use Case Diagram
 
-Number of teams should not be more than 6 in a single match.
-
-All the teams must start with 4 robots on their team.
-
-## Modes
-#### Watch Match
-This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select program files from which to load each of these robots. The user can either watch the match or step through the match one action at a time and observe the results. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
-
-#### Instant Results
-This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select program files from which to load each of these robots. The match will be simulated in full without any visual output to the user. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
-
-#### Test-Bench
-Test-Bench mode contains the capability for the user to load robots from files. It must then allow the user to step through the program and observe the results. As the match progresses the user must be able to view the statistics of the robots involved (e.g. their health, defense, etc.) and change the state of the robots (stats, position) via a command terminal. Robots may be loaded in via command.
+![Use Case](images/use_case.png)\  
