@@ -122,8 +122,7 @@ This mode will allow the user to select 2 or more robots to fight one another an
 program files from which to load each of these robots. The match will be simulated in full without any visual output to the user. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
 
 #### Test-Bench
-Test-Bench mode contains the capability for the user to define 1 or more robots by text-files, and may potentially have 
-the ability to define a robot-language program as part of the user interface. It must then allow the user to step through 
+Test-Bench mode contains the capability for the user to load robots from files. It must then allow the user to step through 
 the program and observe the results. As the match progresses the user must be able to view the statistics of the robots 
-involved (e.g. their health, defense, etc.) and change the state of the robots
+involved (e.g. their health, defense, etc.) and change the state of the robots (stats, position)
 via a command terminal. Robots may be loaded in via command.
