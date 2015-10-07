@@ -8,8 +8,8 @@ Robosport must have the capability to run on the Java Virtual Machine, and there
 ## Goals  
 There are three main goals for the project:  
 
-1. Write a [simulator](#simulator) that executes the game.   
-2. Create a [test platform](#test-bench-mode) to debug the robots.  
+1. Write a [simulator](#simulator) that executes robot matches.   
+2. Create a [test platform](#test-bench-mode) to debug robot language programs.  
 3. Write a team of robots in RobotLanguage to compete in matches.  
 
 ## Scope
@@ -17,16 +17,30 @@ There are three main goals for the project:
 #### Simulator
 The program must have the ability to import robots via plain-text files containing programs written using the robot language as defined in the RobotSport370 Language specification. During a Robosport match each robot must behave according to their program and must follow the commands defined in their program as defined in the specification with the limitation that the robot must not violate the [rules of a RoboSport Match](#robosport-rules).
 
-There must exist a user interface for the program such that a user may select "RoboSport370 Language" program files for the robots participating in any given match. This interface must also allow the user to define a match to take place, choosing among the various match types available as are specified below, including at minimum [Watch Match](#watch-mode) and [Instant Results](#instant-results-mode).
+There must exist a user interface for the program such that a user may select teams of robots to participate in a match, and to select "RoboSport370 Language" program files for the robots participating in any given match. This interface must also allow the user to define a match to take place, choosing among the various match types available as are specified below, including at minimum [Watch Match](#watch-mode) and [Instant Results](#instant-results-mode). The user must be able to view the match as it progresses and see the results afterwards.
 
 ### Should have
-The program should if possible contain the [Test-Bench](#test-bench-mode) mode specified below.  There should be a rate control to set how fast a match will execute.
+The program should if possible contain the [Test-Bench](#test-bench-mode) mode specified below.  
+
+There should if possible be a rate control in the interface to set how fast a match will execute.
 
 ### Could have
 The program could have sound effects and music to improve the experience.
 
 ### Would Like to have
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.  Higher quality graphics are also dependent on time available, as is the depth of the RoboSport terminal optionally provided as part of the [Test-Bench](#test-bench-mode).
+
+
+## Time Limit
+
+Each robot match will terminate after a set amount of turns, this is to prevent stalemates. If a match times out, then whichever team has the most surviving robots will be declared the winner. In the case where both teams have the same number of robots, the team with the most cumulative health points is the winner. If the cumulative health points are equivalent, then the match is declared to be a tie.
+
+## Robosport Rules
+All robots must perform under their [limitations](#robot-limitations).
+
+Number of teams should not be more than 6 in a single match.
+
+All the teams must start with 4 robots on their team.
 
 ### Robot Limitations
 Every Robot has the following characteristics:
@@ -50,17 +64,6 @@ Robot number: Each robot is assigned a number which will allow the robots and us
 
 Movement Range: Each time a robot moves one square its "Movement Range" is decreased by one. It replenishes to its specified value at the beginning of each turn.
 
-## Time Limit
-
-Each robot match will terminate after a set amount of turns, this is to prevent stalemates. If a match times out, then whichever team has the most surviving robots will be declared the winner. In the case where both teams have the same number of robots, the team with the most cumulative health points is the winner. If the cumulative health points are equivalent, then the match is declared to be a tie.
-
-## Robosport Rules
-All robots must perform under their [limitations](#robot-limitations).
-
-Number of teams should not be more than 6 in a single match.
-
-All the teams must start with 4 robots on their team.
-
 ## Modes
 ### Watch Mode
 This mode will allow the user to select 2 or more robots to fight one another and must allow the user to select program files from which to load each of these robots. The user can either watch the match or step through the match one action at a time and observe the results. After the match, it will provide a print out of relevant statistics from the match, including at minimum the winner of the match.
@@ -78,8 +81,8 @@ Test-Bench mode contains the capability for the user to load robots from files. 
 ### Watch Mode
 - When the user selects [watch mode](#watch-mode) from the main screen, an interface to select and configure robot teams will appear.
 - When the user confirms their robot team in watch mode, the game window will open up and simulation will begin
-	- The user can press the step button to advance a single step, or let the match play
-	- When the match ends, a screen showing the match results is shown.
+    - The user can press the step button to advance a single step, or let the match play
+    - When the match ends, a screen showing the match results is shown.
 
 ### Instant Results Mode
 - When the user selects [instant results](#instant-results-mode) mode from the main screen, an interface to select and configure individual robots will appear.
@@ -88,13 +91,12 @@ Test-Bench mode contains the capability for the user to load robots from files. 
 ### Test-Bench Mode
 - When the user selects [test-bench](#test-bench-mode) mode from the main screen, an interface to select and configure individual robots will appear.
 - When the user confirms their robot team in test-bench mode, the test-bench interface will open
-	- The user can press the step button to advance a single step, or let the match play
-	- The user can enter commands to alter the state of the test
-	
-Robots must be able to participate in matches and perform according to [rules and limitations](#robot-limitations).
+    - The user can press the step button to advance a single step, or let the match play
+    - The user can enter commands to alter the state of the test
+    
+Robots must be able to participate in matches and perform according to the [rules and limitations](#robosport-rules).
 
 ## Interfaces
-
 The following is a description of the various user interface screens that will be present in the RoboSport application.  Whether or not they are displayed is dependent on the selected game mode, as seen in the [Scenarios](#scenarios) section.  Illustrations of the interfaces can be found in the [Storyboards](#storyboards) section.
 
 ### Main Interface
