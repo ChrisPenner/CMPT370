@@ -131,3 +131,11 @@ Results screen:
 ## Use Case Diagram
 
 ![Use Case](images/use_case.png)\  
+
+The above use-case diagram outlines the different actions that can be performed by the 3 actors in the program:
+
+- The User
+- The Simulator
+- The User Interface
+
+The connections between actors and actions show which actors are involved in performing that action.  Arrows between actions show the possible paths of execution an action could take.  For example, the user selecting a game mode has 3 different possible outcomes depending on which game mode he or she selects.
