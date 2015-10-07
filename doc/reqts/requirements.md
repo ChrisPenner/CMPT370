@@ -94,8 +94,23 @@ Test-Bench mode contains the capability for the user to load robots from files. 
 Robots must be able to participate in matches and perform according to [rules and limitations](#robot-limitations).
 
 ## Interfaces
+
+The following is a description of the various user interface screens that will be present in the RoboSport application.  Whether or not they are displayed is dependent on the selected game mode, as seen in the [Scenarios](#scenarios) section.  Illustrations of the interfaces can be found in the [Storyboards](#storyboards) section.
+
 ### Main Interface
 The main interface contains the options to select from the available modes as specified in [Modes](#modes).
+
+### Team Selection Screen
+The Team Selection screen provides an interface to load robots into up to 6 different teams.  It is a simple interface that shows 6 different teams, each with their own "Load" button to allow the user to select a robot to load.  The robots are loaded one at a time.  Once the user is happy with their teams, the "Confirm" button takes them to the next screen.
+
+## Game Screen
+This screen displays the hex-grid on which the position of the robots will be displayed as the match is simulated.  It also contains controls including a Play, Stop, and Step button, as well as a playback speed controller to control the simulation.  Finally, it has an event log to show what the robots are doing.
+
+## Test-Bench Screen
+The Test-Bench Screen is identical to the Game Screen, except for the inclusion of a Command Terminal in which the user can enter commands to debug the robots. 
+
+## Results Screen
+The Results Screen displays the winner of the match, as well as stats for each team such as number of turns survived, damage dealt, and damage taken.
 
 ## Storyboards
 Main window:  
