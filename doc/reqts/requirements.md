@@ -30,6 +30,7 @@ If development time permits, it would be desirable to have the ability to import
 
 ### Robot Limitations
 Every Robot has the following characteristics:
+
 - Health Points
 - Movement Range
 - Weapon power
