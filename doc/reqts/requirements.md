@@ -1,5 +1,5 @@
 # Requirements Document
-CMPT 370
+CMPT 370  
 Group A3
 
 ## Platform
