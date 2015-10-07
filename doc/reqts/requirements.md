@@ -76,6 +76,7 @@ Test-Bench mode contains the capability for the user to load robots from files. 
 The main interface contains the options to select from the available modes as specified in [Modes](#modes).
 
 ## Scenarios
+### Sequence Diagram
 ![Interaction Sequence](images/interaction-sequence.png)\    
 
 ### Watch Mode
