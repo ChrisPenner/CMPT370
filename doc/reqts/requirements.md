@@ -30,7 +30,6 @@ The program could have sound effects and music to improve the experience.
 ### Would Like to have
 If development time permits, it would be desirable to have the ability to import entire robot 'teams' as a single file.  Higher quality graphics are also dependent on time available, as is the depth of the RoboSport terminal optionally provided as part of the [Test-Bench](#test-bench-mode).
 
-
 ## Time Limit
 
 Each robot match will terminate after a set amount of turns, this is to prevent stalemates. If a match times out, then whichever team has the most surviving robots will be declared the winner. In the case where both teams have the same number of robots, the team with the most cumulative health points is the winner. If the cumulative health points are equivalent, then the match is declared to be a tie.
@@ -42,6 +41,7 @@ Number of teams should not be more than 6 in a single match.
 
 All the teams must start with 4 robots on their team.
 
+\newpage
 ### Robot Limitations
 Every Robot has the following characteristics:
 
@@ -78,6 +78,7 @@ Test-Bench mode contains the capability for the user to load robots from files. 
 ### Sequence Diagram
 ![Interaction Sequence](images/interaction-sequence.png)\    
 
+\newpage
 ### Watch Mode
 - When the user selects [watch mode](#watch-mode) from the main screen, an interface to select and configure robot teams will appear.
 - When the user confirms their robot team in watch mode, the game window will open up and simulation will begin
@@ -105,13 +106,13 @@ The main interface contains the options to select from the available modes as sp
 ### Team Selection Screen
 The Team Selection screen provides an interface to load robots into up to 6 different teams.  It is a simple interface that shows 6 different teams, each with their own "Load" button to allow the user to select a robot to load.  The robots are loaded one at a time.  Once the user is happy with their teams, the "Confirm" button takes them to the next screen.
 
-## Game Screen
+### Game Screen
 This screen displays the hex-grid on which the position of the robots will be displayed as the match is simulated.  It also contains controls including a Play, Stop, and Step button, as well as a playback speed controller to control the simulation.  Finally, it has an event log to show what the robots are doing.
 
-## Test-Bench Screen
+### Test-Bench Screen
 The Test-Bench Screen is identical to the Game Screen, except for the inclusion of a Command Terminal in which the user can enter commands to debug the robots. 
 
-## Results Screen
+### Results Screen
 The Results Screen displays the winner of the match, as well as stats for each team such as number of turns survived, damage dealt, and damage taken.
 
 ## Storyboards
@@ -121,12 +122,14 @@ Main window:
 Team selection window:  
 ![Team Select](images/Teamselect.jpg)\    
 
+\newpage
 Game screen:  
 ![Game](images/Game.jpg)\  
 
 Test-Bench screen:  
 ![Test-Bench](images/Debug.jpg)\  
 
+\newpage
 Results screen:  
 ![Results](images/Results.jpg)\  
 
