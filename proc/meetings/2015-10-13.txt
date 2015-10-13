@@ -1,0 +1,12 @@
+October 13, 2015
+
+Attendance:
+	Evan Salter
+	Chris Penner
+	Erik Schick
+	Chin Wang Lau
+	Vishal Tomar
+	
+Discussions:
+	- Went through the "Understanding Design" slides, made sure everybody understood the contents
+	- Made basic decisions, such as using MVC architecture
