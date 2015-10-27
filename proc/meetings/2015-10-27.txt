@@ -1,0 +1,27 @@
+October 27, 2015
+
+Attendance:
+	- Evan Salter
+	- Chris Penner
+	- Erik Schick
+	- Chin Wang Lau
+	- Vishal Tomar
+	
+Discussions:
+	- Discussed what was done so far in the design document, and what needs to be changed so far 
+	- Evan should update the wording of the Architecture to say "Models" instead of "Model"
+	- Discussed what else needs to be done:
+		- Write out specs for each class, including:
+			- Class name
+			- Method signatures
+			- Method preconditions
+			- Method postconditions 
+			- Method semantics
+	- Division of work for class specifications:
+		- Chris - Game Controller, Test-Bench Controller
+		- Evan - Robot 
+		- Erik - Arena View, Team Select View, Game Board
+		- Chin Wang - Main Menu View 
+		- Vishal - Statistics View, Test Bench View
+	- Convert sequence diagram a appropriate diagram for this assignment
+	- Erik, Chin Wang, and Vishal will meet tomorrow to work on the class specs
