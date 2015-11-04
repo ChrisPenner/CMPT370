@@ -1,5 +1,6 @@
 package cmpt370;
 
-public class Main {
+import parser.Parser;
 
+public class Main {
 }
