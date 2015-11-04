@@ -10,7 +10,7 @@ import java.util.Stack;
 public class Parser{
 	private StreamTokenizer st;
 	public Parser(String filename) {
-		filename = "~/Desktop/370.txt";
+		filename = "/Users/chris/Desktop/370.txt";
 		FileReader fr;
 		try {
 			fr = new FileReader(filename);
@@ -29,24 +29,31 @@ public class Parser{
 
 	private boolean parseLine(StreamTokenizer st) throws IOException {
 		Stack<Token> s = new Stack<Token>();
-		do {
+		st.nextToken();
+		while(st.ttype != StreamTokenizer.TT_EOF 
+				&& st.ttype != StreamTokenizer.TT_EOL){
 			Token token = tokenize(st);
 			s.add(token);
 			st.nextToken();
-		} while(st.ttype != StreamTokenizer.TT_EOF 
-				&& st.ttype != StreamTokenizer.TT_EOL);
-		return true;
+		}
+		if(st.ttype == StreamTokenizer.TT_EOF){
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	private Token tokenize(StreamTokenizer st) throws IOException {
 		switch(st.ttype){
 		case StreamTokenizer.TT_WORD:
+			System.out.println(st.sval);
 			return new StringToken(st.sval);
 		case StreamTokenizer.TT_NUMBER:
+			System.out.println(st.nval);
 			return new NumberToken((int)st.nval);
 		default:
 			// Hit other symbol
-			System.out.println((char) st.ttype + " encountered.");
+			System.out.println("\"" + st.sval + "\"");
 			return new SymbolToken((char)st.ttype);
 		}
 	}
