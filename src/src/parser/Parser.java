@@ -5,277 +5,346 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StreamTokenizer;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.Stack;
 
 import models.Robot;
 
 public class Parser{
 	private String filename;
-	private Stack<Token> s;
+	private Stack<Token> executionStack;
 	private HashMap<String, Token> variables;
-	private HashMap<String, Token> macros;
+	private HashMap<String, LinkedList<Token>> macros;
 	private Robot robot;
 	private LinkedList<Token> l;
 	
 	
+	// Parser flags
+	private boolean inQuote = false;
+	private boolean stringPrefix = false;
+	private boolean inComment = false;
+	
 	public static void main(String[] args) throws IOException{
-	  Parser p = new Parser("/Users/chris/Desktop/370.txt", new Robot());
-	  p.parse();
-	  p.run();
+	  Parser p = new Parser(new Robot());
+	  String content = readFile("/Users/chris/Desktop/370.txt", Charset.defaultCharset());
+	  LinkedList<Token> l = p.parse(content);
+	  p.executeList(l, "");
+	}
+	
+	static String readFile(String path, Charset encoding) 
+			throws IOException 
+	{
+		byte[] encoded = Files.readAllBytes(Paths.get(path));
+		return new String(encoded, encoding);
 	}
 	
 	
-	public Parser(String filename, Robot r) {
-		this.filename = "/Users/chris/Desktop/370.txt";
+	public Parser(Robot r) {
 		robot = r;
-		s = new Stack<Token>();
+		executionStack = new Stack<Token>();
 		l = new LinkedList<Token>();
 		variables = new HashMap<String, Token>();
-		macros = new HashMap<String, Token>();
+		macros = new HashMap<String, LinkedList<Token>>();
 	}
-
-	public void parse() throws IOException{
-		BufferedReader br = new BufferedReader(new FileReader(filename));  
-		String line = null;  
-		boolean inQuote = false;
-		boolean stringPrefix = false;
-		boolean inComment = false;
+	
+	public LinkedList<Token> parse(String s) throws IOException{
+		LinkedList<Token> l = new LinkedList<Token>();
 		StringBuilder sb = new StringBuilder();
-		while ((line = br.readLine()) != null)  
-		{  
-			for (int i = 0; i < line.length(); i++){
-				char c = line.charAt(i);        
-				if(inComment && c != ')'){
-					continue;
-				} else if (c == ')'){
-					inComment = false;
+		for (int i = 0; i < s.length(); i++){
+			char c = s.charAt(i);        
+			if(inComment && c != ')'){
+				continue;
+			} else if (c == ')'){
+				inComment = false;
+				continue;
+			}
+			if(stringPrefix && c != '"'){
+				stringPrefix = false;
+				sb.append('.');
+			}
+
+			switch(c){
+			case '(':
+				inComment = true;
+				break;
+			case '.':
+				// hit string prefix.
+				if(inQuote){
+					sb.append(c);
 					continue;
 				}
-				if(stringPrefix && c != '"'){
-					stringPrefix = false;
-					sb.append('.');
-				}
-				switch(c){
-				case '(':
-					inComment = true;
-					break;
-				case '.':
-					// hit string prefix.
-					stringPrefix = true;
-					break;
-				case '"':
-					if(inQuote){
-						inQuote = false;
-						l.add(new Token(sb.toString(), Token.STRING));
-						// Reset StringBuilder.
-						sb.setLength(0);
-					} else if (stringPrefix){
-						stringPrefix = false;
-						inQuote = true;
-					} else {
-						sb.append('"');
-					}
-					break;
-				case ' ':
-					if(inQuote){
-						sb.append(c);
-						break;
-					}
-					if(sb.length() != 0){
-						l.add(new Token(sb.toString()));
-					}
+				stringPrefix = true;
+				break;
+			case '"':
+				if(inQuote){
+					inQuote = false;
+					l.add(new Token(sb.toString(), Token.STRING));
 					// Reset StringBuilder.
 					sb.setLength(0);
-					break;
-				default:
+				} else if (stringPrefix){
+					stringPrefix = false;
+					inQuote = true;
+				} else {
+					sb.append('"');
+				}
+				break;
+			case ' ':
+			case '\n':
+				if(inQuote){
 					sb.append(c);
 					break;
 				}
+				if(sb.length() != 0){
+					l.add(new Token(sb.toString()));
+				}
+				// Reset StringBuilder.
+				sb.setLength(0);
+				break;
+			default:
+				sb.append(c);
+				break;
 			}
-			if(sb.length() != 0){
-				l.add(new Token(sb.toString()));
-			}
-			sb.setLength(0);
-		} 
-		br.close();
+		}
+		if(sb.length() != 0){
+			l.add(new Token(sb.toString()));
+		}
+		sb.setLength(0);
+		return l;
 	}
 	
 	public void print(){
-		for( Token t: s){
+		for( Token t: executionStack){
 			System.out.println(t.svalue);
 		}
 	}
 	
-	public void run(){
-		String mode = "ex";
-		String ifMode = "";
+	public void executeList(LinkedList<Token> l, String mode){
+		LinkedList<Token> macroList = null;
+		String macroName = null;
 		boolean ifFlag = false;
+		// Do setup
+		switch(mode){
+		case "if":
+			ifFlag = executionStack.pop().bvalue;
+			break;
+		case "macro":
+			macroList = new LinkedList<Token>();
+			macroName = l.pop().svalue;
+			break;
+		case "variable":
+			String key = l.pop().svalue;
+			variables.put(key, new Token(0));
+			l.pop(); // Pop the ';'
+			return;
+		}
 		while (!l.isEmpty()){
 			Token t = l.pop();
-			if(!ifMode.equals("")){
+			switch(mode){
+			case "macro":
+				if(t.svalue.equals(";")){
+					macros.put(macroName, macroList);
+					System.out.println("Done recording macro");
+					return;
+				} else {
+					macroList.add(t);
+					continue;
+				}
+			case "ignoreif":
 				if(t.svalue.equals("then")){
-					ifMode = "";
-					continue;
-				} else if(t.svalue.equals("else")){
-					ifMode = "else";
+					return;
 				}
-				// If we're in the section that doesn't match the if flag, just ignore stuff.
-				// This doesn't work with nested ifs.
-				if(ifMode.equals("if") && !ifFlag){
-					continue;
-				} else if (ifMode.equals("else") && ifFlag){
-					continue;
-				}
-			}
-			if(t.type != Token.SYMBOL){
-				System.out.println("Addstack: " + t.svalue);
-				s.add(t);
 				continue;
-			}
-
-			System.out.println("Ex: " + t.svalue);
-			switch(t.svalue){
-			case ";":
-				if(mode.equals("variable")){
-					variable(s);
-					mode = "ex";
-				}
-				break;
-
-			case "drop":
-				drop(s);
-				break;
-
-			case "dup":
-				dup(s);
-				break;
-				
-			case "swap":
-				swap(s);
-				break;
-				
-			case "rot":
-				rot(s);
-				break;
-				
-			case "+":
-				add(s);
-				break;
-				
-			case "-":
-				minus(s);
-				break;
-				
-			case "*":
-				mult(s);
-				break;
-				
-			case "/mod":
-				mod(s);
-				break;
-
-			case "<":
-				lt(s);
-				break;
-
-			case "<=":
-				lte(s);
-				break;
-				
-			case ">":
-				gt(s);
-				break;
-				
-			case ">=":
-				gte(s);
-				break;
-				
-			case "=":
-				eq(s);
-				break;
-				
-			case "<>":
-				neq(s);
-				break;
-				
-			case "and":
-				and(s);
-				break;
-				
-			case "or":
-				or(s);
-				break;
-				
-			case "variable":
-				mode = "variable";
-				break;
-
-			case "?":
-				getVariable(s);
-				break;
-
-			case "!":
-				setVariable(s);
-				break;
-
 			case "if":
-				ifMode = "if";
-				ifFlag = s.pop().bvalue;
+			case "else":
+				if(t.svalue.equals("then")){
+					// Jump up out of the 'if' nesting level.
+					return;
+				} else if(t.svalue.equals("else")){
+					mode = "else";
+					continue;
+				} 
+				// If we're in the section that doesn't match the if flag, just ignore stuff.
+				if(mode.equals("if") && !ifFlag){
+					if(t.svalue.equals("if")){
+						executeList(l, "ignoreif");
+					}
+					continue;
+				} else if (mode.equals("else") && ifFlag){
+					if(t.svalue.equals("if")){
+						executeList(l, "ignoreif");
+					}
+					continue;
+				}
+				// Otherwise, break and execute the code.
 				break;
-				
-			case "health":
-				s.add(new Token(robot.getHealth()));
-				break;
-				
-			case "movesLeft":
-				s.add(new Token(robot.getMovesLeft()));
-				break;
-				
-			case "firepower":
-				s.add(new Token(robot.getFirepower()));
-				break;
-				
-			case "team":
-				s.add(new Token(robot.getTeam()));
-				break;
-				
-			case "member":
-				s.add(new Token(robot.getMember()));
-				break;
-				
-			case "shoot!":
-				break;
-				
-			case "move!":
-				break;
-				
-			case "scan!":
-				break;
-				
-			case "identify!":
-				break;
-				
-			case "send!":
-				break;
-				
-			case "mesg?":
-				break;
-				
-			case "recv!":
-				break;
-				
-			 default:
-				 s.add(t);
-				break;
+			}
+			
+			switch(t.svalue){
+			case ":":
+				executeList(l, "macro");
+				continue;
+			case "variable":
+				executeList(l, "variable");
+				continue;
+			case "if":
+				executeList(l, "if");
+				continue;
+			default:
+				if(t.type != Token.SYMBOL){
+					executionStack.add(t);
+					continue;
+				} else {
+					executeToken(t);
+				}
 			}
 		}
 	}
 	
+	private void executeToken(Token t){
+		switch(t.svalue){
+		case "peek":
+			peek(executionStack);
+			break;
+
+		case "drop":
+			drop(executionStack);
+			break;
+
+		case "dup":
+			dup(executionStack);
+			break;
+
+		case "swap":
+			swap(executionStack);
+			break;
+
+		case "rot":
+			rot(executionStack);
+			break;
+
+		case "+":
+			add(executionStack);
+			break;
+
+		case "-":
+			minus(executionStack);
+			break;
+
+		case "*":
+			mult(executionStack);
+			break;
+
+		case "/mod":
+			mod(executionStack);
+			break;
+
+		case "<":
+			lt(executionStack);
+			break;
+
+		case "<=":
+			lte(executionStack);
+			break;
+
+		case ">":
+			gt(executionStack);
+			break;
+
+		case ">=":
+			gte(executionStack);
+			break;
+
+		case "=":
+			eq(executionStack);
+			break;
+
+		case "<>":
+			neq(executionStack);
+			break;
+
+		case "and":
+			and(executionStack);
+			break;
+
+		case "or":
+			or(executionStack);
+			break;
+
+		case "?":
+			getVariable(executionStack);
+			break;
+
+		case "!":
+			setVariable(executionStack);
+			break;
+
+		case "health":
+			executionStack.add(new Token(robot.getHealth()));
+			break;
+
+		case "movesLeft":
+			executionStack.add(new Token(robot.getMovesLeft()));
+			break;
+
+		case "firepower":
+			executionStack.add(new Token(robot.getFirepower()));
+			break;
+
+		case "team":
+			executionStack.add(new Token(robot.getTeam()));
+			break;
+
+		case "member":
+			executionStack.add(new Token(robot.getMember()));
+			break;
+
+		case "shoot!":
+			break;
+
+		case "move!":
+			break;
+
+		case "scan!":
+			break;
+
+		case "identify!":
+			break;
+
+		case "send!":
+			break;
+
+		case "mesg?":
+			break;
+
+		case "recv!":
+			break;
+
+		default:
+			if(macros.containsKey(t.svalue)){
+				@SuppressWarnings("unchecked")
+				LinkedList<Token> copy = (LinkedList<Token>) macros.get(t.svalue).clone();
+				executeList(copy, "");
+				System.out.println("Executed macro: " + t.svalue);
+			} else {
+				executionStack.add(t);
+			}
+			break;
+		}	
+	}
+	
+	
 	
 			private void drop(Stack<Token> s){
-				System.out.println("Dropped: " + s.pop().svalue);
+				s.pop();
+			}
+
+			private void peek(Stack<Token> s){
+				System.out.println("PEEK: " + s.peek().svalue);
 			}
 
 			private void dup(Stack<Token> s){
@@ -387,25 +456,9 @@ public class Parser{
 			private void setVariable(Stack<Token> s){
 				String key = s.pop().svalue;
 				Token value = s.pop();
-				Token t = variables.put(key, value);
+				variables.put(key, value);
 			}
 
-//			case "if":
-//				break;
-//			case "else":
-//				break;
-//			case "then":
-//				break;
-//			case "health":
-//				break;
-//			case "movesLeft":
-//				break;
-//			case "firepower":
-//				break;
-//			case "team":
-//				break;
-//			case "member":
-//				break;
 //			case "shoot!":
 //				break;
 //			case "move!":
