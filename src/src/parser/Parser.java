@@ -1,27 +1,20 @@
 package parser;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.StreamTokenizer;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Scanner;
 import java.util.Stack;
 
 import models.Robot;
 
 public class Parser{
-	private String filename;
-	private Stack<Token> executionStack;
+	protected Stack<Token> executionStack;
 	private HashMap<String, Token> variables;
 	private HashMap<String, LinkedList<Token>> macros;
 	private Robot robot;
-	private LinkedList<Token> l;
 	
 	
 	// Parser flags
@@ -33,7 +26,7 @@ public class Parser{
 	  Parser p = new Parser(new Robot());
 	  String content = readFile("/Users/chris/Desktop/370.txt", Charset.defaultCharset());
 	  LinkedList<Token> l = p.parse(content);
-	  p.executeList(l, "");
+	  p.executeList(l, "", 0);
 	}
 	
 	static String readFile(String path, Charset encoding) 
@@ -47,9 +40,12 @@ public class Parser{
 	public Parser(Robot r) {
 		robot = r;
 		executionStack = new Stack<Token>();
-		l = new LinkedList<Token>();
 		variables = new HashMap<String, Token>();
 		macros = new HashMap<String, LinkedList<Token>>();
+	}
+	
+	public void run(LinkedList<Token> l) {
+		executeList(l, "", 0);
 	}
 	
 	public LinkedList<Token> parse(String s) throws IOException{
@@ -123,10 +119,14 @@ public class Parser{
 		}
 	}
 	
-	public void executeList(LinkedList<Token> l, String mode){
+	@SuppressWarnings("unchecked")
+	public String executeList(LinkedList<Token> l, String mode, int currentIterator){
 		LinkedList<Token> macroList = null;
 		String macroName = null;
+		int finish = 0;
+		LinkedList<Token> listCopy = null;
 		boolean ifFlag = false;
+		int current = currentIterator;
 		// Do setup
 		switch(mode){
 		case "if":
@@ -140,30 +140,44 @@ public class Parser{
 			String key = l.pop().svalue;
 			variables.put(key, new Token(0));
 			l.pop(); // Pop the ';'
-			return;
+			return "";
+		case "iloop":
+			current = executionStack.pop().ivalue;
+			finish = executionStack.pop().ivalue;
+			listCopy = (LinkedList<Token>) l.clone();
+			break;
 		}
 		while (!l.isEmpty()){
 			Token t = l.pop();
 			switch(mode){
+			case "leave":
+				if(t.svalue.equals("loop")){
+					l.pop(); // Pop off ';'
+					return "leave";
+				} else {
+					continue;
+				}
+			case "iloop":
+				break;
 			case "macro":
 				if(t.svalue.equals(";")){
 					macros.put(macroName, macroList);
 					System.out.println("Done recording macro");
-					return;
+					return "";
 				} else {
 					macroList.add(t);
 					continue;
 				}
 			case "ignoreif":
 				if(t.svalue.equals("then")){
-					return;
+					return "";
 				}
 				continue;
 			case "if":
 			case "else":
 				if(t.svalue.equals("then")){
 					// Jump up out of the 'if' nesting level.
-					return;
+					return "";
 				} else if(t.svalue.equals("else")){
 					mode = "else";
 					continue;
@@ -171,12 +185,12 @@ public class Parser{
 				// If we're in the section that doesn't match the if flag, just ignore stuff.
 				if(mode.equals("if") && !ifFlag){
 					if(t.svalue.equals("if")){
-						executeList(l, "ignoreif");
+						executeList(l, "ignoreif", current);
 					}
 					continue;
 				} else if (mode.equals("else") && ifFlag){
 					if(t.svalue.equals("if")){
-						executeList(l, "ignoreif");
+						executeList(l, "ignoreif", current);
 					}
 					continue;
 				}
@@ -186,26 +200,51 @@ public class Parser{
 			
 			switch(t.svalue){
 			case ":":
-				executeList(l, "macro");
+				executeList(l, "macro", current);
 				continue;
 			case "variable":
-				executeList(l, "variable");
+				executeList(l, "variable", current);
 				continue;
 			case "if":
-				executeList(l, "if");
+				String innerReturn = executeList(l, "if", current);
+				if(!mode.equals("iloop") && innerReturn.equals("leave")){
+					return "leave";
+				} else if(mode.equals("iloop") && innerReturn.equals("leave")){
+					mode = "leave";
+				}
+				continue;
+			case "do":
+				executeList(l, "iloop", current);
+				continue;
+			case "leave":
+				mode = "leave";
+				continue;
+			case "loop":
+				if(current < finish){
+					l.pop(); // pop trailing ";"
+					l = listCopy;
+					listCopy = (LinkedList<Token>) l.clone();
+					current++;
+					continue;
+				}
+				l.pop(); // Kill ';' 
+				return "";
+			case "I":
+				executionStack.add(new Token(current));
 				continue;
 			default:
 				if(t.type != Token.SYMBOL){
 					executionStack.add(t);
 					continue;
 				} else {
-					executeToken(t);
+					executeToken(t, current);
 				}
 			}
 		}
+		return "";
 	}
 	
-	private void executeToken(Token t){
+	private void executeToken(Token t, int current){
 		switch(t.svalue){
 		case "peek":
 			peek(executionStack);
@@ -328,7 +367,7 @@ public class Parser{
 			if(macros.containsKey(t.svalue)){
 				@SuppressWarnings("unchecked")
 				LinkedList<Token> copy = (LinkedList<Token>) macros.get(t.svalue).clone();
-				executeList(copy, "");
+				executeList(copy, "", current);
 				System.out.println("Executed macro: " + t.svalue);
 			} else {
 				executionStack.add(t);
