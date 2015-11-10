@@ -176,6 +176,19 @@ public class ParserTest {
   }
 
   @Test
+  public void runRot() throws IOException {
+	  Parser p = new Parser(new Robot());
+	  LinkedList<Token> list =  p.parse("3 2 1 rot");
+	  p.run(list);
+	  Token first = p.executionStack.pop();
+	  Token second = p.executionStack.pop();
+	  Token third = p.executionStack.pop();
+	  assertEquals(3, first.ivalue);
+	  assertEquals(1, second.ivalue);
+	  assertEquals(2, third.ivalue);
+  }
+
+  @Test
   public void runMod() throws IOException {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("9 4 /mod");

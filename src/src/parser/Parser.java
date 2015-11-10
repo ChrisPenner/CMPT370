@@ -393,12 +393,12 @@ public class Parser{
 	}
 
 	private void rot(Stack<Token> s){
-		Token t3 = s.pop();
-		Token t2 = s.pop();
 		Token t1 = s.pop();
-		s.add(t3);
-		s.add(t1);
+		Token t2 = s.pop();
+		Token t3 = s.pop();
 		s.add(t2);
+		s.add(t1);
+		s.add(t3);
 	}
 
 	private void add(Stack<Token> s){
