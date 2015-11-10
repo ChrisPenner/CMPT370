@@ -242,6 +242,10 @@ public class Parser{
 			peek(executionStack);
 			break;
 
+		case "random":
+			random(executionStack);
+			break;
+
 		case "drop":
 			drop(executionStack);
 			break;
@@ -369,6 +373,12 @@ public class Parser{
 
 	private void peek(Stack<Token> s){
 		System.out.println(s.peek().svalue);
+	}
+
+	private void random(Stack<Token> s){
+		int maximum = s.pop().ivalue;
+		int num = (int)(Math.random() * (maximum + 1)); // Need plus 1 for INCLUSIVE
+		s.add(new Token(num));
 	}
 
 	private void dup(Stack<Token> s){

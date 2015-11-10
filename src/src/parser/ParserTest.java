@@ -417,5 +417,27 @@ public class ParserTest {
 	  assertEquals(4, first.ivalue);
   }
 
+  @Test
+  public void runRandom() throws IOException {
+	  Parser p = new Parser(new Robot());
+	  LinkedList<Token> list =  p.parse(
+			  "25 random 25 random 25 random 25 random 25 random 25 random"
+			  );
+	  
+	  p.run(list);
+	  Token first = p.executionStack.pop();
+	  Token second = p.executionStack.pop();
+	  Token third = p.executionStack.pop();
+	  Token fourth = p.executionStack.pop();
+	  Token fifth = p.executionStack.pop();
+	  Token sixth = p.executionStack.pop();
+	  assertEquals(Token.INT, first.type);
+	  assert(first.ivalue >= 0 && first.ivalue <= 25);
+	  assert(second.ivalue >= 0 && first.ivalue <= 25);
+	  assert(third.ivalue >= 0 && first.ivalue <= 25);
+	  assert(fourth.ivalue >= 0 && first.ivalue <= 25);
+	  assert(fifth.ivalue >= 0 && first.ivalue <= 25);
+	  assert(sixth.ivalue >= 0 && first.ivalue <= 25);
+  }
 
 }
