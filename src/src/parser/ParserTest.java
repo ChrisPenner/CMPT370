@@ -356,7 +356,8 @@ public class ParserTest {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse(
 			  "5 0 do "
-			  + "I 3 = if I leave then "
+			  + "I "
+			  + "I 3 = if leave then "
 			  + "loop ;"
 			  );
 	  p.run(list);
@@ -400,7 +401,7 @@ public class ParserTest {
 	  LinkedList<Token> list =  p.parse(
 			  "variable iter ; "
 			  + "0 iter ! "
-			  + "begin iter ? 1 iter + iter ! iter ? 5 >= until ;"
+			  + "begin iter ? iter ? 1 + iter ! iter ? 5 >= until ;"
 			  );
 	  
 	  p.run(list);
@@ -409,11 +410,11 @@ public class ParserTest {
 	  Token third = p.executionStack.pop();
 	  Token fourth = p.executionStack.pop();
 	  Token fifth = p.executionStack.pop();
-//	  assertEquals(0, fifth.ivalue);
-//	  assertEquals(1, fourth.ivalue);
-//	  assertEquals(2, third.ivalue);
-//	  assertEquals(3, second.ivalue);
-//	  assertEquals(4, first.ivalue);
+	  assertEquals(0, fifth.ivalue);
+	  assertEquals(1, fourth.ivalue);
+	  assertEquals(2, third.ivalue);
+	  assertEquals(3, second.ivalue);
+	  assertEquals(4, first.ivalue);
   }
 
 
