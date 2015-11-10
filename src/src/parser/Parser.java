@@ -146,6 +146,9 @@ public class Parser{
 			finish = executionStack.pop().ivalue;
 			listCopy = (LinkedList<Token>) l.clone();
 			break;
+		case "uloop":
+			listCopy = (LinkedList<Token>) l.clone();
+			break;
 		}
 		while (!l.isEmpty()){
 			Token t = l.pop();
@@ -157,7 +160,16 @@ public class Parser{
 				} else {
 					continue;
 				}
-			case "iloop":
+			case "uloop":
+				// If true, we loop
+//				if(t.svalue.equals(";")){
+//					if(uloopCond){
+//						l = listCopy;
+//						listCopy = (LinkedList<Token>) l.clone();
+//					} else {
+//						return "";
+//					}
+//				}
 				break;
 			case "macro":
 				if(t.svalue.equals(";")){
@@ -196,6 +208,9 @@ public class Parser{
 				}
 				// Otherwise, break and execute the code.
 				break;
+				
+				default:
+					break;
 			}
 			
 			switch(t.svalue){
