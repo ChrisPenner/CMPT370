@@ -310,6 +310,10 @@ public class Parser{
 			or(executionStack);
 			break;
 
+		case "invert":
+			invert(executionStack);
+			break;
+
 		case "?":
 			getVariable(executionStack);
 			break;
@@ -490,6 +494,11 @@ public class Parser{
 		boolean a1 = s.pop().bvalue;
 		boolean a2 = s.pop().bvalue;
 		s.add(new Token(a2 || a1));
+	}
+
+	private void invert(Stack<Token> s){
+		boolean a1 = s.pop().bvalue;
+		s.add(new Token(!a1));
 	}
 
 	private void getVariable(Stack<Token> s){

@@ -145,6 +145,20 @@ public class ParserTest {
   } 
 
   @Test
+  public void runInvert() throws IOException {
+	  Parser p = new Parser(new Robot());
+	  LinkedList<Token> list =  p.parse("true invert");
+	  p.run(list);
+	  Token first = p.executionStack.pop();
+	  assertEquals(first.bvalue, false);
+
+	  list =  p.parse("false invert");
+	  p.run(list);
+	  first = p.executionStack.pop();
+	  assertEquals(first.bvalue, true);
+  } 
+
+  @Test
   public void runDrop() throws IOException {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 3 drop");
