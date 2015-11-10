@@ -23,9 +23,11 @@ public class Token {
 		type = SYMBOL;
 		try {
 			dvalue = Double.parseDouble(s);
+			type = DOUBLE;
+			if ((dvalue == Math.floor(dvalue)) && !Double.isInfinite(dvalue)) {
+			    type = INT;
+			}
 			ivalue = new Double(dvalue).intValue();
-			type = NUMBER;
-//			System.out.println("New NUMBER: " + s);
 			svalue = s;
 			return;
 		} catch (NumberFormatException nfe) {

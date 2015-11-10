@@ -38,7 +38,7 @@ public class ParserTest {
 	  assertEquals(first.ivalue, 1);
 	  assertEquals(first.dvalue, 1.0, 0.001);
 	  assertEquals(first.svalue, "1");
-	  assertEquals(first.type, Token.NUMBER);
+	  assertEquals(first.type, Token.INT);
   }
 
   @Test
@@ -49,7 +49,7 @@ public class ParserTest {
 	  assertEquals(first.ivalue, 3);
 	  assertEquals(first.dvalue, 3.14, 0.0001);
 	  assertEquals(first.svalue, "3.14");
-	  assertEquals(first.type, Token.NUMBER);
+	  assertEquals(first.type, Token.DOUBLE);
   }
 
   @Test

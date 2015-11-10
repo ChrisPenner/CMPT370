@@ -238,7 +238,7 @@ public class Parser{
 	
 	private void executeToken(Token t){
 		switch(t.svalue){
-		case "peek":
+		case ".":
 			peek(executionStack);
 			break;
 
@@ -368,7 +368,7 @@ public class Parser{
 	}
 
 	private void peek(Stack<Token> s){
-		System.out.println("PEEK: " + s.peek().svalue);
+		System.out.println(s.peek().svalue);
 	}
 
 	private void dup(Stack<Token> s){
@@ -392,21 +392,33 @@ public class Parser{
 	}
 
 	private void add(Stack<Token> s){
-		double a1 = s.pop().dvalue;
-		double a2 = s.pop().dvalue;
-		s.add(new Token(a2 + a1));
+		Token a1 = s.pop();
+		Token a2 = s.pop();
+		if(a1.type == Token.DOUBLE || a2.type == Token.DOUBLE){
+			s.add(new Token(a2.dvalue + a1.dvalue));
+		} else {
+			s.add(new Token(a2.ivalue + a1.ivalue));
+		}
 	}
 
 	private void mult(Stack<Token> s){
-		int a1 = s.pop().ivalue;
-		int a2 = s.pop().ivalue;
-		s.add(new Token(a2 * a1));
+		Token a1 = s.pop();
+		Token a2 = s.pop();
+		if(a1.type == Token.DOUBLE || a2.type == Token.DOUBLE){
+			s.add(new Token(a2.dvalue * a1.dvalue));
+		} else {
+			s.add(new Token(a2.ivalue * a1.ivalue));
+		}
 	}
 
 	private void minus(Stack<Token> s){
-		double a1 = s.pop().dvalue;
-		double a2 = s.pop().dvalue;
-		s.add(new Token(a2 - a1));
+		Token a1 = s.pop();
+		Token a2 = s.pop();
+		if(a1.type == Token.DOUBLE || a2.type == Token.DOUBLE){
+			s.add(new Token(a2.dvalue - a1.dvalue));
+		} else {
+			s.add(new Token(a2.ivalue - a1.ivalue));
+		}
 	}
 
 	private void mod(Stack<Token> s){
@@ -443,9 +455,13 @@ public class Parser{
 	}
 
 	private void eq(Stack<Token> s){
-		double a1 = s.pop().ivalue;
-		double a2 = s.pop().ivalue;
-		s.add(new Token(a2 == a1));
+		Token a1 = s.pop();
+		Token a2 = s.pop();
+		if(a1.type == Token.DOUBLE || a2.type == Token.DOUBLE){
+			s.add(new Token(Double.compare(a1.dvalue, a2.dvalue) == 0));
+		} else {
+			s.add(new Token(a2.ivalue == a1.ivalue));
+		}
 	}
 
 	private void neq(Stack<Token> s){
@@ -522,6 +538,7 @@ public class Parser{
 		public LinkedList<Token> startLoopList;
 		public LinkedList<Token> list = null;
 		public boolean cond;
+		@SuppressWarnings("unchecked")
 		public ExpressionState(int type, LinkedList<Token> tokenList){
 			this.type = type;
 			this.list = tokenList;
@@ -538,6 +555,7 @@ public class Parser{
 			}
 		}
 		
+		@SuppressWarnings("unchecked")
 		public ExpressionState(int type, LinkedList<Token> tokenList, int start, int finish){
 			this.type = type;
 			this.list = tokenList;
@@ -551,6 +569,7 @@ public class Parser{
 			macroList.add(t);
 		}
 		
+		@SuppressWarnings("unchecked")
 		public boolean loop(){
 			this.list = startLoopList;
 			this.startLoopList = (LinkedList<Token>)list.clone();
