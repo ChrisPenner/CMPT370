@@ -1,6 +1,6 @@
 package views;
 
-public class WatchView {
+public class WatchView extends View{
 	public WatchView() {
 		
 	}
