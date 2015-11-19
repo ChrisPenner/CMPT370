@@ -310,6 +310,12 @@ public class ParserTest {
 	  p.run(list);
 	  Token first = p.executionStack.pop();
 	  assertEquals(first.ivalue, 5);
+	  
+	  // Should initialize to 0.
+	  list = p.parse("variable other ; other ?");
+	  p.run(list);
+	  first = p.executionStack.pop();
+	  assertEquals(first.ivalue, 0);
   }
 
   @Test
@@ -376,6 +382,17 @@ public class ParserTest {
 	  p.run(list);
 	  first = p.executionStack.pop();
 	  assertEquals("unequal", first.svalue);
+	  
+	  list =  p.parse(": divides? /mod drop 0 = ; 15 5 divides?");
+	  p.run(list);
+	  first = p.executionStack.pop();
+	  assertEquals(true, first.bvalue);
+
+	  list =  p.parse(": increment dup ? 1 + swap ! ; "
+	  		+ "variable test ; test increment test increment test ?");
+	  p.run(list);
+	  first = p.executionStack.pop();
+	  assertEquals(2, first.ivalue);
   }
   
   @Test
@@ -427,7 +444,7 @@ public class ParserTest {
 	  // Loop until iter is 5.
 	  LinkedList<Token> list =  p.parse(
 			  "variable iter ; "
-			  + "0 iter ! "
+			  // Store an extra counter for assertions.
 			  + "begin iter ? iter ? 1 + iter ! iter ? 5 >= until ;"
 			  );
 	  
@@ -442,6 +459,76 @@ public class ParserTest {
 	  assertEquals(2, third.ivalue);
 	  assertEquals(3, second.ivalue);
 	  assertEquals(4, first.ivalue);
+  }
+
+  @Test
+  public void nestedUntilLoop() throws IOException {
+	  Parser p = new Parser(new Robot());
+	  // Loop until iter is 5.
+	  LinkedList<Token> list =  p.parse(
+			  ": divides? /mod drop 0 = ; "
+			  + ": increment dup ? 1 + swap ! ; "
+			  + "variable iter ; "
+			  + "1 iter !  "
+			  + "begin "
+			  +   "begin "
+			  +     "iter ? 5 divides?  "
+			  + "until iter increment ; "
+			  + "iter ? 21 = iter ? 41 = or if iter ? then "
+			  + "iter ? 51 = "
+			  + "iter increment until ; "
+			  + "iter ?"
+			  );
+	  
+	  p.run(list);
+	  Token first = p.executionStack.pop();
+	  Token second = p.executionStack.pop();
+	  Token third = p.executionStack.pop();
+	  assertEquals(21, third.ivalue);
+	  assertEquals(41, second.ivalue);
+	  // Increment comes regardless of whether we loop.
+	  assertEquals(52, first.ivalue);
+  }
+	  
+  @Test
+  public void integrationTest() throws IOException {
+	  Parser p = new Parser(new Robot());
+	  LinkedList<Token> list =  p.parse(
+			  // Define some helpers.
+			  ": divides? /mod drop 0 = ; "
+			  + ": increment dup ? 1 + swap ! ; "
+			  // Define a variable, they default to 0.
+			  + "variable iter ; "
+			  // begin an outer loop.
+			  + "begin "
+			    // begin an inner loop.
+			  +   "4 1 do "
+			      // Do a nested for loop only if our current I is even.
+			  +     "I 2 divides? "
+			        // Make sure if statements work with loops too.
+			  +     "if "
+			  +       "5 1 do "
+			  +       "loop iter increment ; "
+			  +     "then "
+			  +   "loop ; "
+			  // Throw the current counter on the stack for testing after each iteration.
+			  + "iter ? "
+			  // Quit when we reach exactly 50.
+			  + "iter ? 50 = "
+			  + "until ; "
+			  );
+	  
+	  p.run(list);
+	  Token first = p.executionStack.pop();
+	  Token second = p.executionStack.pop();
+	  Token third = p.executionStack.pop();
+	  Token fourth = p.executionStack.pop();
+	  Token fifth = p.executionStack.pop();
+	  assertEquals(10, fifth.ivalue);
+	  assertEquals(20, fourth.ivalue);
+	  assertEquals(30, third.ivalue);
+	  assertEquals(40, second.ivalue);
+	  assertEquals(50, first.ivalue);
   }
 
   @Test
