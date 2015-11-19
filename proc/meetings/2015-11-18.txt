@@ -1,0 +1,30 @@
+October 27, 2015
+
+Attendance:
+	- Evan Salter
+	- Erik Schick
+	- Chin Wang Lau
+
+Missing:
+	- Vishal Tomar
+	- Chris Penner (vacation)
+	
+	
+What has been done:
+	= Parser
+	= Views have been started
+	- Models for Cell, Coordinates, GameBoard, and Robots
+	
+What needs to be done:
+	- Controller - Evan
+		- Methods for the parser to call to execute actions
+			- Shoot, move, etc.
+			- Create robot
+			- Initialize game board
+			- Show views
+	- Views need to be finished
+		- Menu 
+			- Main screen - Mitch 
+			- Robot loading view
+		- Match - Erik
+		- Results

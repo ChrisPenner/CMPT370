@@ -1,13 +1,19 @@
 package models;
 
 public class Robot {
-
+	public Coord c;
+	private int health;
+	
 	public Robot() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public int getHealth(){
-		return 0;
+		return health;
+	}
+	
+	protected void setHealth(int amount) {
+		health = amount;
 	}
 
 	public int getMovesLeft() {
@@ -25,5 +31,4 @@ public class Robot {
 	public int getTeam() {
 		return 0;
 	}
-
 }
