@@ -1,4 +1,4 @@
-package models;
+package src.models;
 
 import java.util.LinkedList;
 
@@ -10,18 +10,28 @@ public class GameBoard {
 	
 //	newGameBoard(teams): Initializes a new GameBoard with the selected teams
 //	loaded
-	public GameBoard(LinkedList<Robot>[] teams, int diameter) {
-		initializeBoard(diameter);
-		for(int i = 0; i < 6; i++) {
-			this.teams[i] = teams[i];
+	@SuppressWarnings("unchecked")
+	public GameBoard(LinkedList<Robot>[] teams, int sideLength) {
+		initializeBoard(sideLength);
+		teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
+		/*for(int i = 0; i < 6; i++) {
 			if(teams[i] == null) {
-				teams[i] = new LinkedList<Robot>();
+				this.teams[i] = new LinkedList<Robot>();
+			} else {
+				this.teams[i] = teams[i];
 			}
-		}
+		}*/
 	}
 	
 	private boolean isCellInArray(Coord c) {
-		return c.x >= 0 && c.x < diameter && c.y >= 0 && c.y < diameter;
+		if(c.x < 0 || c.x >= diameter || c.y < 0 || c.y >= diameter) {
+			return false;
+		}
+		if(cells[c.x][c.y] == null) {
+			return false;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -33,17 +43,26 @@ public class GameBoard {
 		diameter = sideLength * 2 - 1;
 		cells = new Cell[diameter][diameter];
 		
+		for(int x = 0; x < diameter; x++) {
+			for(int y = 0; y < diameter; y++) {
+				cells[x][y] = new Cell();
+			}
+		}
+		
 		// Start from middle row top, go downleft and downright
 		init5(new Coord(sideLength - 1, 0));
 		init3(new Coord(sideLength - 1, 0));
 		// Start from middle row bottom, go upleft and upright
-		init6(new Coord(sideLength - 1, diameter));
-		init2(new Coord(sideLength - 1, diameter));
+		init6(new Coord(sideLength - 1, diameter-1));
+		init2(new Coord(sideLength - 1, diameter-1));
 		
 		// Fill in the center of the grid
 		for(int x = 0; x < diameter; x++) {
 			boolean reached = false;
 			for(int y = 0; y < diameter; y++) {
+				if(cells[x][y] == null) {
+					System.out.println(x + " " + y);
+				}
 				if(cells[x][y].valid) {
 					if(!reached) { // If it has not yet started filling in
 						reached = true;

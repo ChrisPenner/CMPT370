@@ -1,7 +1,11 @@
 package src.views;
 
-public abstract class View {
+import javax.swing.JPanel;
+
+public abstract class View extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Call this whenever something happens that should update the display!
 	 */

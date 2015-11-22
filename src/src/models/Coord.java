@@ -1,4 +1,4 @@
-package models;
+package src.models;
 
 public class Coord {
 	public int x, y;

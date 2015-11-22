@@ -1,4 +1,4 @@
-package parser;
+package src.parser;
 
 public class Token {
 	String svalue;
