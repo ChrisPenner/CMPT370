@@ -15,7 +15,8 @@ public class Main {
 		LinkedList<Robot>[] teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
 		
 		int edgeLength = 4;
-		JFrame frame = new JFrame("Robot");
+		JFrame frame = new JFrame("RobotSport");
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GameBoard gb = new GameBoard(teams, edgeLength);
 		JPanel view = new WatchView(edgeLength, gb.getCells());

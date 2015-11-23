@@ -2,8 +2,8 @@ package src.views;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-
 import javax.swing.JButton;
+import javax.swing.JSlider;
 import javax.swing.JTextArea;
 
 import src.models.Cell;
@@ -13,33 +13,39 @@ public class WatchView extends View {
 	Canvas canvas;
 	HexGridDisplay hex;
 	int diameter;
+	final int winHeight = 500;
+	final int winWidth = 800;
 	
 	public WatchView(int diameter, Cell[][] cells) {
 		this.diameter = diameter;
 		
-		Dimension d = new Dimension(800,400);
+		Dimension d = new Dimension(winWidth,winHeight);
 		this.setPreferredSize(d);
 		setLayout(null);
 		
-		JButton btnStop = new JButton("Stop");
-		btnStop.setBounds(288, 11, 55, 23);
-		add(btnStop);
-		
 		JButton btnPlay = new JButton("Play");
-		btnPlay.setBounds(223, 11, 55, 23);
+		btnPlay.setBounds(490, 10, 60, 23);
 		add(btnPlay);
 		
+		JButton btnStop = new JButton("Stop");
+		btnStop.setBounds(555, 10, 60, 23);
+		add(btnStop);
+		
 		JButton btnStep = new JButton("Step");
-		btnStep.setBounds(353, 11, 55, 23);
+		btnStep.setBounds(620, 10, 60, 23);
 		add(btnStep);
 		
 		JTextArea txtrLogdisplay = new JTextArea();
-		txtrLogdisplay.setBounds(223, 62, 187, 186);
+		txtrLogdisplay.setBounds(480, 50, 291, 300);
 		add(txtrLogdisplay);
 		
-		hex = new HexGridDisplay(200, diameter, cells);
-		hex.setBounds(10, 10, 200, 200);
+		hex = new HexGridDisplay(470, diameter, cells);
+		hex.setBounds(10, 10, 470, winHeight-10);
 		add(hex);
+		
+		JSlider slider = new JSlider();
+		slider.setBounds(682, 8, 96, 26);
+		add(slider);
 	}
 	
 	/**
