@@ -22,15 +22,24 @@ public class Coord {
 	 * Moves right-up
 	 */
 	public void move2() {
-		x++;
+		if(x % 2 == 0) {
+			x++;
+			y--;
+		} else {
+			x++;
+		}
 	}
 
 	/**
 	 * Moves right-down
 	 */
 	public void move3() {
-		y--;
-		x++;
+		if(x % 2 == 0) {
+			x++;
+		} else {
+			x++;
+			y++;
+		}
 	}
 
 	/**
@@ -44,14 +53,23 @@ public class Coord {
 	 * Moves left-down
 	 */
 	public void move5() {
-		y--;
-		x--;
+		if(x % 2 == 0) {
+			x--;
+		} else {
+			x--;
+			y++;
+		}
 	}
 
 	/**
 	 * Moves left-up
 	 */
 	public void move6() {
-		x--;
+		if(x % 2 == 0) {
+			x--;
+			y--;
+		} else {
+			x--;
+		}
 	}
 }

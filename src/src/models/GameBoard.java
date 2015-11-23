@@ -28,7 +28,7 @@ public class GameBoard {
 			return false;
 		}
 		if(cells[c.x][c.y] == null) {
-			return false;
+			cells[c.x][c.y] = new Cell();
 		}
 		
 		return true;
@@ -55,6 +55,7 @@ public class GameBoard {
 		// Start from middle row bottom, go upleft and upright
 		init6(new Coord(sideLength - 1, diameter-1));
 		init2(new Coord(sideLength - 1, diameter-1));
+		
 		
 		// Fill in the center of the grid
 		for(int x = 0; x < diameter; x++) {

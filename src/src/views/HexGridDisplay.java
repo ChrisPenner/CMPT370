@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import src.models.Cell;
-import src.models.Coord;
 
 public class HexGridDisplay extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +27,7 @@ public class HexGridDisplay extends JPanel {
 	private void drawBoard(Graphics g) {
 		diameter = sideLength * 2 - 1;
 		
-		int spacing = length / diameter;
+		int spacing = (int) ((length / diameter) / 1.3f);
 		int vertOffset = 0;
 		for(int x = 0; x < diameter; x++) {
 			if(x % 2 == 0) {
@@ -38,15 +37,15 @@ public class HexGridDisplay extends JPanel {
 			}
 			for(int y = 0; y < diameter; y++) {
 				
-				//if(cells[x][y] != null && cells[x][y].isValid()) {
+				if(cells[x][y] != null && cells[x][y].isValid()) {
 					int [] xPoint = new int[6];
 					int [] yPoint = new int[6];
 					for(int i=0; i<6; i++) {
-						xPoint[i] = (int) (x*spacing + (spacing/1.6f)*Math.cos(i*2*Math.PI/6));
-						yPoint[i] = vertOffset + (int) (y*spacing + (spacing/1.8f)*Math.sin(i*2*Math.PI/6));
+						xPoint[i] = spacing + (int) (x*spacing + (spacing/1.5f)*Math.cos(i*2*Math.PI/6));
+						yPoint[i] = spacing + vertOffset + (int) (y*spacing + (spacing/1.8f)*Math.sin(i*2*Math.PI/6));
 					}
 					g.drawPolygon(xPoint, yPoint, 6);
-				//}
+				}
 			}
 		}
 	}
