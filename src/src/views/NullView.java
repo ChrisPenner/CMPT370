@@ -1,6 +1,7 @@
 package views;
 
-public class NullView extends View{
+public class NullView extends View {
+	private static final long serialVersionUID = 1L;
 
 	public NullView() {
 		// TODO Auto-generated constructor stub
