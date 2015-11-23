@@ -9,13 +9,21 @@ import views.*;
 public class Controller {
 	
 	LinkedList<Robot>[] teams;
+	int edgeLength;
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
 		// initialize the controller
 		teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
 		
-		int edgeLength = 4;
+	}
+	
+	public void start() {
+		// starts the actual game program
+		
+		// Will want to display the main menu after it is implemented
+		
+		edgeLength = 4;
 		JFrame frame = new JFrame("RobotSport");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,11 +32,22 @@ public class Controller {
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
-		
 	}
 	
-	public void start() {
-		// starts the actual game program
+	public static void play() {
+		System.out.println("Controller: Play was pressed");
+	}
+	
+	public static void stop() {
+		System.out.println("Controller: Stop was pressed");
+	}
+	
+	public static void step() {
+		System.out.println("Controller: Step was pressed");
+	}
+	
+	public static void changeRate(int rate) {
+		System.out.println("Controller: Rate was changed to " + rate);
 	}
 
 }

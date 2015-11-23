@@ -4,12 +4,14 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import controller.Controller;
 import models.Cell;
 
 public class WatchView extends View {
@@ -33,7 +35,8 @@ public class WatchView extends View {
             public void actionPerformed(ActionEvent e)
             {
                 // Continue execution
-                System.out.println("You clicked play");
+//                System.out.println("You clicked play");
+            	Controller.play();
             }
         });
 		add(btnPlay);
@@ -44,7 +47,8 @@ public class WatchView extends View {
             public void actionPerformed(ActionEvent e)
             {
                 // Stop execution
-                System.out.println("You clicked stop");
+//                System.out.println("You clicked stop");
+            	Controller.stop();
             }
         });
 		add(btnStop);
@@ -55,7 +59,8 @@ public class WatchView extends View {
             public void actionPerformed(ActionEvent e)
             {
                 // Take one step
-                System.out.println("You clicked step");
+//                System.out.println("You clicked step");
+            	Controller.step();
             }
         });
 		add(btnStep);
@@ -75,7 +80,8 @@ public class WatchView extends View {
 				JSlider source = (JSlider)e.getSource();
 		        if (!source.getValueIsAdjusting()) {
 		            int rate = (int)source.getValue();
-		            System.out.println("Rate is set to " + rate);
+//		            System.out.println("Rate is set to " + rate);
+		            Controller.changeRate(rate);
 		        }    
 			}
 		});
