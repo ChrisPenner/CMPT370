@@ -12,7 +12,7 @@ import src.models.Robot;
 public class Main {	
 	public static void main(String[] args) {
 		@SuppressWarnings("unchecked")
-		LinkedList<Robot>[] teams = (LinkedList<Robot>[]) new LinkedList<?>[4];
+		LinkedList<Robot>[] teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
 		
 		int edgeLength = 4;
 		JFrame frame = new JFrame("Robot");

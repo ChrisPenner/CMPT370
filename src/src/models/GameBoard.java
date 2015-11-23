@@ -13,14 +13,15 @@ public class GameBoard {
 	@SuppressWarnings("unchecked")
 	public GameBoard(LinkedList<Robot>[] teams, int sideLength) {
 		initializeBoard(sideLength);
-		teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
-		/*for(int i = 0; i < 6; i++) {
+		this.teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
+		for(int i = 0; i < teams.length; i++) {
 			if(teams[i] == null) {
-				this.teams[i] = new LinkedList<Robot>();
+				this.teams[i] = null;
+				new LinkedList<Robot>();
 			} else {
 				this.teams[i] = teams[i];
 			}
-		}*/
+		}
 	}
 	
 	private boolean isCellInArray(Coord c) {
