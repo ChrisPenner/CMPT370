@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JSlider;
@@ -21,6 +22,7 @@ public class WatchView extends View {
 	int diameter;
 	final int winHeight = 500;
 	final int winWidth = 800;
+	JTextArea txtrLogdisplay;
 	
 	public WatchView(int diameter, Cell[][] cells) {
 		this.diameter = diameter;
@@ -65,8 +67,10 @@ public class WatchView extends View {
         });
 		add(btnStep);
 		
-		JTextArea txtrLogdisplay = new JTextArea();
+		txtrLogdisplay = new JTextArea();
 		txtrLogdisplay.setBounds(480, 50, 291, 300);
+		txtrLogdisplay.setWrapStyleWord(true);
+		txtrLogdisplay.setLineWrap(true);
 		add(txtrLogdisplay);
 		
 		hex = new HexGridDisplay(470, diameter, cells);
@@ -100,7 +104,9 @@ public class WatchView extends View {
 	 * @param message the message to pass
 	 */
 	public void updateLog(String message) {
-		
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
+		this.txtrLogdisplay.append(sdf.format(cal.getTime()) + " --> " + message + "\n-----------------------\n");
 	}
 	
 }
