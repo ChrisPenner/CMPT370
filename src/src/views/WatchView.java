@@ -30,10 +30,9 @@ public class WatchView extends View {
 		JButton btnPlay = new JButton("Play");
 		btnPlay.setBounds(490, 10, 60, 23);
 		btnPlay.addActionListener(new ActionListener() {
- 
             public void actionPerformed(ActionEvent e)
             {
-                // Continue exection
+                // Continue execution
                 System.out.println("You clicked play");
             }
         });
@@ -42,7 +41,6 @@ public class WatchView extends View {
 		JButton btnStop = new JButton("Stop");
 		btnStop.setBounds(555, 10, 60, 23);
 		btnStop.addActionListener(new ActionListener() {
-			 
             public void actionPerformed(ActionEvent e)
             {
                 // Stop execution
@@ -54,7 +52,6 @@ public class WatchView extends View {
 		JButton btnStep = new JButton("Step");
 		btnStep.setBounds(620, 10, 60, 23);
 		btnStep.addActionListener(new ActionListener() {
-			 
             public void actionPerformed(ActionEvent e)
             {
                 // Take one step
@@ -74,7 +71,6 @@ public class WatchView extends View {
 		JSlider slider = new JSlider();
 		slider.setBounds(680, 10, 110, 30);
 		slider.addChangeListener(new ChangeListener() {
-			@Override
 			public void stateChanged(ChangeEvent e) {
 				JSlider source = (JSlider)e.getSource();
 		        if (!source.getValueIsAdjusting()) {
