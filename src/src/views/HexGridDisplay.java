@@ -1,9 +1,9 @@
-package src.views;
+package views;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-import src.models.Cell;
+import models.Cell;
 
 public class HexGridDisplay extends JPanel {
 	private static final long serialVersionUID = 1L;

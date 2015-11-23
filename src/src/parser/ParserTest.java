@@ -1,11 +1,11 @@
-package src.parser;
+package parser;
 
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.LinkedList;
 
-import src.models.Robot;
+import models.Robot;
 
 import org.junit.Test;
 

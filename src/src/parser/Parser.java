@@ -1,4 +1,4 @@
-package src.parser;
+package parser;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Stack;
 
-import src.models.Robot;
+import models.Robot;
 
 public class Parser{
 	protected Stack<Token> executionStack;

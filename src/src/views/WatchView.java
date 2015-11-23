@@ -1,4 +1,4 @@
-package src.views;
+package views;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-import src.models.Cell;
+import models.Cell;
 
 public class WatchView extends View {
 	private static final long serialVersionUID = 1L;

@@ -1,13 +1,13 @@
-package src.main;
+package main;
 
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import src.models.GameBoard;
-import src.views.WatchView;
-import src.models.Robot;
+import models.GameBoard;
+import views.WatchView;
+import models.Robot;
 
 public class Main {	
 	public static void main(String[] args) {

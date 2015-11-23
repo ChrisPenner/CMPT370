@@ -1,4 +1,4 @@
-package src.views;
+package views;
 
 public class NullView extends View{
 
