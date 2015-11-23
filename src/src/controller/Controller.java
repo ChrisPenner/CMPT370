@@ -3,7 +3,6 @@ package controller;
 import models.*;
 import java.util.LinkedList;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import views.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,12 +12,11 @@ public class Controller {
 	LinkedList<Robot>[] teams;
 	int edgeLength;
 	static Timer gameTimer;
-	
 	static boolean gameIsRunning = false;
-	
 	static int timerLoopCount = 0;
 	static int gameRate = 50;
 	static int currentTurn = 1;
+	static View view;
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -37,31 +35,36 @@ public class Controller {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GameBoard gb = new GameBoard(teams, edgeLength);
-		JPanel view = new WatchView(edgeLength, gb.getCells());
+		view = new WatchView(edgeLength, gb.getCells());
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
 	}
 	
 	public static void play() {
-		System.out.println("Controller: Play was pressed");
-		
-		gameIsRunning = true;
-		gameTimer.schedule(new GameLoop(), 0, 1000/60);
+		if(!gameIsRunning){
+			System.out.println("Controller says: Play was pressed");
+			view.updateLog("Controller says: Play was pressed");
+			
+			gameIsRunning = true;
+			gameTimer.schedule(new GameLoop(), 0, 1000/60);
+		}
 		
 	}
 	
 	public static void stop() {
-		System.out.println("Controller: Stop was pressed");
-		gameIsRunning = false;
+		if(gameIsRunning){
+			System.out.println("Controller says: Stop was pressed");
+			gameIsRunning = false;
+		}
 	}
 	
 	public static void step() {
-		System.out.println("Controller: Step was pressed");
+		System.out.println("Controller says: Step was pressed");
 	}
 	
 	public static void changeRate(int rate) {
-		System.out.println("Controller: Rate was changed to " + rate);
+		System.out.println("Controller says: Rate was changed to " + rate);
 		gameRate = rate;
 	}
 	
