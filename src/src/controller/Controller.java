@@ -9,14 +9,15 @@ import java.util.TimerTask;
 
 public class Controller {
 	
-	LinkedList<Robot>[] teams;
-	int edgeLength;
+	static LinkedList<Robot>[] teams;
+	static int edgeLength;
 	static Timer gameTimer;
 	static boolean gameIsRunning = false;
 	static int timerLoopCount = 0;
 	static int gameRate = 50;
 	static int currentTurn = 1;
 	static View view;
+	static JFrame frame;
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -25,17 +26,32 @@ public class Controller {
 		gameTimer = new Timer();
 	}
 	
+	public static void watchMatchButtonPressed() {
+		edgeLength = 4;
+		GameBoard gb = new GameBoard(teams, edgeLength);
+		view = new WatchView(edgeLength, gb.getCells());
+		frame.setContentPane(view);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	public static void instantModeButtonPressed() {
+		System.out.println("Controller says: Instant Mode Button Pressed");
+	}
+
+	public static void testBenchButtonPressed() {
+		System.out.println("Controller says: Test Bench Button Pressed");
+	}
+
 	public void start() {
 		// starts the actual game program
 		
 		// Will want to display the main menu after it is implemented
 		
-		edgeLength = 4;
-		JFrame frame = new JFrame("RobotSport");
+		frame = new JFrame("RobotSport");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GameBoard gb = new GameBoard(teams, edgeLength);
-		view = new WatchView(edgeLength, gb.getCells());
+		view = new MainMenuView();
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
