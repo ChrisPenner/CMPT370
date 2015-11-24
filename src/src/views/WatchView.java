@@ -4,12 +4,14 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import controller.Controller;
 import models.Cell;
 
 public class WatchView extends View {
@@ -19,6 +21,7 @@ public class WatchView extends View {
 	int diameter;
 	final int winHeight = 500;
 	final int winWidth = 800;
+	JTextArea txtrLogdisplay;
 	
 	public WatchView(int diameter, Cell[][] cells) {
 		this.diameter = diameter;
@@ -33,7 +36,8 @@ public class WatchView extends View {
             public void actionPerformed(ActionEvent e)
             {
                 // Continue execution
-                System.out.println("You clicked play");
+//                System.out.println("You clicked play");
+            	Controller.play();
             }
         });
 		add(btnPlay);
@@ -44,7 +48,8 @@ public class WatchView extends View {
             public void actionPerformed(ActionEvent e)
             {
                 // Stop execution
-                System.out.println("You clicked stop");
+//                System.out.println("You clicked stop");
+            	Controller.stop();
             }
         });
 		add(btnStop);
@@ -55,13 +60,16 @@ public class WatchView extends View {
             public void actionPerformed(ActionEvent e)
             {
                 // Take one step
-                System.out.println("You clicked step");
+//                System.out.println("You clicked step");
+            	Controller.step();
             }
         });
 		add(btnStep);
 		
-		JTextArea txtrLogdisplay = new JTextArea();
+		txtrLogdisplay = new JTextArea();
 		txtrLogdisplay.setBounds(480, 50, 291, 300);
+		txtrLogdisplay.setWrapStyleWord(true);
+		txtrLogdisplay.setLineWrap(true);
 		add(txtrLogdisplay);
 		
 		hex = new HexGridDisplay(470, diameter, cells);
@@ -75,7 +83,8 @@ public class WatchView extends View {
 				JSlider source = (JSlider)e.getSource();
 		        if (!source.getValueIsAdjusting()) {
 		            int rate = (int)source.getValue();
-		            System.out.println("Rate is set to " + rate);
+//		            System.out.println("Rate is set to " + rate);
+		            Controller.changeRate(rate);
 		        }    
 			}
 		});
@@ -94,7 +103,9 @@ public class WatchView extends View {
 	 * @param message the message to pass
 	 */
 	public void updateLog(String message) {
-		
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
+		this.txtrLogdisplay.append(sdf.format(cal.getTime()) + " --> " + message + "\n-----------------------\n");
 	}
 	
 }
