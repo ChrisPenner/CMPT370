@@ -1,9 +1,14 @@
 package controller;
 
 import models.*;
+
 import java.util.LinkedList;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import views.*;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,7 +21,7 @@ public class Controller {
 	static int timerLoopCount = 0;
 	static int gameRate = 50;
 	static int currentTurn = 1;
-	static View view;
+	static JPanel view;
 	static JFrame frame;
 	
 	@SuppressWarnings("unchecked")
@@ -60,7 +65,6 @@ public class Controller {
 	public static void play() {
 		if(!gameIsRunning){
 			System.out.println("Controller says: Play was pressed");
-			view.updateLog("Controller says: Play was pressed");
 			
 			gameIsRunning = true;
 			gameTimer.schedule(new GameLoop(), 0, 1000/60);

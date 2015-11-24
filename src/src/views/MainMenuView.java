@@ -7,11 +7,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import controller.Controller;
 
-public class MainMenuView extends View {
+public class MainMenuView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	Canvas canvas;
 	HexGridDisplay hex;
@@ -75,20 +76,5 @@ public class MainMenuView extends View {
 
 	}
 	
-	/**
-	 * Call this whenever something happens that should update the display!
-	 */
-	public void updateDisplay() {
-		
-	}
-	
-	/**
-	 * Call this whenever a message should be passed to the log
-	 * @param message the message to pass
-	 */
-	public void updateLog(String message) {
-
-	}
-
 }
 
