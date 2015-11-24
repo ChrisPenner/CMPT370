@@ -96,7 +96,7 @@ public class WatchView extends View {
 	 * Call this whenever something happens that should update the display!
 	 */
 	public void updateDisplay() {
-		
+		hex.repaint();
 	}
 	
 	/**

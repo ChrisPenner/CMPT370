@@ -115,17 +115,17 @@ public class Controller {
 	private static class GameLoop extends TimerTask {
 		
 		public void run() {
+			if(!gameIsRunning){
+				this.cancel();
+			}
 			
 			if(timerLoopCount % (101-gameRate) == 0) {
+				((View) view).updateDisplay();
 				System.out.println("Current turn: " + currentTurn);
 				currentTurn++;
 				timerLoopCount = 0;
 			}
 			timerLoopCount++;
-			
-			if(!gameIsRunning){
-				this.cancel();
-			}
 		}
 		
 	}
