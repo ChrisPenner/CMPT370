@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import controller.Controller;
 
@@ -21,7 +20,6 @@ public class MainMenuView extends JPanel {
 	final int winWidth = 800;
 	final int buttonWidth = 175;
 	final int buttonHeight = 50;
-	JTextArea txtrLogdisplay;
 	
 	public MainMenuView() {
 		

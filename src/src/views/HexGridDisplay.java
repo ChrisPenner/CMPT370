@@ -36,13 +36,20 @@ public class HexGridDisplay extends JPanel {
 				vertOffset = spacing/2;
 			}
 			for(int y = 0; y < diameter; y++) {
-				
 				if(cells[x][y] != null && cells[x][y].isValid()) {
 					int [] xPoint = new int[6];
 					int [] yPoint = new int[6];
 					for(int i=0; i<6; i++) {
 						xPoint[i] = spacing + (int) (x*spacing + (spacing/1.5f)*Math.cos(i*2*Math.PI/6));
 						yPoint[i] = spacing + vertOffset + (int) (y*spacing + (spacing/1.7f)*Math.sin(i*2*Math.PI/6));
+					}
+					if(cells[x][y].getOccupants() != null) {
+						int count = cells[x][y].getOccupants().size();
+						//if(count > 0) {
+							String s = "" + count;
+							g.drawString("" + s, spacing + x*spacing - (getFontMetrics(getFont()).stringWidth(s) / 2),
+										spacing + vertOffset + y*spacing + (getFontMetrics(getFont()).getHeight() / 4));
+						//}
 					}
 					g.drawPolygon(xPoint, yPoint, 6);
 				}

@@ -70,6 +70,7 @@ public class WatchView extends View {
 		txtrLogdisplay.setBounds(480, 50, 291, 300);
 		txtrLogdisplay.setWrapStyleWord(true);
 		txtrLogdisplay.setLineWrap(true);
+		txtrLogdisplay.setEditable(false);
 		add(txtrLogdisplay);
 		
 		hex = new HexGridDisplay(470, diameter, cells);
@@ -95,7 +96,7 @@ public class WatchView extends View {
 	 * Call this whenever something happens that should update the display!
 	 */
 	public void updateDisplay() {
-		
+		hex.repaint();
 	}
 	
 	/**

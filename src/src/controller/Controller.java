@@ -2,6 +2,7 @@ package controller;
 
 import models.*;
 
+import java.io.File;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
@@ -15,7 +16,7 @@ import java.util.TimerTask;
 public class Controller {
 	
 	static LinkedList<Robot>[] teams;
-	static int edgeLength;
+	static int edgeLength = 4;
 	static Timer gameTimer;
 	static boolean gameIsRunning = false;
 	static int timerLoopCount = 0;
@@ -23,6 +24,8 @@ public class Controller {
 	static int currentTurn = 1;
 	static JPanel view;
 	static JFrame frame;
+	static GameBoard gb;
+	
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -31,13 +34,34 @@ public class Controller {
 		gameTimer = new Timer();
 	}
 	
+	/*
+	 * Checks to ensure that gb is initialized
+	 */
+	private static void checkGB() {
+		if(gb == null) {
+			gb = new GameBoard(teams, edgeLength);
+		}
+	}
+	
 	public static void watchMatchButtonPressed() {
-		edgeLength = 4;
-		GameBoard gb = new GameBoard(teams, edgeLength);
+		view = new TeamSelectView();
+		frame.setContentPane(view);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	public static void confirmRobotsButtonPressed() {
+		checkGB();
 		view = new WatchView(edgeLength, gb.getCells());
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
+	}
+	
+	public static void loadRobot(File file, int team) {
+		System.out.println("Adding " + file.getName() + " to team " + team + ".\n");
+		checkGB();
+		//gb.addRobot(file, team);
 	}
 	
 	public static void instantModeButtonPressed() {
@@ -91,17 +115,17 @@ public class Controller {
 	private static class GameLoop extends TimerTask {
 		
 		public void run() {
+			if(!gameIsRunning){
+				this.cancel();
+			}
 			
 			if(timerLoopCount % (101-gameRate) == 0) {
+				((View) view).updateDisplay();
 				System.out.println("Current turn: " + currentTurn);
 				currentTurn++;
 				timerLoopCount = 0;
 			}
 			timerLoopCount++;
-			
-			if(!gameIsRunning){
-				this.cancel();
-			}
 		}
 		
 	}
