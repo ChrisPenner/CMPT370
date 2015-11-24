@@ -1,85 +1,94 @@
 package views;
 
-import java.awt.Component;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.awt. Dimension;
+
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-import models.GameBoard;
-import models.Robot;
+import controller.Controller;
 
-import javax.swing.BoxLayout;
-import javax.swing.Box;
+public class MainMenuView extends View {
+	private static final long serialVersionUID = 1L;
+	Canvas canvas;
+	HexGridDisplay hex;
+	int diameter;
+	final int winHeight = 500;
+	final int winWidth = 800;
+	final int buttonWidth = 175;
+	final int buttonHeight = 50;
+	JTextArea txtrLogdisplay;
+	
+	public MainMenuView() {
+		
+		Dimension d = new Dimension(winWidth,winHeight);
+		this.setPreferredSize(d);
+		setLayout(null);
+		
+		JLabel labelTitle = new JLabel("RoboSport 360");
+		labelTitle.setHorizontalAlignment(JLabel.CENTER);
+		labelTitle.setFont(labelTitle.getFont().deriveFont(50f));
+		labelTitle.setBounds(0, d.height/4-d.height/8, d.width, 50);
+		add(labelTitle);
+		
+		JLabel labelGroup = new JLabel("Group A3");
+		labelGroup.setHorizontalAlignment(JLabel.CENTER);
+		labelGroup.setFont(labelGroup.getFont().deriveFont(25f));
+		labelGroup.setBounds(0, d.height/4, d.width, 50);
+		add(labelGroup);
 
+		JButton btnWatchMatch = new JButton("Watch Match");
+		btnWatchMatch.setBounds((d.width/2)-(buttonWidth/2), d.height/2, buttonWidth, buttonHeight);
+		btnWatchMatch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                // Continue execution
+            	Controller.watchMatchButtonPressed();
+            }
+        });
+		add(btnWatchMatch);
 
-public class MainMenuView extends JPanel{
-	
-	
-	
-	public static final long serialVersionUID = 1;
-	
-	static final int FONT_SIZE = 72;
-	static final int BUTTON_SPACER_SIZE = 30;
-	static final int BUTTON_WIDTH = 140;
-	static final int BUTTON_HEIGHT = 30;
+		JButton btnInstantMode = new JButton("Instant Mode");
+		btnInstantMode.setBounds((d.width/2)-(buttonWidth/2), (d.height/2)+buttonHeight, buttonWidth, buttonHeight);
+		btnInstantMode.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                // Continue execution
+            	Controller.instantModeButtonPressed();
+            }
+        });
+		add(btnInstantMode);
 
-	
-	public void MainMenu(int width, int height, ActionListener listener)
-	{
-		setSize(width, height);
-		setBackground(Color.YELLOW);
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		
-		add(Box.createRigidArea(new Dimension(0, height/5)));
-		
-		JLabel label = new JLabel("Robort Sport");
-		label.setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
-		label.setForeground(Color.BLACK);
-		label.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(label);
-		
-		add(Box.createRigidArea(new Dimension(0, height/5)));
-		
-		JButton newGameButton = new JButton("Watch Match");
-		newGameButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-		newGameButton.setBackground(Color.YELLOW);
-		newGameButton.setForeground(Color.BLACK);
-		newGameButton.setActionCommand("WatchMatch");
-		newGameButton.addActionListener(listener);
-		newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(newGameButton);
-		
-		add(Box.createRigidArea(new Dimension(0, BUTTON_SPACER_SIZE)));
-		
-		JButton highScoreButton = new JButton("Instant Result");
-		highScoreButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-		highScoreButton.setBackground(Color.YELLOW);
-	
-		highScoreButton.setForeground(Color.BLACK);
-		highScoreButton.setActionCommand("InstantResult");
-		highScoreButton.addActionListener(listener);
-		highScoreButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(highScoreButton);
-		
-		add(Box.createRigidArea(new Dimension(0, BUTTON_SPACER_SIZE)));
-		
-		JButton quitButton = new JButton("Test Bench");
-		quitButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-		quitButton.setBackground(Color.YELLOW);
-		quitButton.setForeground(Color.BLACK);
-		quitButton.setActionCommand("TestBench");
-		quitButton.addActionListener(listener);
-		quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(quitButton);
+		JButton btnTestBench = new JButton("Test Bench");
+		btnTestBench.setBounds((d.width/2)-(buttonWidth/2), (d.height/2)+(2*buttonHeight), buttonWidth, buttonHeight);
+		btnTestBench.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                // Continue execution
+            	Controller.testBenchButtonPressed();
+            }
+        });
+		add(btnTestBench);
+
 	}
 	
+	/**
+	 * Call this whenever something happens that should update the display!
+	 */
+	public void updateDisplay() {
+		
+	}
+	
+	/**
+	 * Call this whenever a message should be passed to the log
+	 * @param message the message to pass
+	 */
+	public void updateLog(String message) {
 
+	}
 
 }
 
