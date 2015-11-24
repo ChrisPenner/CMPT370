@@ -32,6 +32,13 @@ public class Controller {
 	}
 	
 	public static void watchMatchButtonPressed() {
+		view = new TeamSelectView();
+		frame.setContentPane(view);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	public static void confirmRobotsButtonPressed() {
 		edgeLength = 4;
 		GameBoard gb = new GameBoard(teams, edgeLength);
 		view = new WatchView(edgeLength, gb.getCells());
