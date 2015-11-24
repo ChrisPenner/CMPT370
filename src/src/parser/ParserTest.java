@@ -2,7 +2,6 @@ package parser;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 import models.Robot;
@@ -11,7 +10,7 @@ import org.junit.Test;
 
 public class ParserTest {
   @Test
-  public void parseTrue() throws IOException {
+  public void parseTrue() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> actual =  p.parse("true");
 	  Token first = actual.pop();
@@ -21,7 +20,7 @@ public class ParserTest {
   }
 
   @Test
-  public void parseFalse() throws IOException {
+  public void parseFalse() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> actual =  p.parse("false");
 	  Token first = actual.pop();
@@ -31,7 +30,7 @@ public class ParserTest {
   }
 
   @Test
-  public void parseInt() throws IOException {
+  public void parseInt() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> actual =  p.parse("1");
 	  Token first = actual.pop();
@@ -42,7 +41,7 @@ public class ParserTest {
   }
 
   @Test
-  public void parseDouble() throws IOException {
+  public void parseDouble() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> actual =  p.parse("3.14");
 	  Token first = actual.pop();
@@ -53,7 +52,7 @@ public class ParserTest {
   }
 
   @Test
-  public void parseSymbol() throws IOException {
+  public void parseSymbol() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> actual =  p.parse("someSymbol");
 	  Token first = actual.pop();
@@ -62,7 +61,7 @@ public class ParserTest {
   }
   
   @Test
-  public void parseStrings() throws IOException {
+  public void parseStrings() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> actual =  p.parse(".\"Testing this out\"");
 	  Token first = actual.pop();
@@ -71,7 +70,7 @@ public class ParserTest {
   }
   
   @Test
-  public void parseMultipleTokens() throws IOException {
+  public void parseMultipleTokens() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> actual =  p.parse("1 3 + .\"A String\" drop");
 	  Token first = actual.pop();
@@ -89,7 +88,7 @@ public class ParserTest {
   
   //Test running a lists of tokens.
   @Test
-  public void runAddition() throws IOException {
+  public void runAddition() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 3 +");
 	  p.run(list);
@@ -98,7 +97,7 @@ public class ParserTest {
   } 
 
   @Test
-  public void runMultiplication() throws IOException {
+  public void runMultiplication() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("2 3 *");
 	  p.run(list);
@@ -107,7 +106,7 @@ public class ParserTest {
   } 
   
   @Test
-  public void runOr() throws IOException {
+  public void runOr() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("true false or");
 	  p.run(list);
@@ -126,7 +125,7 @@ public class ParserTest {
   } 
   
   @Test
-  public void runAnd() throws IOException {
+  public void runAnd() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("true false and");
 	  p.run(list);
@@ -145,7 +144,7 @@ public class ParserTest {
   } 
 
   @Test
-  public void runInvert() throws IOException {
+  public void runInvert() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("true invert");
 	  p.run(list);
@@ -159,7 +158,7 @@ public class ParserTest {
   } 
 
   @Test
-  public void runDrop() throws IOException {
+  public void runDrop() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 3 drop");
 	  p.run(list);
@@ -168,7 +167,7 @@ public class ParserTest {
   } 
 
   @Test
-  public void runDup() throws IOException {
+  public void runDup() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("2 dup");
 	  p.run(list);
@@ -179,7 +178,7 @@ public class ParserTest {
   } 
 
   @Test
-  public void runSwap() throws IOException {
+  public void runSwap() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 swap");
 	  p.run(list);
@@ -190,7 +189,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runRot() throws IOException {
+  public void runRot() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("3 2 1 rot");
 	  p.run(list);
@@ -203,7 +202,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runMod() throws IOException {
+  public void runMod() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("9 4 /mod");
 	  p.run(list);
@@ -214,7 +213,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runGt() throws IOException {
+  public void runGt() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 >");
 	  p.run(list);
@@ -233,7 +232,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runGte() throws IOException {
+  public void runGte() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 >=");
 	  p.run(list);
@@ -252,7 +251,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runLt() throws IOException {
+  public void runLt() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 <");
 	  p.run(list);
@@ -271,7 +270,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runLte() throws IOException {
+  public void runLte() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 <=");
 	  p.run(list);
@@ -290,7 +289,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runEq() throws IOException {
+  public void runEq() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("1 2 =");
 	  p.run(list);
@@ -304,7 +303,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runVariables() throws IOException {
+  public void runVariables() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("variable test ; 5 test ! test ?");
 	  p.run(list);
@@ -319,7 +318,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runIf() throws IOException {
+  public void runIf() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse("true if .\"yup\" else .\"nope\" then");
 	  p.run(list);
@@ -333,7 +332,7 @@ public class ParserTest {
   }
   
   @Test
-  public void nestedIf() throws IOException {
+  public void nestedIf() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse(
 			 "true if true if .\"True, True\" else .\"True, False\" then else true if .\"False, True\" else .\"False, False\" then then" 
@@ -365,7 +364,7 @@ public class ParserTest {
   }
   
   @Test
-  public void runMacro() throws IOException {
+  public void runMacro() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse(": testmacro 1 25 + ; testmacro testmacro +");
 	  p.run(list);
@@ -396,7 +395,27 @@ public class ParserTest {
   }
   
   @Test
-  public void runDoLoop() throws IOException {
+  public void testDefineWord() {
+	  Parser p = new Parser(new Robot());
+	  p.defineWord("testmacro", "1 25 +");
+	  LinkedList<Token> list =  p.parse("testmacro testmacro +");
+	  p.run(list);
+	  Token first = p.executionStack.pop();
+	  assertEquals(52, first.ivalue);
+  }
+
+  @Test
+  public void testDefineVariable() {
+	  Parser p = new Parser(new Robot());
+	  p.defineVariable("testvar");
+	  LinkedList<Token> list =  p.parse("testvar ?");
+	  p.run(list);
+	  Token first = p.executionStack.pop();
+	  assertEquals(0, first.ivalue);
+  }
+
+  @Test
+  public void runDoLoop() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse(
 			  "5 0 do "
@@ -411,7 +430,7 @@ public class ParserTest {
   }
   
   @Test
-  public void runNestedDoLoop() throws IOException {
+  public void runNestedDoLoop() {
 	  Parser p = new Parser(new Robot());
 	  // Make sure 'I' is maintained separately on the inside and the outside.
 	  LinkedList<Token> list =  p.parse(
@@ -439,7 +458,7 @@ public class ParserTest {
   }
   
   @Test
-  public void runUntilLoop() throws IOException {
+  public void runUntilLoop() {
 	  Parser p = new Parser(new Robot());
 	  // Loop until iter is 5.
 	  LinkedList<Token> list =  p.parse(
@@ -462,7 +481,7 @@ public class ParserTest {
   }
 
   @Test
-  public void nestedUntilLoop() throws IOException {
+  public void nestedUntilLoop() {
 	  Parser p = new Parser(new Robot());
 	  // Loop until iter is 5.
 	  LinkedList<Token> list =  p.parse(
@@ -491,7 +510,7 @@ public class ParserTest {
   }
 	  
   @Test
-  public void integrationTest() throws IOException {
+  public void integrationTest() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse(
 			  // Define some helpers.
@@ -532,7 +551,7 @@ public class ParserTest {
   }
 
   @Test
-  public void runRandom() throws IOException {
+  public void runRandom() {
 	  Parser p = new Parser(new Robot());
 	  LinkedList<Token> list =  p.parse(
 			  "25 random 25 random 25 random 25 random 25 random 25 random"

@@ -37,19 +37,33 @@ public class Parser{
 		return new String(encoded, encoding);
 	}
 	
-	
 	public Parser(Robot r) {
 		robot = r;
 		executionStack = new Stack<Token>();
 		variables = new HashMap<String, Token>();
 		macros = new HashMap<String, LinkedList<Token>>();
+		for(String s : robot.code.variables){
+			defineVariable(s);
+		}
+		for(Word w : robot.code.words){
+			defineWord(w.name, w.body);
+		}
+	}
+	
+	public void defineVariable(String var){
+		variables.put(var, new Token(0));
+	}
+	
+	public void defineWord(String name, String body){
+		LinkedList<Token> macro = parse(body);
+		macros.put(name, macro);
 	}
 	
 	public void run(LinkedList<Token> l) {
 		executeList(l);
 	}
 	
-	public LinkedList<Token> parse(String s) throws IOException{
+	public LinkedList<Token> parse(String s){
 		LinkedList<Token> l = new LinkedList<Token>();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < s.length(); i++){
@@ -195,7 +209,7 @@ public class Parser{
 				continue;
 			case "variable":
 				String key = expression.list.pop().svalue;
-				variables.put(key, new Token(0));
+				defineVariable(key);
 				expression.list.pop(); // Pop the ';'
 				continue;
 			case "do":
