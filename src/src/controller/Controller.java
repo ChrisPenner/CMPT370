@@ -2,6 +2,7 @@ package controller;
 
 import models.*;
 
+import java.io.File;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
@@ -15,7 +16,7 @@ import java.util.TimerTask;
 public class Controller {
 	
 	static LinkedList<Robot>[] teams;
-	static int edgeLength;
+	static int edgeLength = 4;
 	static Timer gameTimer;
 	static boolean gameIsRunning = false;
 	static int timerLoopCount = 0;
@@ -23,12 +24,20 @@ public class Controller {
 	static int currentTurn = 1;
 	static JPanel view;
 	static JFrame frame;
+	static GameBoard gb;
+	
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
 		// initialize the controller
 		teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
 		gameTimer = new Timer();
+	}
+	
+	public static void checkGB() {
+		if(gb == null) {
+			gb = new GameBoard(teams, edgeLength);
+		}
 	}
 	
 	public static void watchMatchButtonPressed() {
@@ -39,12 +48,16 @@ public class Controller {
 	}
 	
 	public static void confirmRobotsButtonPressed() {
-		edgeLength = 4;
-		GameBoard gb = new GameBoard(teams, edgeLength);
 		view = new WatchView(edgeLength, gb.getCells());
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
+	}
+	
+	public static void loadRobot(File file, int team) {
+		System.out.println("Adding " + file.getName() + " to team " + team + ".\n");
+		checkGB();
+		//gb.addRobot(file, team);
 	}
 	
 	public static void instantModeButtonPressed() {
