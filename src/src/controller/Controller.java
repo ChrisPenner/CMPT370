@@ -34,7 +34,10 @@ public class Controller {
 		gameTimer = new Timer();
 	}
 	
-	public static void checkGB() {
+	/*
+	 * Checks to ensure that gb is initialized
+	 */
+	private static void checkGB() {
 		if(gb == null) {
 			gb = new GameBoard(teams, edgeLength);
 		}
@@ -48,6 +51,7 @@ public class Controller {
 	}
 	
 	public static void confirmRobotsButtonPressed() {
+		checkGB();
 		view = new WatchView(edgeLength, gb.getCells());
 		frame.setContentPane(view);
 		frame.pack();
