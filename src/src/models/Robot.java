@@ -36,7 +36,7 @@ public class Robot {
 	int kills;
 	int movement;
 	int distance;
-	public Code code;
+	public Code code = new Code();
 	
 	private static class CodeDeserializer implements JsonDeserializer<Code> {
 		@Override
@@ -59,15 +59,13 @@ public class Robot {
 	}
 
 
-	static Robot fromJson(String json){
+	public static Robot fromJson(String json){
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Code.class, new CodeDeserializer());
 		Gson gson = gsonBuilder.create();
-		return (Robot) gson.fromJson(json, Robot.class);
-	}
-	
-	public Robot() {
-		parser = new Parser(this);
+		Robot r = (Robot) gson.fromJson(json, Robot.class);
+		r.parser = new Parser(r);
+		return r;
 	}
 	
 	public int getHealth(){

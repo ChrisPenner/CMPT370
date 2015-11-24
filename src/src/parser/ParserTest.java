@@ -9,9 +9,10 @@ import models.Robot;
 import org.junit.Test;
 
 public class ParserTest {
+	String baseJson = "{}";
   @Test
   public void parseTrue() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> actual =  p.parse("true");
 	  Token first = actual.pop();
 	  assertEquals(first.bvalue, true);
@@ -21,7 +22,7 @@ public class ParserTest {
 
   @Test
   public void parseFalse() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> actual =  p.parse("false");
 	  Token first = actual.pop();
 	  assertEquals(first.bvalue, false);
@@ -31,7 +32,7 @@ public class ParserTest {
 
   @Test
   public void parseInt() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> actual =  p.parse("1");
 	  Token first = actual.pop();
 	  assertEquals(first.ivalue, 1);
@@ -42,7 +43,7 @@ public class ParserTest {
 
   @Test
   public void parseDouble() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> actual =  p.parse("3.14");
 	  Token first = actual.pop();
 	  assertEquals(first.ivalue, 3);
@@ -53,7 +54,7 @@ public class ParserTest {
 
   @Test
   public void parseSymbol() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> actual =  p.parse("someSymbol");
 	  Token first = actual.pop();
 	  assertEquals(first.svalue, "someSymbol");
@@ -62,7 +63,7 @@ public class ParserTest {
   
   @Test
   public void parseStrings() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> actual =  p.parse(".\"Testing this out\"");
 	  Token first = actual.pop();
 	  assertEquals(first.svalue, "Testing this out");
@@ -71,7 +72,7 @@ public class ParserTest {
   
   @Test
   public void parseMultipleTokens() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> actual =  p.parse("1 3 + .\"A String\" drop");
 	  Token first = actual.pop();
 	  Token second = actual.pop();
@@ -89,7 +90,7 @@ public class ParserTest {
   //Test running a lists of tokens.
   @Test
   public void runAddition() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 3 +");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -98,7 +99,7 @@ public class ParserTest {
 
   @Test
   public void runMultiplication() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("2 3 *");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -107,7 +108,7 @@ public class ParserTest {
   
   @Test
   public void runOr() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("true false or");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -126,7 +127,7 @@ public class ParserTest {
   
   @Test
   public void runAnd() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("true false and");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -145,7 +146,7 @@ public class ParserTest {
 
   @Test
   public void runInvert() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("true invert");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -159,7 +160,7 @@ public class ParserTest {
 
   @Test
   public void runDrop() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 2 3 drop");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -168,7 +169,7 @@ public class ParserTest {
 
   @Test
   public void runDup() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("2 dup");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -179,7 +180,7 @@ public class ParserTest {
 
   @Test
   public void runSwap() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 2 swap");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -190,7 +191,7 @@ public class ParserTest {
 
   @Test
   public void runRot() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("3 2 1 rot");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -203,7 +204,7 @@ public class ParserTest {
 
   @Test
   public void runMod() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("9 4 /mod");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -214,7 +215,7 @@ public class ParserTest {
 
   @Test
   public void runGt() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 2 >");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -233,7 +234,7 @@ public class ParserTest {
 
   @Test
   public void runGte() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 2 >=");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -252,7 +253,7 @@ public class ParserTest {
 
   @Test
   public void runLt() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 2 <");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -271,7 +272,7 @@ public class ParserTest {
 
   @Test
   public void runLte() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 2 <=");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -290,7 +291,7 @@ public class ParserTest {
 
   @Test
   public void runEq() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("1 2 =");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -304,7 +305,7 @@ public class ParserTest {
 
   @Test
   public void runVariables() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("variable test ; 5 test ! test ?");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -319,7 +320,7 @@ public class ParserTest {
 
   @Test
   public void runIf() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse("true if .\"yup\" else .\"nope\" then");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -333,7 +334,7 @@ public class ParserTest {
   
   @Test
   public void nestedIf() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse(
 			 "true if true if .\"True, True\" else .\"True, False\" then else true if .\"False, True\" else .\"False, False\" then then" 
 			  );
@@ -365,7 +366,7 @@ public class ParserTest {
   
   @Test
   public void runMacro() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse(": testmacro 1 25 + ; testmacro testmacro +");
 	  p.run(list);
 	  Token first = p.executionStack.pop();
@@ -396,7 +397,7 @@ public class ParserTest {
   
   @Test
   public void testDefineWord() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  p.defineWord("testmacro", "1 25 +");
 	  LinkedList<Token> list =  p.parse("testmacro testmacro +");
 	  p.run(list);
@@ -406,7 +407,7 @@ public class ParserTest {
 
   @Test
   public void testDefineVariable() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  p.defineVariable("testvar");
 	  LinkedList<Token> list =  p.parse("testvar ?");
 	  p.run(list);
@@ -416,7 +417,7 @@ public class ParserTest {
 
   @Test
   public void runDoLoop() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse(
 			  "5 0 do "
 			  + "I "
@@ -431,7 +432,7 @@ public class ParserTest {
   
   @Test
   public void runNestedDoLoop() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  // Make sure 'I' is maintained separately on the inside and the outside.
 	  LinkedList<Token> list =  p.parse(
 			  "variable outer ; "
@@ -459,7 +460,7 @@ public class ParserTest {
   
   @Test
   public void runUntilLoop() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  // Loop until iter is 5.
 	  LinkedList<Token> list =  p.parse(
 			  "variable iter ; "
@@ -482,7 +483,7 @@ public class ParserTest {
 
   @Test
   public void nestedUntilLoop() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  // Loop until iter is 5.
 	  LinkedList<Token> list =  p.parse(
 			  ": divides? /mod drop 0 = ; "
@@ -511,7 +512,7 @@ public class ParserTest {
 	  
   @Test
   public void integrationTest() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse(
 			  // Define some helpers.
 			  ": divides? /mod drop 0 = ; "
@@ -552,7 +553,7 @@ public class ParserTest {
 
   @Test
   public void runRandom() {
-	  Parser p = new Parser(new Robot());
+	  Parser p = new Parser(Robot.fromJson(baseJson));
 	  LinkedList<Token> list =  p.parse(
 			  "25 random 25 random 25 random 25 random 25 random 25 random"
 			  );
