@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
