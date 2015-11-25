@@ -175,8 +175,11 @@ public class GameBoard {
 		
 	}
 	
-	/*
-	 * Return the number of robots within firing range
+	/**
+	 * Scans the board for other robots within firing range of 
+	 * the current robot
+	 * @param caller Robot - robot that wants to scan
+	 * @return int - number of robots in range
 	 */
 	public int scan(Robot caller){
 	
@@ -191,21 +194,36 @@ public class GameBoard {
 		return numRobots;
 	}
 	
+	/**
+	 * Helper function
+	 * 	Takes the current position of a robot, and a range.
+	 * 	Scans the board for robots in the given level
+	 * @param position Coord - current position of the robot in question
+	 * @param range int - level to scan (i.e. 0 is robot, 1 is tiles 
+	 * 		adjacent to robot, 2 is tiles adjacent to 1, etc.)
+	 * @return Cell[] - array of cells containing robots in range
+	 */
 	private Cell[] scan(Coord position, int range){
 	
+		// for random number generation
 		Random rnd = new Random();
 		Cell[] returnCells = new Cell[4];
+		// number of robots found
 		int numRobots = 0;
 		Cell thisCell = this.getCell(position);
 
+		// if range is 0, count number of robots on current tile
 		if(range == 0) {
-			numRobots = thisCell.occupants.size();
+			// subtract so you don't include yourself
+			numRobots = thisCell.occupants.size()-1;
 			for(int i = 0; i < numRobots; i++){
 				returnCells[0] = thisCell; 
 			}
 		}
+		// look in the 6 tiles adjacent to the origin
 		else if(range == 1) {
 			
+			// create an array of possible coordinates to search
 			Coord[] xy = {
 					new Coord(position.x, position.y+1),
 					new Coord(position.x, position.y-1),
@@ -216,15 +234,19 @@ public class GameBoard {
 			};
 			
 			LinkedList<Coord> coordsToSearch = new LinkedList<Coord>();
+			// if each coordinate is valid, add it to a linked list
 			for(int i = 0; i < xy.length; i++){
 				if (isCellInArray(xy[i])){
 					coordsToSearch.add(xy[i]);
 				}
 			}
 			
+			// randomly choose a coordinate from the list...
 			while(numRobots < 4 && coordsToSearch.size() > 0){
 				int index = rnd.nextInt() % coordsToSearch.size();
 				Cell c = this.getCell(coordsToSearch.remove(index));
+				// ...and for each occupant, add the cell to the array until 
+				// there are 4 cells or all occupants have been added
 				for(int i = 0; i < c.occupants.size() && numRobots < 4; i++){
 					returnCells[numRobots] = c;
 					numRobots++;
@@ -232,6 +254,7 @@ public class GameBoard {
 			}
 			
 		}
+		// same as range 1
 		else if(range == 2) {
 			
 			Coord[] xy = {
@@ -265,6 +288,7 @@ public class GameBoard {
 				}
 			}
 		}
+		// same as range 1 and 2
 		else if(range == 3) {
 			
 			Coord[] xy = {
@@ -305,6 +329,7 @@ public class GameBoard {
 			}
 		}
 		
+		// return the cells
 		return returnCells;
 		
 	}
