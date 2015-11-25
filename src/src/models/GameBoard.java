@@ -1,6 +1,7 @@
 package models;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 
 public class GameBoard {
@@ -170,8 +171,138 @@ public class GameBoard {
 		
 	}
 	
+	/*
+	 * Return the number of robots within firing range
+	 */
 	public int scan(Robot caller){
-		return 0;
+	
+		Coord position = new Coord(caller.c.x, caller.c.y);
+		int numRobots = 0;
+		
+		for(int i = 0; i <= 3 && numRobots < 4; i++){
+			Cell[] ret = scan(position, i);
+			numRobots = ret.length;
+		}
+
+		return numRobots;
+	}
+	
+	private Cell[] scan(Coord position, int range){
+	
+		Random rnd = new Random();
+		Cell[] returnCells = new Cell[4];
+		int numRobots = 0;
+		Cell thisCell = this.getCell(position);
+
+		if(range == 0) {
+			numRobots = thisCell.occupants.size();
+			for(int i = 0; i < numRobots; i++){
+				returnCells[0] = thisCell; 
+			}
+		}
+		else if(range == 1) {
+			
+			Coord[] xy = {
+					new Coord(position.x, position.y+1),
+					new Coord(position.x, position.y-1),
+					new Coord(position.x-1, position.y-1),
+					new Coord(position.x-1, position.y),
+					new Coord(position.x+1, position.y-1),
+					new Coord(position.x+1, position.y)
+			};
+			
+			LinkedList<Coord> coordsToSearch = new LinkedList<Coord>();
+			for(int i = 0; i < xy.length; i++){
+				if (isCellInArray(xy[i])){
+					coordsToSearch.add(xy[i]);
+				}
+			}
+			
+			while(numRobots < 4 && coordsToSearch.size() > 0){
+				int index = rnd.nextInt() % coordsToSearch.size();
+				Cell c = this.getCell(coordsToSearch.remove(index));
+				for(int i = 0; i < c.occupants.size() && numRobots < 4; i++){
+					returnCells[numRobots] = c;
+					numRobots++;
+				}
+			}
+			
+		}
+		else if(range == 2) {
+			
+			Coord[] xy = {
+					new Coord(position.x, position.y-2),
+					new Coord(position.x, position.y+2),
+					new Coord(position.x+1, position.y-2),
+					new Coord(position.x+1, position.y+1),
+					new Coord(position.x+2, position.y-2),
+					new Coord(position.x+2, position.y-1),
+					new Coord(position.x+2, position.y),
+					new Coord(position.x-1, position.y-2),
+					new Coord(position.x-1, position.y+1),
+					new Coord(position.x-2, position.y-2),
+					new Coord(position.x-2, position.y-1),
+					new Coord(position.x-2, position.y)
+			};
+			
+			LinkedList<Coord> coordsToSearch = new LinkedList<Coord>();
+			for(int i = 0; i < xy.length; i++){
+				if (isCellInArray(xy[i])){
+					coordsToSearch.add(xy[i]);
+				}
+			}
+			
+			while(numRobots < 4 && coordsToSearch.size() > 0){
+				int index = rnd.nextInt() % coordsToSearch.size();
+				Cell c = this.getCell(coordsToSearch.remove(index));
+				for(int i = 0; i < c.occupants.size() && numRobots < 4; i++){
+					returnCells[numRobots] = c;
+					numRobots++;
+				}
+			}
+		}
+		else if(range == 3) {
+			
+			Coord[] xy = {
+					new Coord(position.x, position.y-3),
+					new Coord(position.x, position.y+3),
+					new Coord(position.x+1, position.y-3),
+					new Coord(position.x+1, position.y+2),
+					new Coord(position.x+2, position.y-3),
+					new Coord(position.x+2, position.y+1),
+					new Coord(position.x+3, position.y-3),
+					new Coord(position.x+3, position.y-2),
+					new Coord(position.x+3, position.y-1),
+					new Coord(position.x+3, position.y),
+					new Coord(position.x-1, position.y-3),
+					new Coord(position.x-1, position.y+2),
+					new Coord(position.x-2, position.y-3),
+					new Coord(position.x-2, position.y+1),
+					new Coord(position.x-3, position.y-3),
+					new Coord(position.x-3, position.y-2),
+					new Coord(position.x-3, position.y-1),
+					new Coord(position.x-3, position.y),
+			};
+			
+			LinkedList<Coord> coordsToSearch = new LinkedList<Coord>();
+			for(int i = 0; i < xy.length; i++){
+				if (isCellInArray(xy[i])){
+					coordsToSearch.add(xy[i]);
+				}
+			}
+			
+			while(numRobots < 4 && coordsToSearch.size() > 0){
+				int index = rnd.nextInt() % coordsToSearch.size();
+				Cell c = this.getCell(coordsToSearch.remove(index));
+				for(int i = 0; i < c.occupants.size() && numRobots < 4; i++){
+					returnCells[numRobots] = c;
+					numRobots++;
+				}
+			}
+		}
+		
+		return returnCells;
+		
 	}
 	
 	// TODO: identify!

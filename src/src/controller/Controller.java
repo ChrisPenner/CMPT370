@@ -142,25 +142,21 @@ public class Controller {
 	}
 	
 	static int scan(Robot caller){
-		gb.scan(caller);
-		return 0;
+		return gb.scan(caller);
 	}
 	
 	// TODO: identify!
 	
 	static boolean send(Robot caller, Robot target, String value){
-		gb.send(caller, target, value);
-		return true;
+		return gb.send(caller, target, value);
 	}
 	
 	static boolean mesg(Robot caller){
-		gb.mesg(caller);
-		return true;
+		return gb.mesg(caller);
 	}
 	
 	static String recv(Robot caller){
-		gb.recv(caller);
-		return "Message contents";
+		return gb.recv(caller);
 	}
 	
 	private static class GameLoop extends TimerTask {
