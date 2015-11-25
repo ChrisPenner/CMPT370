@@ -19,6 +19,7 @@ public class TeamModule extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected int teamNumber;
 	final JFileChooser fc = new JFileChooser();
+	int numRobotsLoadedPerTeam[] = {0, 0, 0, 0, 0, 0};
 
 	/**
 	 * Create the panel.
@@ -27,6 +28,12 @@ public class TeamModule extends JPanel {
 		Dimension d = new Dimension(325,100);
 		this.setPreferredSize(d);
 		setLayout(null);
+
+		JTextArea txtrLoadeddisplay = new JTextArea();
+		txtrLoadeddisplay.setText("< No robots loaded >");
+		txtrLoadeddisplay.setBounds(75, 5, 250, 95);
+		txtrLoadeddisplay.setEditable(false);
+		add(txtrLoadeddisplay);
 		
 		JButton btnLoad = new JButton("Load");
 		btnLoad.setBounds(0, 5, 70, 25);
@@ -39,19 +46,16 @@ public class TeamModule extends JPanel {
 					
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 			            File file = fc.getSelectedFile();
-			            Controller.loadRobot(file, teamNumber);
+			            if(Controller.loadRobot(file, teamNumber)){
+			            	numRobotsLoadedPerTeam[teamNumber - 1]++;
+			            	txtrLoadeddisplay.setText(numRobotsLoadedPerTeam[teamNumber - 1] + " Robots added.");
+			            }
 			        }
 				}
 			}
 			
 		});
 		add(btnLoad);
-		
-		JTextArea txtrLoadeddisplay = new JTextArea();
-		txtrLoadeddisplay.setText("< No robots loaded >");
-		txtrLoadeddisplay.setBounds(75, 5, 250, 95);
-		txtrLoadeddisplay.setEditable(false);
-		add(txtrLoadeddisplay);
 		
 		JLabel lblLoaded = new JLabel("Loaded");
 		lblLoaded.setBounds(20, 40, 46, 14);

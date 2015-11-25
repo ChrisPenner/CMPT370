@@ -60,7 +60,7 @@ public class Controller {
 		frame.setVisible(true);
 	}
 	
-	public static void loadRobot(File file, int team) {
+	public static boolean loadRobot(File file, int team) {
 		System.out.println("Adding " + file.getName() + " to team " + team + ".\n");
 		checkGB();
 
@@ -70,9 +70,11 @@ public class Controller {
 			String fileString = sn.useDelimiter("\\A").next();
 			gb.addRobot(fileString, team);
 			sn.close();
+			return true;
 		} catch (FileNotFoundException e) {
 			// Crash
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
