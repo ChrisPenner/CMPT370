@@ -132,6 +132,36 @@ public class Controller {
 		System.out.println("Controller says: Rate was changed to " + rate);
 		gameRate = rate;
 	}
+
+	static void shoot(Robot caller, int id, int ir) {
+		gb.shoot(caller, id, ir);
+	}
+	
+	static void move(Robot caller, int id, int ir) {
+		gb.move(caller, id, ir);
+	}
+	
+	static int scan(Robot caller){
+		gb.scan(caller);
+		return 0;
+	}
+	
+	// TODO: identify!
+	
+	static boolean send(Robot caller, Robot target, String value){
+		gb.send(caller, target, value);
+		return true;
+	}
+	
+	static boolean mesg(Robot caller){
+		gb.mesg(caller);
+		return true;
+	}
+	
+	static String recv(Robot caller){
+		gb.recv(caller);
+		return "Message contents";
+	}
 	
 	private static class GameLoop extends TimerTask {
 		
