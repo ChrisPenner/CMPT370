@@ -22,7 +22,7 @@ public class Robot {
 	int serial;
 	String team;
 	int teamNumber;
-	String name;
+	public String name;
 	int version;
 	int matches;
 	int wins;

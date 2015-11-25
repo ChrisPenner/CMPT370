@@ -6,12 +6,14 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
 import controller.Controller;
+import models.Robot;
 
 import javax.swing.JLabel;
 
@@ -19,7 +21,6 @@ public class TeamModule extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected int teamNumber;
 	final JFileChooser fc = new JFileChooser();
-	int numRobotsLoadedPerTeam[] = {0, 0, 0, 0, 0, 0};
 
 	/**
 	 * Create the panel.
@@ -46,9 +47,13 @@ public class TeamModule extends JPanel {
 					
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 			            File file = fc.getSelectedFile();
-			            if(Controller.loadRobot(file, teamNumber)){
-			            	numRobotsLoadedPerTeam[teamNumber - 1]++;
-			            	txtrLoadeddisplay.setText(numRobotsLoadedPerTeam[teamNumber - 1] + " Robots added.");
+			            LinkedList<Robot>[] teams = Controller.loadRobot(file, teamNumber);
+			            if(teams != null) {
+			            	String s = "";
+			            	for(Robot r : teams[teamNumber - 1]) {
+			            		s = s + r.name + '\n';
+			            	}
+			            	txtrLoadeddisplay.setText(s);
 			            }
 			        }
 				}

@@ -60,7 +60,13 @@ public class Controller {
 		frame.setVisible(true);
 	}
 	
-	public static boolean loadRobot(File file, int team) {
+	/**
+	 * 
+	 * @param file
+	 * @param team
+	 * @return the team list the robot was added to, null if failure
+	 */
+	public static LinkedList<Robot>[] loadRobot(File file, int team) {
 		System.out.println("Adding " + file.getName() + " to team " + team + ".\n");
 		checkGB();
 
@@ -71,11 +77,11 @@ public class Controller {
 			Robot robot = Robot.fromJson(fileString);
 			gb.addRobot(robot, team);
 			sn.close();
-			return true;
+			return gb.getTeams();
 		} catch (FileNotFoundException e) {
 			// Crash
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 	

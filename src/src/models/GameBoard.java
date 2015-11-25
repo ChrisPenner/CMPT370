@@ -121,6 +121,10 @@ public class GameBoard {
 		
 	}
 	
+	public LinkedList<Robot>[] getTeams() {
+		return teams;
+	}
+	
 //	GB.setPosition(robot, coord): Updates the position of a robot to the given
 //	coordinate.
 	public void setPosition(Robot r, Coord c) throws Exception {
