@@ -113,7 +113,7 @@ public class GameBoard {
 	public void addRobot(String file, int team) {
 		Robot robot = Robot.fromJson(file);
 		robot.teamNumber = team;
-		teams[team].add(robot);
+		teams[team - 1].add(robot);
 		System.out.println(robot.name + " added.");
 	}
 	
