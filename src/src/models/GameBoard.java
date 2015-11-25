@@ -126,9 +126,11 @@ public class GameBoard {
 	}
 	
 //	GB.addRobot(file): Adds a robot to the set of loaded robots by reading in a file.
+	// TODO: Add each robot to it's starting cell
 	public void addRobot(Robot robot, int team) {
 		robot.teamNumber = team;
 		teams[team - 1].add(robot);
+		cells[4][4].occupants.add(robot);
 		System.out.println(robot.name + " added.");
 	}
 	

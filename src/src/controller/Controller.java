@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class Controller {
 	
 	static LinkedList<Robot>[] teams;
-	static int edgeLength = 4;
+	static int edgeLength = 5;
 	static Timer gameTimer;
 	static boolean gameIsRunning = false;
 	static int timerLoopCount = 0;
