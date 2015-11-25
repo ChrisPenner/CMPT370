@@ -165,10 +165,12 @@ public class GameBoard {
 		return cells[c.x][c.y];
 	}
 	
+	// TODO: Implement GB.shoot()
 	public void shoot(Robot caller, int id, int ir) {
 
 	}
 	
+	// TODO: Implement GB.move()
 	public void move(Robot caller, int id, int ir) {
 		
 	}
@@ -307,19 +309,22 @@ public class GameBoard {
 		
 	}
 	
+	// TODO: Implement GB.identify()
 	public RobotIdentityData identify(Robot caller, int identity) {
-		// TODO: Implement This...
 		return new RobotIdentityData(0,0,0,0);
 	}
 	
+	// TODO: Implement GB.send()
 	public boolean send(Robot caller, int teamMember, Token value){
 		return true;
 	}
 	
+	// TODO: Implement GB.mesg()
 	public boolean mesg(Robot caller, int fromTeamMember){
 		return true;
 	}
-	
+
+	// TODO: Implement GB.recv()
 	public Token recv(Robot caller, int fromTeamMember){
 		return new Token("Message contents");
 	}

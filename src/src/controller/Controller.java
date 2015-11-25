@@ -143,8 +143,7 @@ public class Controller {
 	}
 	
 	public static int scan(Robot caller){
-		gb.scan(caller);
-		return 0;
+		return gb.scan(caller);
 	}
 	
 	public static RobotIdentityData identify(Robot caller, int identifier){
@@ -152,18 +151,15 @@ public class Controller {
 	}
 	
 	public static boolean send(Robot caller, int teamMember, Token value){
-		gb.send(caller, teamMember, value);
-		return true;
+		return gb.send(caller, teamMember, value);
 	}
 	
 	public static boolean mesg(Robot caller, int fromTeamMember){
-		gb.mesg(caller, fromTeamMember);
-		return true;
+		return gb.mesg(caller, fromTeamMember);
 	}
 	
 	public static Token recv(Robot caller, int fromTeamMember){
-		gb.recv(caller, fromTeamMember);
-		return new Token("Message contents");
+		return gb.recv(caller, fromTeamMember);
 	}
 	
 	private static class GameLoop extends TimerTask {
