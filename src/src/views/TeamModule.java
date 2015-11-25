@@ -26,6 +26,9 @@ public class TeamModule extends JPanel {
 	 * Create the panel.
 	 */
 	public TeamModule(int teamNumber) {
+		File workingDirectory = new File(System.getProperty("user.dir"));
+		fc.setCurrentDirectory(workingDirectory);
+		
 		Dimension d = new Dimension(325,100);
 		this.setPreferredSize(d);
 		setLayout(null);
