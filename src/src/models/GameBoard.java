@@ -7,7 +7,7 @@ public class GameBoard {
 	private LinkedList<Robot>[] teams;
 	private Cell[][] cells;
 	private int diameter;
-	private Coord[] teamStart;
+	private Coord[] teamStart = new Coord[6];
 	
 //	newGameBoard(teams): Initializes a new GameBoard with the selected teams
 //	loaded
