@@ -53,8 +53,10 @@ public class TeamModule extends JPanel {
 			            LinkedList<Robot>[] teams = Controller.loadRobot(file, teamNumber);
 			            if(teams != null) {
 			            	String s = "";
+			            	int i = 1;
 			            	for(Robot r : teams[teamNumber - 1]) {
-			            		s = s + r.name + '\n';
+			            		s = s + i + ": " + r.name + '\n';
+			            		i++;
 			            	}
 			            	txtrLoadeddisplay.setText(s);
 			            }
