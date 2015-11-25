@@ -148,4 +148,31 @@ public class GameBoard {
 	public Cell getCell(Coord c) {
 		return cells[c.x][c.y];
 	}
+	
+	protected void shoot(Robot caller, int id, int ir) {
+		
+	}
+	
+	protected void move(Robot caller, int id, int ir) {
+		
+	}
+	
+	protected int scan(Robot caller){
+		return 0;
+	}
+	
+	// TODO: identify!
+	
+	protected boolean send(Robot caller, Robot target, String value){
+		return true;
+	}
+	
+	protected boolean mesg(Robot caller){
+		return true;
+	}
+	
+	protected String recv(Robot caller){
+		return "Message contents";
+	}
+	
 }
