@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import controller.Controller;
 import models.Robot;
+import models.RobotIdentityData;
 
 public class Parser{
 	protected Stack<Token> executionStack;
@@ -357,15 +359,29 @@ public class Parser{
 			break;
 
 		case "shoot!":
+			int shootIr = executionStack.pop().ivalue;
+			int shootId = executionStack.pop().ivalue;
+			Controller.shoot(robot, shootIr, shootId);
 			break;
 
 		case "move!":
+			int moveIr = executionStack.pop().ivalue;
+			int moveId = executionStack.pop().ivalue;
+			Controller.move(robot, moveIr, moveId);
 			break;
 
 		case "scan!":
+			int nearby = Controller.scan(robot);
+			executionStack.add(new Token(nearby));
 			break;
 
 		case "identify!":
+			int identifier = executionStack.pop().ivalue;
+			RobotIdentityData data = Controller.identify(robot, identifier);
+			executionStack.add(new Token(data.getHealth()));
+			executionStack.add(new Token(data.getDirection()));
+			executionStack.add(new Token(data.getRange()));
+			executionStack.add(new Token(data.getTeamNumber()));
 			break;
 
 		case "send!":

@@ -174,7 +174,10 @@ public class GameBoard {
 		return 0;
 	}
 	
-	// TODO: identify!
+	public RobotIdentityData identify(Robot caller, int identity) {
+		// TODO: Implement This...
+		return new RobotIdentityData(0,0,0,0);
+	}
 	
 	public boolean send(Robot caller, Robot target, String value){
 		return true;

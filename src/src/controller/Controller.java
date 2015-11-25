@@ -133,20 +133,22 @@ public class Controller {
 		gameRate = rate;
 	}
 
-	static void shoot(Robot caller, int id, int ir) {
+	public static void shoot(Robot caller, int id, int ir) {
 		gb.shoot(caller, id, ir);
 	}
 	
-	static void move(Robot caller, int id, int ir) {
+	public static void move(Robot caller, int id, int ir) {
 		gb.move(caller, id, ir);
 	}
 	
-	static int scan(Robot caller){
+	public static int scan(Robot caller){
 		gb.scan(caller);
 		return 0;
 	}
 	
-	// TODO: identify!
+	public static RobotIdentityData identify(Robot caller, int identifier){
+		return gb.identify(caller, identifier);
+	}
 	
 	static boolean send(Robot caller, Robot target, String value){
 		gb.send(caller, target, value);
