@@ -252,6 +252,16 @@ public class Parser{
 		return "";
 	}
 	
+	public void init(){
+		LinkedList<Token> initCommands = macros.get("init");
+		executeList(initCommands);
+	}
+	
+	public void turn(){
+		LinkedList<Token> turnCommands = macros.get("turn");
+		executeList(turnCommands);
+	}
+	
 	private void executeToken(Token t){
 		switch(t.svalue){
 		case ".":

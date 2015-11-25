@@ -69,6 +69,14 @@ public class Robot {
 		return r;
 	}
 	
+	public void init(){
+		parser.init();
+	}
+
+	public void turn(){
+		parser.turn();
+	}
+	
 	public int getHealth(){
 		return health;
 	}
