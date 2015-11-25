@@ -59,6 +59,12 @@ public class Controller {
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
+		
+		for(int i = 0; i < teams.length; i++){
+			for(Robot r : teams[i]){
+				r.init();
+			}
+		}
 	}
 	
 	/**
@@ -75,7 +81,8 @@ public class Controller {
 		try {
 			Scanner sn = new Scanner( file );
 			String fileString = sn.useDelimiter("\\A").next();
-			Robot robot = Robot.fromJson(fileString);
+			Robot robot = new Robot();
+			robot = Robot.fromJson(fileString);
 			gb.addRobot(robot, team);
 			sn.close();
 			return gb.getTeams();

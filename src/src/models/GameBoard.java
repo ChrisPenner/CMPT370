@@ -14,10 +14,10 @@ public class GameBoard {
 	
 //	newGameBoard(teams): Initializes a new GameBoard with the selected teams
 //	loaded
-	@SuppressWarnings("unchecked")
 	public GameBoard(LinkedList<Robot>[] teams, int sideLength) {
 		initializeBoard(sideLength);
-		this.teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
+//		this.teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
+		this.teams = teams;
 		for(int i = 0; i < teams.length; i++) {
 			if(teams[i] == null) {
 				this.teams[i] = new LinkedList<Robot>();
@@ -203,6 +203,7 @@ public class GameBoard {
 	 * 		adjacent to robot, 2 is tiles adjacent to 1, etc.)
 	 * @return Cell[] - array of cells containing robots in range
 	 */
+	// TODO: GB.scan(): include robots on own team??
 	private Cell[] scan(Coord position, int range){
 	
 		// for random number generation
