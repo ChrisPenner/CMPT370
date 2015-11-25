@@ -65,10 +65,11 @@ public class Controller {
 		checkGB();
 
 		// Read the whole file.
-		String fileString;
 		try {
-			fileString = new Scanner( file ).useDelimiter("\\A").next();
+			Scanner sn = new Scanner( file );
+			String fileString = sn.useDelimiter("\\A").next();
 			gb.addRobot(fileString, team);
+			sn.close();
 		} catch (FileNotFoundException e) {
 			// Crash
 			e.printStackTrace();
