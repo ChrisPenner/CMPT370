@@ -60,6 +60,9 @@ public class TeamModule extends JPanel {
 			            	}
 			            	txtrLoadeddisplay.setText(s);
 			            }
+			            if(teams[teamNumber - 1].size() == 4){
+			            	btnLoad.setEnabled(false);
+			            }
 			        }
 				}
 			}

@@ -74,7 +74,7 @@ public class Controller {
 	 * @return the team list the robot was added to, null if failure
 	 */
 	public static LinkedList<Robot>[] loadRobot(File file, int team) {
-		System.out.println("Adding " + file.getName() + " to team " + team + ".\n");
+		System.out.print("Adding " + file.getName() + " to team " + team + "...");
 		checkGB();
 
 		// Read the whole file.
@@ -83,7 +83,9 @@ public class Controller {
 			String fileString = sn.useDelimiter("\\A").next();
 			Robot robot = new Robot();
 			robot = Robot.fromJson(fileString);
-			gb.addRobot(robot, team);
+			if(!gb.addRobot(robot, team)){
+				System.out.println("failed.  Team already at max capacity\n");
+			}
 			sn.close();
 			return gb.getTeams();
 		} catch (FileNotFoundException e) {
