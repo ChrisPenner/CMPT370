@@ -110,8 +110,7 @@ public class GameBoard {
 	}
 	
 //	GB.addRobot(file): Adds a robot to the set of loaded robots by reading in a file.
-	public void addRobot(String file, int team) {
-		Robot robot = Robot.fromJson(file);
+	public void addRobot(Robot robot, int team) {
 		robot.teamNumber = team;
 		teams[team - 1].add(robot);
 		System.out.println(robot.name + " added.");

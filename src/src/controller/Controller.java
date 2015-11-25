@@ -68,7 +68,8 @@ public class Controller {
 		try {
 			Scanner sn = new Scanner( file );
 			String fileString = sn.useDelimiter("\\A").next();
-			gb.addRobot(fileString, team);
+			Robot robot = Robot.fromJson(fileString);
+			gb.addRobot(robot, team);
 			sn.close();
 			return true;
 		} catch (FileNotFoundException e) {
