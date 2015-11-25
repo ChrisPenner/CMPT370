@@ -150,6 +150,7 @@ public class GameBoard {
 			return false;
 		}
 
+		robot.c = coordinateValues[team-1][numRobots];
 		getCell(coordinateValues[team-1][numRobots]).occupants.add(robot);
 
 		System.out.println(robot.name + " added.");
