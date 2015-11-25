@@ -71,11 +71,13 @@ public class TeamModule extends JPanel {
 		add(btnLoad);
 		
 		JLabel lblLoaded = new JLabel("Loaded");
-		lblLoaded.setBounds(20, 40, 46, 14);
+		lblLoaded.setHorizontalAlignment(JLabel.RIGHT);
+		lblLoaded.setBounds(0, 40, 60, 14);
 		add(lblLoaded);
 		
 		JLabel lblRobots = new JLabel("Robots:");
-		lblRobots.setBounds(20, 60, 46, 14);
+		lblRobots.setHorizontalAlignment(JLabel.RIGHT);
+		lblRobots.setBounds(0, 60, 60, 14);
 		add(lblRobots);
 	}
 }
