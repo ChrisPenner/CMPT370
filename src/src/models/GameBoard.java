@@ -11,6 +11,20 @@ public class GameBoard {
 	private Cell[][] cells;
 	private int diameter;
 	private Coord[] teamStart = new Coord[6];
+	private Coord[][] coordinateValues = {
+		// team 1
+		{new Coord(0, 3), new Coord(1, 3), new Coord(1, 4), new Coord(0, 5)},	
+		// team 2
+		{new Coord(3, 0), new Coord(3, 1), new Coord(2, 2), new Coord(1, 1)},	
+		// team 3
+		{new Coord(7, 1), new Coord(6, 2), new Coord(5, 1), new Coord(5, 0)},	
+		// team 4
+		{new Coord(8, 5), new Coord(7, 4), new Coord(7, 3), new Coord(8, 3)},	
+		// team 5
+		{new Coord(5, 7), new Coord(5, 6), new Coord(6, 6), new Coord(7, 6)},	
+		// team 6
+		{new Coord(1, 6), new Coord(2, 6), new Coord(3, 6), new Coord(3, 7)}	
+	};
 	
 //	newGameBoard(teams): Initializes a new GameBoard with the selected teams
 //	loaded
@@ -130,7 +144,10 @@ public class GameBoard {
 	public void addRobot(Robot robot, int team) {
 		robot.teamNumber = team;
 		teams[team - 1].add(robot);
-		cells[4][4].occupants.add(robot);
+		int numRobots = teams[team - 1].size();
+		
+		getCell(coordinateValues[team-1][numRobots-1]).occupants.add(robot);
+		
 		System.out.println(robot.name + " added.");
 	}
 	
