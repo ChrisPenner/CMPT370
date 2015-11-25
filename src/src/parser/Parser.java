@@ -359,38 +359,31 @@ public class Parser{
 			break;
 
 		case "shoot!":
-			int shootIr = executionStack.pop().ivalue;
-			int shootId = executionStack.pop().ivalue;
-			Controller.shoot(robot, shootIr, shootId);
+			shoot(executionStack);
 			break;
 
 		case "move!":
-			int moveIr = executionStack.pop().ivalue;
-			int moveId = executionStack.pop().ivalue;
-			Controller.move(robot, moveIr, moveId);
+			move(executionStack);
 			break;
 
 		case "scan!":
-			int nearby = Controller.scan(robot);
-			executionStack.add(new Token(nearby));
+			scan(executionStack);
 			break;
 
 		case "identify!":
-			int identifier = executionStack.pop().ivalue;
-			RobotIdentityData data = Controller.identify(robot, identifier);
-			executionStack.add(new Token(data.getHealth()));
-			executionStack.add(new Token(data.getDirection()));
-			executionStack.add(new Token(data.getRange()));
-			executionStack.add(new Token(data.getTeamNumber()));
+			identify(executionStack);
 			break;
 
 		case "send!":
+			send(executionStack);
 			break;
 
 		case "mesg?":
+			mesg(executionStack);
 			break;
 
 		case "recv!":
+			recv(executionStack);
 			break;
 
 		default:
@@ -399,7 +392,50 @@ public class Parser{
 		}	
 	}
 	
+	private void shoot(Stack<Token> s){
+			int shootIr = s.pop().ivalue;
+			int shootId = s.pop().ivalue;
+			Controller.shoot(robot, shootIr, shootId);
+	}
+
+	private void move(Stack<Token> s){
+			int moveIr = s.pop().ivalue;
+			int moveId = s.pop().ivalue;
+			Controller.move(robot, moveIr, moveId);
+	}
+
+	private void scan(Stack<Token> s){
+			int nearby = Controller.scan(robot);
+			s.add(new Token(nearby));
+	}
 	
+	private void mesg(Stack<Token> s){
+		int fromTeamMember = s.pop().ivalue;
+		boolean hasMessage = Controller.mesg(robot, fromTeamMember);
+		s.add(new Token(hasMessage));
+	}
+
+	private void recv(Stack<Token> s){
+		int fromTeamMember = s.pop().ivalue;
+		Token value = Controller.recv(robot, fromTeamMember);
+		s.add(value);
+	}
+
+	private void send(Stack<Token> s){
+			Token sendValue = s.pop();
+			int teamMember = s.pop().ivalue;
+			boolean sendSuccess = Controller.send(robot, teamMember, sendValue);
+			s.add(new Token(sendSuccess));
+	}
+	
+	private void identify(Stack<Token> s){
+		int identifier = s.pop().ivalue;
+		RobotIdentityData data = Controller.identify(robot, identifier);
+		s.add(new Token(data.getHealth()));
+		s.add(new Token(data.getDirection()));
+		s.add(new Token(data.getRange()));
+		s.add(new Token(data.getTeamNumber()));
+	}
 	
 	private void drop(Stack<Token> s){
 		s.pop();

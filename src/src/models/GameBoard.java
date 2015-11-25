@@ -2,6 +2,8 @@ package models;
 
 import java.util.LinkedList;
 
+import parser.Token;
+
 
 public class GameBoard {
 	private LinkedList<Robot>[] teams;
@@ -179,16 +181,16 @@ public class GameBoard {
 		return new RobotIdentityData(0,0,0,0);
 	}
 	
-	public boolean send(Robot caller, Robot target, String value){
+	public boolean send(Robot caller, int teamMember, Token value){
 		return true;
 	}
 	
-	public boolean mesg(Robot caller){
+	public boolean mesg(Robot caller, int fromTeamMember){
 		return true;
 	}
 	
-	public String recv(Robot caller){
-		return "Message contents";
+	public Token recv(Robot caller, int fromTeamMember){
+		return new Token("Message contents");
 	}
 	
 }

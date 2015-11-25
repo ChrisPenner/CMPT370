@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import parser.Token;
 import views.*;
 
 import java.util.Scanner;
@@ -150,19 +151,19 @@ public class Controller {
 		return gb.identify(caller, identifier);
 	}
 	
-	static boolean send(Robot caller, Robot target, String value){
-		gb.send(caller, target, value);
+	public static boolean send(Robot caller, int teamMember, Token value){
+		gb.send(caller, teamMember, value);
 		return true;
 	}
 	
-	static boolean mesg(Robot caller){
-		gb.mesg(caller);
+	public static boolean mesg(Robot caller, int fromTeamMember){
+		gb.mesg(caller, fromTeamMember);
 		return true;
 	}
 	
-	static String recv(Robot caller){
-		gb.recv(caller);
-		return "Message contents";
+	public static Token recv(Robot caller, int fromTeamMember){
+		gb.recv(caller, fromTeamMember);
+		return new Token("Message contents");
 	}
 	
 	private static class GameLoop extends TimerTask {
