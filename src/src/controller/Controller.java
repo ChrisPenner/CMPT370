@@ -3,6 +3,7 @@ package controller;
 import models.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 
 import views.*;
 
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -61,7 +63,16 @@ public class Controller {
 	public static void loadRobot(File file, int team) {
 		System.out.println("Adding " + file.getName() + " to team " + team + ".\n");
 		checkGB();
-		//gb.addRobot(file, team);
+
+		// Read the whole file.
+		String fileString;
+		try {
+			fileString = new Scanner( file ).useDelimiter("\\A").next();
+			gb.addRobot(fileString, team);
+		} catch (FileNotFoundException e) {
+			// Crash
+			e.printStackTrace();
+		}
 	}
 	
 	public static void instantModeButtonPressed() {

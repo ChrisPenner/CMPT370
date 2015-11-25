@@ -16,8 +16,7 @@ public class GameBoard {
 		this.teams = (LinkedList<Robot>[]) new LinkedList<?>[6];
 		for(int i = 0; i < teams.length; i++) {
 			if(teams[i] == null) {
-				this.teams[i] = null;
-				new LinkedList<Robot>();
+				this.teams[i] = new LinkedList<Robot>();
 			} else {
 				this.teams[i] = teams[i];
 			}
@@ -112,7 +111,10 @@ public class GameBoard {
 	
 //	GB.addRobot(file): Adds a robot to the set of loaded robots by reading in a file.
 	public void addRobot(String file, int team) {
-		
+		Robot robot = Robot.fromJson(file);
+		robot.teamNumber = team;
+		teams[team].add(robot);
+		System.out.println(robot.name + " added.");
 	}
 	
 //	GB.addTeam(team): Adds all robots specified in a team file.
