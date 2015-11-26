@@ -15,7 +15,6 @@ import java.util.LinkedList;
 
 import javax.swing.JButton;
 
-import models.GameBoard;
 
 public class TeamSelectView extends JPanel {
 	private static final long serialVersionUID = 1L;
