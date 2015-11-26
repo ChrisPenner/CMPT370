@@ -1,5 +1,7 @@
 package views;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.Controller;
@@ -9,8 +11,11 @@ import javax.swing.JLabel;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
+
+import models.GameBoard;
 
 public class TeamSelectView extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +25,8 @@ public class TeamSelectView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TeamSelectView() {
+	public TeamSelectView(JFrame frame) {
+		
 		Dimension d = new Dimension(winWidth,winHeight);
 		this.setPreferredSize(d);
 		setLayout(null);
@@ -82,8 +88,20 @@ public class TeamSelectView extends JPanel {
 		btnConfirm.addActionListener(new ActionListener(){
 
 			@Override
-			public void actionPerformed(ActionEvent a) {
-				Controller.confirmRobotsButtonPressed();
+			public void actionPerformed(ActionEvent e) {
+			
+				LinkedList<Integer> invalidTeams = new LinkedList<Integer>(); 
+				for(int i = 0; i < Controller.teams.length; i++){
+					if(Controller.teams[0] != null && Controller.teams[i].size() < 4){
+						invalidTeams.add(i+1);
+					}
+				}
+				if(Controller.teams[0] == null || invalidTeams.size() > 0){
+					JOptionPane.showMessageDialog(frame, "Each team must have 4 robots.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					Controller.confirmRobotsButtonPressed();
+				}
 			}
 			
 		});
