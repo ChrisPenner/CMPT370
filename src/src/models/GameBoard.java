@@ -10,7 +10,6 @@ public class GameBoard {
 	private LinkedList<Robot>[] teams;
 	private Cell[][] cells;
 	private int diameter;
-	private Coord[] teamStart = new Coord[6];
 	private Coord[][] coordinateValues = {
 		// team 1
 		{new Coord(0, 3), new Coord(1, 3), new Coord(1, 4), new Coord(0, 5)},	
@@ -85,16 +84,6 @@ public class GameBoard {
 				if(cells[x][y].valid) {
 					if(!reached) { // If it has not yet started filling in
 						reached = true;
-						if(x == (sideLength - 1) - sideLength / 2) {
-							// Halfway between middle and left edge
-							// Team 2
-							teamStart[1] = new Coord(x,y);
-						}
-						if(x == (sideLength - 1) + sideLength / 2) {
-							// Halfway between middle and right edge
-							// Team 3
-							teamStart[2] = new Coord(x,y);
-						}
 					} else {
 						break;
 					}
@@ -103,8 +92,6 @@ public class GameBoard {
 				}
 			}
 		}
-		
-		teamStart[0] = new Coord(0, (diameter / 2) + 1);
 	}
 	
 	private void init2(Coord c) {
