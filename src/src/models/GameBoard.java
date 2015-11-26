@@ -213,7 +213,12 @@ public class GameBoard {
 		
 		for(int i = 0; i <= 3 && numRobots < 4; i++){
 			Cell[] ret = scan(position, i);
-			numRobots = ret.length;
+			for(Cell c : ret){
+				if(c != null){
+					numRobots++;
+				}
+			}
+//			numRobots = ret.length;
 		}
 
 		return numRobots;
@@ -269,7 +274,7 @@ public class GameBoard {
 			
 			// randomly choose a coordinate from the list...
 			while(numRobots < 4 && coordsToSearch.size() > 0){
-				int index = rnd.nextInt() % coordsToSearch.size();
+				int index = Math.abs(rnd.nextInt()) % coordsToSearch.size();
 				Cell c = this.getCell(coordsToSearch.remove(index));
 				// ...and for each occupant, add the cell to the array until 
 				// there are 4 cells or all occupants have been added
@@ -306,7 +311,7 @@ public class GameBoard {
 			}
 			
 			while(numRobots < 4 && coordsToSearch.size() > 0){
-				int index = rnd.nextInt() % coordsToSearch.size();
+				int index = Math.abs(rnd.nextInt()) % coordsToSearch.size();
 				Cell c = this.getCell(coordsToSearch.remove(index));
 				for(int i = 0; i < c.occupants.size() && numRobots < 4; i++){
 					returnCells[numRobots] = c;
@@ -346,7 +351,7 @@ public class GameBoard {
 			}
 			
 			while(numRobots < 4 && coordsToSearch.size() > 0){
-				int index = rnd.nextInt() % coordsToSearch.size();
+				int index = Math.abs(rnd.nextInt()) % coordsToSearch.size();
 				Cell c = this.getCell(coordsToSearch.remove(index));
 				for(int i = 0; i < c.occupants.size() && numRobots < 4; i++){
 					returnCells[numRobots] = c;
