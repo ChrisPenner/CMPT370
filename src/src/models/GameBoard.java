@@ -182,14 +182,20 @@ public class GameBoard {
 
 	}
 	
-	public void move(Robot caller, int id, int ir) {
-		// assume east team (id==0 is up)
-		Coord c = new Coord(caller.c.x, caller.c.y);
-		int offset = (caller.teamNumber-4) % 6;
+	private int getTeamSpecificDirection(int team, int id, int ir){
+		int offset = (team-4) % 6;
 		if(offset < 0){
 			offset = offset*-1;
 		}
-		int direction = id + offset;
+		int direction = (id + offset) % 6;
+		
+		return direction;
+	}
+	
+	public void move(Robot caller, int id, int ir) {
+		// assume east team (id==0 is up)
+		Coord c = new Coord(caller.c.x, caller.c.y);
+		int direction = getTeamSpecificDirection(caller.teamNumber, id, ir);
 		switch(direction){
 			case 0:
 				for(int i = 0; i < ir; i++){
