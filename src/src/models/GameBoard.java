@@ -182,9 +182,70 @@ public class GameBoard {
 
 	}
 	
-	// TODO: Implement GB.move()
 	public void move(Robot caller, int id, int ir) {
-		
+		// assume east team (id==0 is up)
+		Coord c = new Coord(caller.c.x, caller.c.y);
+		int offset = (caller.teamNumber-4) % 6;
+		if(offset < 0){
+			offset = offset*-1;
+		}
+		int direction = id + offset;
+		switch(direction){
+			case 0:
+				for(int i = 0; i < ir; i++){
+					c.move1();
+				}
+				break;
+			case 1:
+				for(int i = 0; i < ir; i++){
+					c.move2();
+				}
+				break;
+			case 2:
+				for(int i = 0; i < ir; i++){
+					c.move3();
+				}
+				break;
+			case 3:
+				for(int i = 0; i < ir; i++){
+					c.move4();
+				}
+				break;
+			case 4:
+				for(int i = 0; i < ir; i++){
+					c.move5();
+				}
+				break;
+			case 5:
+				for(int i = 0; i < ir; i++){
+					c.move6();
+				}
+				break;
+			default:
+		}
+		moveRobotTo(caller, c);
+	}
+	
+	private boolean moveRobotTo(Robot r, Coord c){
+		try{
+			if(getCell(c).isValid()){
+				// move robot
+				System.out.println("true");
+				getCell(r.c).occupants.remove(r);
+				getCell(c).occupants.add(r);
+				r.c = c;
+				return true;
+			}
+			else {
+				System.out.println("false");
+				return false;
+			}
+		}
+		catch(Exception e){
+			System.out.println("false");
+			return false;
+		}
+
 	}
 	
 	/**

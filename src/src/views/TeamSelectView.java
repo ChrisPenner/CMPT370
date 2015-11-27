@@ -89,18 +89,18 @@ public class TeamSelectView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				LinkedList<Integer> invalidTeams = new LinkedList<Integer>(); 
-				for(int i = 0; i < Controller.teams.length; i++){
-					if(Controller.teams[0] != null && Controller.teams[i].size() < 4){
-						invalidTeams.add(i+1);
-					}
-				}
-				if(Controller.teams[0] == null || invalidTeams.size() > 0){
-					JOptionPane.showMessageDialog(frame, "Each team must have 4 robots.", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				else{
+//				LinkedList<Integer> invalidTeams = new LinkedList<Integer>(); 
+//				for(int i = 0; i < Controller.teams.length; i++){
+//					if(Controller.teams[0] != null && Controller.teams[i].size() < 4){
+//						invalidTeams.add(i+1);
+//					}
+//				}
+//				if(Controller.teams[0] == null || invalidTeams.size() > 0){
+//					JOptionPane.showMessageDialog(frame, "Each team must have 4 robots.", "Error", JOptionPane.ERROR_MESSAGE);
+//				}
+//				else{
 					Controller.confirmRobotsButtonPressed();
-				}
+//				}
 			}
 			
 		});
