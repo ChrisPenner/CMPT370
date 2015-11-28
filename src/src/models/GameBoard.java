@@ -186,12 +186,22 @@ public class GameBoard {
 			return;
 		}
 		Coord coord = getCoordAtDirAndRange(caller, id, ir);
-		Cell cell = getCell(coord);
-		for(int i = 0; i < cell.occupants.size(); i++){
-			cell.occupants.get(i).health -= caller.firepower;
-			if(cell.occupants.get(i).health <= 0){
-				cell.occupants.remove(i);
+		try{
+			Cell cell = getCell(coord);
+			for(int i = 0; i < cell.occupants.size(); i++){
+				Robot r = cell.occupants.get(i);
+				r.health -= caller.firepower;
+				if(r.health <= 0){
+					cell.occupants.remove(i);
+				}
+				for(int j = 0; i < teams.length; i++){
+					if(teams[j].contains(r)){
+						teams[j].remove(r);
+					}
+				}
 			}
+		} catch (Exception e){
+			System.out.println(e.getMessage());
 		}
 	}
 	
