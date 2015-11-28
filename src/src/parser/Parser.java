@@ -25,13 +25,6 @@ public class Parser{
 	private boolean stringPrefix = false;
 	private boolean inComment = false;
 	
-	public static void main(String[] args) throws IOException{
-	  Parser p = new Parser(new Robot());
-	  String content = readFile("/Users/chris/Desktop/370.txt", Charset.defaultCharset());
-	  LinkedList<Token> l = p.parse(content);
-	  p.executeList(l);
-	}
-	
 	static String readFile(String path, Charset encoding) 
 			throws IOException 
 	{

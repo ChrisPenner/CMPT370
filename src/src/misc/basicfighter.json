@@ -23,12 +23,12 @@
         , {"variable" : "maxMove"}
         , {"variable" : "range"}
         , {"word" : { "name" : "moveOne", "comment" : "( id -- )", "body" : "enemyDirection ? 1 move!" }}
-        , {"word" : { "name" : "search", "comment" : "( -- )", "body" : "0 identify! drop enemyDirection ! enemyRange ! drop " }}
+        , {"word" : { "name" : "search", "comment" : "( -- )", "body" : "scan 0 >  if 0 identify! drop enemyDirection ! enemyRange ! drop true else false then" }}
         , {"word" : { "name" : "inRange?", "comment" : "( -- )", "body" : "enemyRange ? range ? <=" }}
         , {"word" : { "name" : "chase", "comment" : "( -- )", "body" : "maxMove ? 1 do moveOne loop ;" }}
         , {"word" : { "name" : "fire", "comment" : "( -- )", "body" : "enemyDirection ? enemyRange ? shoot!" }}
         , {"word" : { "name" : "increment", "comment" : "(v -- )", "body" : "1 +" }}
         , {"word" : { "name" : "init", "comment" : "( -- )", "body" : "3 range ! 3 maxMove !" }}
-        , {"word" : { "name" : "turn" , "comment" : "( -- )" , "body" : "search chase search inRange? if fire then" }}
+        , {"word" : { "name" : "turn" , "comment" : "( -- )" , "body" : "search if chase search inRange? if fire then then" }}
     ]
 }
