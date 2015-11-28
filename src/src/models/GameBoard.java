@@ -197,7 +197,7 @@ public class GameBoard {
 	
 	private Coord getCoordAtDirAndRange(Robot r, int id, int ir){
 		Coord c = new Coord(r.c.x, r.c.y);
-		int direction = getTeamSpecificDirection(r.teamNumber, id, ir);
+		int direction = getTeamSpecificDirection(r.teamNumber, id);
 		switch(direction){
 			case 0:
 				for(int i = 0; i < ir; i++){
@@ -235,11 +235,8 @@ public class GameBoard {
 		
 	}
 	
-	private int getTeamSpecificDirection(int team, int id, int ir){
-		int offset = (team-4) % 6;
-		if(offset < 0){
-			offset = offset*-1;
-		}
+	private int getTeamSpecificDirection(int team, int id){
+		int offset = Math.abs((team+2) % 6);
 		int direction = (id + offset) % 6;
 		
 		return direction;
@@ -484,11 +481,11 @@ public class GameBoard {
 		if(start.x == end.x){
 			if(end.y > start.y){
 				// up
-				id = getTeamSpecificDirection(team, 0, 0);
+				id = getTeamSpecificDirection(team, 0);
 			}
 			else{
 				//down
-				id = getTeamSpecificDirection(team, 3, 0);
+				id = getTeamSpecificDirection(team, 3);
 			}
 		}
 		else if(start.x > end.x){
@@ -496,22 +493,22 @@ public class GameBoard {
 			if(start.x % 2 == 0){
 				if(end.y >= start.y){
 					// down-left 
-					id = getTeamSpecificDirection(team, 4, 0);
+					id = getTeamSpecificDirection(team, 4);
 				}
 				else{
 					// up-left
-					id = getTeamSpecificDirection(team, 5, 0);
+					id = getTeamSpecificDirection(team, 5);
 				}
 			}
 			else{
 				// right
 				if(end.y <= start.y){
 					// up-left
-					id = getTeamSpecificDirection(team, 5, 0);
+					id = getTeamSpecificDirection(team, 5);
 				}
 				else{
 					// down-left
-					id = getTeamSpecificDirection(team, 4, 0);
+					id = getTeamSpecificDirection(team, 4);
 				}
 			}
 		}
@@ -520,22 +517,22 @@ public class GameBoard {
 			if(start.x % 2 == 0){
 				if(end.y >= start.y){
 					// down-right
-					id = getTeamSpecificDirection(team, 2, 0);
+					id = getTeamSpecificDirection(team, 2);
 				}
 				else{
 					// up-right
-					id = getTeamSpecificDirection(team, 1, 0);
+					id = getTeamSpecificDirection(team, 1);
 				}
 			}
 			else{
 				// right
 				if(end.y <= start.y){
 					// up-right
-					id = getTeamSpecificDirection(team, 1, 0);
+					id = getTeamSpecificDirection(team, 1);
 				}
 				else{
 					// down-right
-					id = getTeamSpecificDirection(team, 2, 0);
+					id = getTeamSpecificDirection(team, 2);
 				}
 			}
 		}
