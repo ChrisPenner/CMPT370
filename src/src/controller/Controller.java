@@ -119,6 +119,7 @@ public class Controller {
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
+		
 	}
 	
 	public static void play() {
@@ -127,6 +128,7 @@ public class Controller {
 			
 			gameIsRunning = true;
 			gameTimer.schedule(new GameLoop(), 0, 1000/60);
+			((WatchView)view).updateLog("Game started."); 
 		}
 		
 	}
@@ -135,6 +137,7 @@ public class Controller {
 		if(gameIsRunning){
 			System.out.println("Controller says: Stop was pressed");
 			gameIsRunning = false;
+			((WatchView)view).updateLog("Game paused."); 
 		}
 	}
 	
@@ -158,6 +161,7 @@ public class Controller {
 
 	public static void shoot(Robot caller, int id, int ir) {
 		gb.shoot(caller, id, ir);
+		((WatchView)view).updateLog("Team " + caller.getTeam()+1 + ", Robot " + caller.getMember()+1 + " shoots: ID=" + id + ", IR=" + ir); 
 	}
 	
 	public static void move(Robot caller, int id, int ir) {
