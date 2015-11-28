@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 public class TeamModule extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected int teamNumber;
-	final JFileChooser fc = new JFileChooser();
+	static final JFileChooser fc = new JFileChooser();
 
 	/**
 	 * Create the panel.
