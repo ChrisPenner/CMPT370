@@ -192,6 +192,7 @@ public class Controller {
 			
 			if(timerLoopCount % (101-gameRate) == 0) {
 //				Robot r = teams[0].getFirst();
+//				r.turn();
 //				move(r, 0, 1);
 //				System.out.println("Team 1 Robot 1 (" + r.c.x + ", " + r.c.y + "): " + scan(r));
 				try{
