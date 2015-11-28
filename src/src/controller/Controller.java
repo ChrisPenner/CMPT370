@@ -15,9 +15,9 @@ import views.*;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Controller {
-	
 	static public LinkedList<Robot>[] teams;
 	static int edgeLength = 5;
 	static Timer gameTimer;
@@ -28,7 +28,7 @@ public class Controller {
 	static JPanel view;
 	static JFrame frame;
 	static GameBoard gb;
-	
+	static AtomicBoolean loopInUse = new AtomicBoolean();
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -176,25 +176,25 @@ public class Controller {
 	}
 	
 	private static class GameLoop extends TimerTask {
-		
 		int teamNum = 0;
 		int robotNum = 0;
 		
 		public void run() {
-			if(!gameIsRunning){
-				this.cancel();
-			}
-			
-			if(teamNum == 6){
-				teamNum = 0;
-				robotNum++;
-			}
-			if(robotNum == 4) {
-				teamNum = 0;
-				robotNum = 0;
-			}
-			
-			if(timerLoopCount % (101-gameRate) == 0) {
+			if(loopInUse.compareAndSet(false, true)) {
+				if(!gameIsRunning){
+					this.cancel();
+				}
+				
+				if(teamNum == 6){
+					teamNum = 0;
+					robotNum++;
+				}
+				if(robotNum == 4) {
+					teamNum = 0;
+					robotNum = 0;
+				}
+				
+				if(timerLoopCount % (101-gameRate) == 0) {
 //				Robot r = teams[0].getFirst();
 //				System.out.println("Scan: " + scan(r));
 //				r.turn();
@@ -206,13 +206,15 @@ public class Controller {
 //				} catch(Exception e){
 //					System.out.println(e.getMessage());
 //				}
-				((View) view).updateDisplay();
-				System.out.println("Current turn: " + currentTurn);
-				currentTurn++;
-				timerLoopCount = 0;
-				teamNum++;
+					((View) view).updateDisplay();
+					System.out.println("Current turn: " + currentTurn);
+					currentTurn++;
+					timerLoopCount = 0;
+					teamNum++;
+				}
+				timerLoopCount++;
+				loopInUse.set(false);
 			}
-			timerLoopCount++;
 		}
 		
 	}
