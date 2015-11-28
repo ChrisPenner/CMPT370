@@ -16,9 +16,12 @@
     , "kills" : 10
     , "movement" : 2
     , "distance" : 2
-    , "code" : [ {"variable" : "maxRange"}
-        , {"word" : { "name" : "moveABit", "comment" : "( -- )", "body" : "4 1 move!" }}
-        , {"word" : { "name" : "init", "comment" : "( -- )", "body" : "3 maxRange !" }}
-        , {"word" : { "name" : "turn" , "comment" : "( -- )" , "body" : "moveABit" }}
+    , "code" : [ {"variable" : "currentDir"}
+        , {"word" : { "name" : "moveOne", "comment" : "( -- )", "body" : "1 1 move!" }}
+        , {"word" : { "name" : "increment", "comment" : "(v -- )", "body" : "1 +" }}
+        , {"word" : { "name" : "mod6", "comment" : "(v -- v)", "body" : "6 /mod drop" }}
+        , {"word" : { "name" : "changeDir", "comment" : "( -- )", "body" : "currentDir ? increment mod6 currentDir !" }}
+        , {"word" : { "name" : "init", "comment" : "( -- )", "body" : "0 currentDir !" }}
+        , {"word" : { "name" : "turn" , "comment" : "( -- )" , "body" : "changeDir moveOne" }}
     ]
 }
