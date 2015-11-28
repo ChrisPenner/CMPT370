@@ -1,6 +1,11 @@
-# CMPT 370 Implementation
+---
+title: "CMPT 355 Group A3"
+subtitle: "Implementation Document"
+date: "November 18, 2015"
+toc: true
+---
 
-Group A3
+-------------------------------------------------------------
 
 Implementation Git release tag: ( TAG GOES HERE )
 
@@ -26,6 +31,47 @@ contents of the object, that is a 'variable' entry is different semantically
 from a 'word' entry. Luckily, after reading some library documentation we were 
 able to write a custom deserializer which overcame these issues.
 
+As we continued to work on the project, not only did some of the requirement 
+specifications change (for instance having ground of different terrain 
+difficulty) but also our understanding of different elements of the project 
+evolved as we got further into our implementation. We had a very week 
+understanding of how much of the robot language worked when we started and have 
+needed to adjust our expectations and implementation to fit our new 
+understanding as we continue onwards. An example of this are the identify! and 
+scan! keywords. These are meant to help identify nearby robots, however we 
+realized that the notion of 'direction' is difficult on a hex grid. A robot may 
+be in 'range' but still isn't addressable using our direction system. To solve 
+this problem we decided that 'visible' means that a square must be some range 
+in one of the 6 directions, and we adjusted our implementation of scan! and 
+identify! to reflect this.
+
+## State of implementation
+
+Unfortunately, due to time pressures, the complexity of the project, and 
+unbalanced group dynamics we have not succeeded in implementing a version of 
+RoboSport which fulfills our requirements. In accordance with Hofstadter's law, 
+things took longer than expected and complexity arose along the way. Though we 
+wish we could have succeeded in implementing more of the features, we learned a 
+lot about how projects grow, and how interaction between multi-level systems 
+with many parts can become complex quickly.
+
+In the end, our version of RoboSport can successfully import several teams of 
+robots from JSON robot files and can construct Robot models with the 
+appropriate statistics. It can then allow them to fight in an arena, providing 
+the user with a user interface that allows pausing, playing, and changing the 
+speed of the fight. The game board shows the position of robots on the board 
+and the number of robots on each square. 
+
+We have not been able to add terrain of different movement difficulties, A 
+testing area, or instant matches. We were also not able to implement the robot 
+librarian software, though this was due to the fact that it was not available 
+for testing and was not made available to groups within reasonable time. Our 
+display leaves much to be desired and doesn't clearly display stats about 
+robots involved with the fight, and we would have added a lot of styling 
+changes to the project if we had more time available.
+
+TODO... userguide?
+
 ## Design deficiencies
 
 Since we chose the MVC architecture we also came across some times where our 
@@ -47,10 +93,9 @@ implemented, a few of the more specific implementation details were forgotten
 in our design. Specifically the notion of how the view should be updated. We 
 must choose between several options, such as updating it explicitly from the 
 controller, using a thread to update the view based on underlying data every 
-few seconds, or to use some form of event based triggering system.
-
-TODO
-
+few seconds, or to use some form of event based triggering system. In the end 
+we decided that for a project of this scope it is easiest to use an 'update' 
+method on the view which we can call whenever the underlying data changes.
 
 ## Pair programming and Code Reviews
 
@@ -128,16 +173,43 @@ projects. The Robot model and the parser/interpreter implementations were
 developed largely using JUnit with TDD. Not everyone in the group wanted to use 
 TDD, and so some portions of code remain untested. 
 
+## Documentation
+
+Since this application is meant to be used via a GUI by users there was not 
+much in the way of API documentation, and the general use cases are covered in 
+detail in our User Guide. For internal use many of our functions have javadocs 
+associated with them to clarify how functions are to be used. 
+
+Please read the User Guide for more details on how to use the software.
+
 ## Final Implementation Statistics
 
 TODO
 Total Lines of code:
 Total # of classes:
 Total # of methods:
-Amount of project tested/how is it tested:
 
-Screenshots:
-TODO
+One member of the group decided to use TDD to develop his part of the 
+application (Chris) and so both the Parser class and Robot class have a small 
+suite of Unittests written using JUnit. These are not as comprehensive as we 
+would have liked, but we definitely saw the value in having a way to notice 
+regressions as soon as possible. The TDD method was invaluable when working 
+with complex systems like the forth interpreter.
+
+## Screenshots:
+
+The following is our Main menu where the user can select which sort of game 
+mode they'd like to try.
+
+![](MainMenu.png)\  
+
+The following is where a user can load Robots onto teams via json files.
+
+![](TeamLoadScreen.png)\  
+
+The following is a view of a gameboard in action where Robots are fighting.
+
+![](GameBoard.png)\  
 
 ##How to compile:
 
@@ -152,6 +224,14 @@ path' for both of the JUnit and Gson jars there. From this point it should be
 sufficient to locate the 'Main.java' file in the 'main' package in the package 
 explorer, right click it and choose 'Run As > Java Application'.
 
-Which robots we've tested:
-TODO
+## Robot tests
 
+You can find several of our testing robots in the src/misc directory of the 
+java project. We've used different types of robots for testing different 
+portions of development. For instance there is a "simplemover.json" robot which 
+just moves itself in small circles, this was useful for testing movement and 
+giving a target for shooting robots. One other robot we used is the 
+"basicfighter.json" which scans for robots and if it finds one will attempt to 
+chase and shoot it. This one has logic which uses 'if' and 'loop' statements 
+and is a good candidate for testing our parser and also the shooting/scanning 
+functions.
