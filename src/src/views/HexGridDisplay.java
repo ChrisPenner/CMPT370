@@ -25,7 +25,7 @@ public class HexGridDisplay extends JPanel {
     }
 	
 	private void drawBoard(Graphics g) {
-		this.cells = cells;
+//		this.cells = cells;
 		diameter = sideLength * 2 - 1;
 		
 		int spacing = (int) ((boundLength / diameter) / 1.3f);
