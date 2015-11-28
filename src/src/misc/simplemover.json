@@ -17,7 +17,7 @@
     , "movement" : 2
     , "distance" : 2
     , "code" : [ {"variable" : "maxRange"}
-        , {"word" : { "name" : "moveABit", "comment" : "( -- )", "body" : "4 1 move!" }}
+        , {"word" : { "name" : "moveABit", "comment" : "( -- )", "body" : "1 4 move!" }}
         , {"word" : { "name" : "init", "comment" : "( -- )", "body" : "3 maxRange !" }}
         , {"word" : { "name" : "turn" , "comment" : "( -- )" , "body" : "moveABit" }}
     ]
