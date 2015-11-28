@@ -1,7 +1,7 @@
 package views;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.Controller;
@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 
 import javax.swing.JButton;
 
