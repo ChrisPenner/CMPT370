@@ -573,5 +573,4 @@ public class ParserTest {
 	  assert(fifth.ivalue >= 0 && first.ivalue <= 25);
 	  assert(sixth.ivalue >= 0 && first.ivalue <= 25);
   }
-
 }
