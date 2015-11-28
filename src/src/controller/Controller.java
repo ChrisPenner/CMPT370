@@ -185,11 +185,6 @@ public class Controller {
 					this.cancel();
 				}
 				
-				if(teamNum == 6){
-					teamNum = 0;
-					robotNum++;
-				}
-
 				Robot r;
 				while(true){
 					if(robotNum == 4) {
@@ -206,9 +201,10 @@ public class Controller {
 					}
 					break;
 				}
-				
+
 				
 				if(timerLoopCount % (101-gameRate) == 0) {
+					System.out.println(teamNum);
 //				Robot r = teams[0].getFirst();
 //				System.out.println("Scan: " + scan(r));
 //				r.turn();
@@ -219,7 +215,7 @@ public class Controller {
 					System.out.println("Current turn: " + currentTurn);
 					currentTurn++;
 					timerLoopCount = 0;
-					teamNum++;
+					robotNum++;
 				}
 				timerLoopCount++;
 				loopInUse.set(false);
