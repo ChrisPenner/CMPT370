@@ -412,7 +412,7 @@ public class Parser{
 	private void move(Stack<Token> s){
 			int moveIr = s.pop().ivalue;
 			int moveId = s.pop().ivalue;
-			Controller.move(robot, moveIr, moveId);
+			Controller.move(robot, moveId, moveIr);
 	}
 
 	private void scan(Stack<Token> s){
