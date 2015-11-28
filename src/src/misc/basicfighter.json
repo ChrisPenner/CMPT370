@@ -1,0 +1,34 @@
+{
+    "serial" : 10
+    , "team" : "XY"
+    , "name" : "Simple fighting bot"
+    , "version" : 1
+    , "matches" : 26
+    , "wins" : 10
+    , "losses" : 16
+    , "executions" : 37
+    , "lived" : 3
+    , "died" : 26
+    , "health" : 3
+    , "absorbed" : 80
+    , "firepower" : 3
+    , "damages" : 2
+    , "kills" : 10
+    , "movement" : 2
+    , "distance" : 2
+    , "code" : [ 
+        {"variable" : "currentDir"}
+        , {"variable" : "enemyDirection"}
+        , {"variable" : "enemyRange"}
+        , {"variable" : "maxMove"}
+        , {"variable" : "range"}
+        , {"word" : { "name" : "moveOne", "comment" : "( id -- )", "body" : "enemyDirection ? 1 move!" }}
+        , {"word" : { "name" : "search", "comment" : "( -- )", "body" : "identify! drop enemyDirection ! enemyRange ! drop " }}
+        , {"word" : { "name" : "inRange?", "comment" : "( -- )", "body" : "enemyRange ? range ? <=" }}
+        , {"word" : { "name" : "chase", "comment" : "( -- )", "body" : "maxMove ? 1 do moveOne loop ;" }}
+        , {"word" : { "name" : "fire", "comment" : "( -- )", "body" : "enemyDirection ? enemyRange ? shoot!" }}
+        , {"word" : { "name" : "increment", "comment" : "(v -- )", "body" : "1 +" }}
+        , {"word" : { "name" : "init", "comment" : "( -- )", "body" : "3 range ! 3 maxMove !" }}
+        , {"word" : { "name" : "turn" , "comment" : "( -- )" , "body" : "search chase search inRange? if fire then" }}
+    ]
+}

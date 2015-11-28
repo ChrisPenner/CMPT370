@@ -381,6 +381,10 @@ public class Parser{
 			scan(executionStack);
 			break;
 
+		case "hex":
+			hex(executionStack);
+			break;
+
 		case "identify!":
 			identify(executionStack);
 			break;
@@ -418,6 +422,13 @@ public class Parser{
 	private void scan(Stack<Token> s){
 			int nearby = Controller.scan(robot);
 			s.add(new Token(nearby));
+	}
+
+	private void hex(Stack<Token> s){
+			int hexIr = s.pop().ivalue;
+			int hexId = s.pop().ivalue;
+			int population = Controller.hex(robot, hexId, hexIr);
+			s.add(new Token(population));
 	}
 	
 	private void mesg(Stack<Token> s){
@@ -590,21 +601,6 @@ public class Parser{
 		variables.put(key, value);
 	}
 
-//			case "shoot!":
-//				break;
-//			case "move!":
-//				break;
-//			case "scan!":
-//				break;
-//			case "identify!":
-//				break;
-//			case "send!":
-//				break;
-//			case "mesg?":
-//				break;
-//			case "recv!":
-//				break;
-	
 	private class IfState{
 		boolean flag;
 		boolean isIf;
