@@ -317,8 +317,12 @@ public class GameBoard {
 	 * @return int - number of robots on ir,id hex.
 	 */
 	public int hex(Robot caller, int id, int ir){
-		//TODO
-		return 0;
+		
+		System.out.println("Hex()");
+		
+		Coord c = getCoordAtDirAndRange(caller, id, ir);
+		return getCell(c).occupants.size();
+
 	}
 	
 	/**
