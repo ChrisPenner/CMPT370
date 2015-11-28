@@ -179,7 +179,10 @@ public class GameBoard {
 	
 	// TODO: Implement GB.shoot()
 	public void shoot(Robot caller, int id, int ir) {
-
+		if(ir > 3){
+			return;
+		}
+		int direction = getTeamSpecificDirection(caller.teamNumber, ir, id);
 	}
 	
 	private int getTeamSpecificDirection(int team, int id, int ir){
