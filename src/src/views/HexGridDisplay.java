@@ -46,12 +46,12 @@ public class HexGridDisplay extends JPanel {
 					}
 					if(cells[x][y].getOccupants() != null) {
 						int count = cells[x][y].getOccupants().size();
-						//if(count > 0) {
+						if(count > 0) {
 							String s = "" + count;
 //							String s = "(" + x + ", " + y + ")";
 							g.drawString("" + s, spacing + x*spacing - (getFontMetrics(getFont()).stringWidth(s) / 2),
 										spacing + vertOffset + y*spacing + (getFontMetrics(getFont()).getHeight() / 4));
-						//}
+						}
 					}
 					g.drawPolygon(xPoint, yPoint, 6);
 				}
