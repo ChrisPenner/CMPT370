@@ -178,6 +178,9 @@ public class GameBoard {
 	}
 	
 	public void shoot(Robot caller, int id, int ir) {
+		
+		System.out.println("Shoot()");
+		
 		if(ir > 3){
 			System.out.println("Error: tried to shoot at range > 3");
 			return;
@@ -243,43 +246,10 @@ public class GameBoard {
 	}
 	
 	public void move(Robot caller, int id, int ir) {
-		// assume east team (id==0 is up)
+		
+		System.out.println("Move()");
+
 		Coord c = getCoordAtDirAndRange(caller, id, ir);
-//		Coord c = new Coord(caller.c.x, caller.c.y);
-//		int direction = getTeamSpecificDirection(caller.teamNumber, id, ir);
-//		switch(direction){
-//			case 0:
-//				for(int i = 0; i < ir; i++){
-//					c.move1();
-//				}
-//				break;
-//			case 1:
-//				for(int i = 0; i < ir; i++){
-//					c.move2();
-//				}
-//				break;
-//			case 2:
-//				for(int i = 0; i < ir; i++){
-//					c.move3();
-//				}
-//				break;
-//			case 3:
-//				for(int i = 0; i < ir; i++){
-//					c.move4();
-//				}
-//				break;
-//			case 4:
-//				for(int i = 0; i < ir; i++){
-//					c.move5();
-//				}
-//				break;
-//			case 5:
-//				for(int i = 0; i < ir; i++){
-//					c.move6();
-//				}
-//				break;
-//			default:
-//		}
 		moveRobotTo(caller, c);
 	}
 	
@@ -312,6 +282,8 @@ public class GameBoard {
 	 * @return int - number of robots in range
 	 */
 	public int scan(Robot caller){
+		
+		System.out.println("Scan()");
 	
 		Coord position = new Coord(caller.c.x, caller.c.y);
 		int numRobots = 0;
@@ -487,11 +459,14 @@ public class GameBoard {
 		
 		int numRobots = 0;
 		for(int i = 0; i < cells.length; i++){
-			for(int j = 0; j < cells[i].occupants.size(); j++){
-				if(numRobots == n){
-					return cells[i].occupants.get(j);
+			try{
+				for(int j = 0; j < cells[j].occupants.size(); j++){
+					if(numRobots == n){
+						return cells[i].occupants.get(j);
+					}
+					numRobots++;
 				}
-				numRobots++;
+			} catch(Exception e) {
 			}
 		}
 		return null;
@@ -505,6 +480,8 @@ public class GameBoard {
 	
 	// TODO: Implement GB.identify()
 	public RobotIdentityData identify(Robot caller, int identity) {
+
+		System.out.println("Identify()");
 		
 		if(identity > 4){
 			System.out.println("Error: trying to identify robot with identity > 4");
@@ -523,8 +500,11 @@ public class GameBoard {
 		Robot r = getNthRobotFromCellsArray(totalCells, identity);
 		Cell c = null;
 		for(int i = 0; i < totalCells.length; i++){
-			if(totalCells[i].occupants.contains(r)){
-				c = totalCells[i];
+			try{
+				if(totalCells[i].occupants.contains(r)){
+					c = totalCells[i];
+				}
+			} catch(Exception e){
 			}
 		}
 		if(r == null){
