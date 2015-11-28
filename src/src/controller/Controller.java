@@ -33,6 +33,7 @@ public class Controller {
 	static int teamNum = 0;
 	static int robotNum = 0;
 	static boolean step = false;
+	static boolean instantMode = false;
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -55,14 +56,20 @@ public class Controller {
 		frame.setContentPane(view);
 		frame.pack();
 		frame.setVisible(true);
+		instantMode = false;
 	}
 	
 	public static void confirmRobotsButtonPressed() {
 		checkGB();
-		view = new WatchView(edgeLength, gb.getCells());
-		frame.setContentPane(view);
-		frame.pack();
-		frame.setVisible(true);
+		if(instantMode){
+			play();
+		}
+		else{
+			view = new WatchView(edgeLength, gb.getCells());
+			frame.setContentPane(view);
+			frame.pack();
+			frame.setVisible(true);
+		}
 		
 		for(int i = 0; i < teams.length; i++){
 			for(Robot r : teams[i]){
@@ -108,6 +115,11 @@ public class Controller {
 	
 	public static void instantModeButtonPressed() {
 		System.out.println("Controller says: Instant Mode Button Pressed");
+		view = new TeamSelectView(frame);
+		frame.setContentPane(view);
+		frame.pack();
+		frame.setVisible(true);
+		instantMode = true;
 	}
 
 	public static void testBenchButtonPressed() {
@@ -132,10 +144,12 @@ public class Controller {
 	public static void play() {
 		if(!gameIsRunning){
 			System.out.println("Controller says: Play was pressed");
-			
+
 			gameIsRunning = true;
 			gameTimer.schedule(new GameLoop(), 0, 1000/60);
-			((WatchView)view).updateLog("Game started."); 
+			if(!instantMode){
+				((WatchView)view).updateLog("Game started."); 
+			}
 		}
 		
 	}
@@ -168,7 +182,9 @@ public class Controller {
 
 	public static void shoot(Robot caller, int id, int ir) {
 		gb.shoot(caller, id, ir);
-		((WatchView)view).updateLog("Team " + caller.getTeam()+1 + ", Robot " + caller.getMember()+1 + " shoots: ID=" + id + ", IR=" + ir); 
+		if(!instantMode){
+			((WatchView)view).updateLog("Team " + caller.getTeam() + ", Robot " + caller.getMember()+1 + " shoots: ID=" + id + ", IR=" + ir); 
+		}
 	}
 	
 	public static void move(Robot caller, int id, int ir) {
@@ -225,7 +241,7 @@ public class Controller {
 				}
 
 				
-				if(timerLoopCount % (101-gameRate) == 0) {
+				if(!instantMode && (timerLoopCount % (101-gameRate) == 0)) {
 					System.out.println(teamNum);
 //				Robot r = teams[0].getFirst();
 //				System.out.println("Scan: " + scan(r));
@@ -242,6 +258,14 @@ public class Controller {
 						step = false;
 						gameIsRunning = false;
 					}
+				}
+				else if(instantMode){
+					System.out.println(teamNum);
+					r.turn();
+					System.out.println("Current turn: " + currentTurn);
+					currentTurn++;
+					timerLoopCount = 0;
+					robotNum++;
 				}
 				boolean[] isTeamAlive = new boolean[6];
 				int numTeamsAlive = 0;
