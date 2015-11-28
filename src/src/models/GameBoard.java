@@ -467,6 +467,7 @@ public class GameBoard {
 					numRobots++;
 				}
 			} catch(Exception e) {
+				System.out.println(e.getMessage());
 			}
 		}
 		return null;
@@ -475,6 +476,69 @@ public class GameBoard {
 	private void getDirectionAndRange(Robot caller, Cell target, int id, int ir){
 		
 		Cell c = getCell(caller.c);
+		Coord start = new Coord(caller.c.x, caller.c.y);
+		Coord end = new Coord(target.occupants.getFirst().c.x, target.occupants.getFirst().c.y);
+		int team = caller.teamNumber;
+		
+		// same column
+		if(start.x == end.x){
+			if(end.y > start.y){
+				// up
+				id = getTeamSpecificDirection(team, 0, 0);
+			}
+			else{
+				//down
+				id = getTeamSpecificDirection(team, 3, 0);
+			}
+		}
+		else if(start.x > end.x){
+			// left
+			if(start.x % 2 == 0){
+				if(end.y >= start.y){
+					// down-left 
+					id = getTeamSpecificDirection(team, 4, 0);
+				}
+				else{
+					// up-left
+					id = getTeamSpecificDirection(team, 5, 0);
+				}
+			}
+			else{
+				// right
+				if(end.y <= start.y){
+					// up-left
+					id = getTeamSpecificDirection(team, 5, 0);
+				}
+				else{
+					// down-left
+					id = getTeamSpecificDirection(team, 4, 0);
+				}
+			}
+		}
+		else{
+			// right
+			if(start.x % 2 == 0){
+				if(end.y >= start.y){
+					// down-right
+					id = getTeamSpecificDirection(team, 2, 0);
+				}
+				else{
+					// up-right
+					id = getTeamSpecificDirection(team, 1, 0);
+				}
+			}
+			else{
+				// right
+				if(end.y <= start.y){
+					// up-right
+					id = getTeamSpecificDirection(team, 1, 0);
+				}
+				else{
+					// down-right
+					id = getTeamSpecificDirection(team, 2, 0);
+				}
+			}
+		}
 
 	}
 	
@@ -505,6 +569,7 @@ public class GameBoard {
 					c = totalCells[i];
 				}
 			} catch(Exception e){
+				System.out.println(e.getMessage());
 			}
 		}
 		if(r == null){
