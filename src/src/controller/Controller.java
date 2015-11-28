@@ -189,10 +189,24 @@ public class Controller {
 					teamNum = 0;
 					robotNum++;
 				}
-				if(robotNum == 4) {
-					teamNum = 0;
-					robotNum = 0;
+
+				Robot r;
+				while(true){
+					if(robotNum == 4) {
+						teamNum++;
+						teamNum = teamNum % 6;
+						robotNum = 0;
+					}
+
+					try{
+						r = teams[teamNum].get(robotNum);
+					} catch(Exception e){
+						robotNum++;
+						continue;
+					}
+					break;
 				}
+				
 				
 				if(timerLoopCount % (101-gameRate) == 0) {
 //				Robot r = teams[0].getFirst();
@@ -200,16 +214,7 @@ public class Controller {
 //				r.turn();
 //				move(r, 0, 1);
 //				System.out.println("Team 1 Robot 1 (" + r.c.x + ", " + r.c.y + "): " + scan(r));
-                Robot r;
-				try{
-					r = teams[teamNum].get(robotNum);
-				} catch(Exception e){
-					r = null;
-					System.out.println(e.getMessage());
-				}
-				if(r != null){
 					r.turn();
-				}
 					((View) view).updateDisplay();
 					System.out.println("Current turn: " + currentTurn);
 					currentTurn++;
