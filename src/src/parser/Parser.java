@@ -257,8 +257,9 @@ public class Parser{
 		executeList(initCommands);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void turn(){
-		LinkedList<Token> turnCommands = macros.get("turn");
+		LinkedList<Token> turnCommands = (LinkedList<Token>) macros.get("turn").clone();
 		executeList(turnCommands);
 	}
 	
