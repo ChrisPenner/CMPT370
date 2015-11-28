@@ -472,7 +472,7 @@ public class GameBoard {
 	
 	private void getDirectionAndRange(Robot caller, Cell target, int id, int ir){
 		
-		Cell c = getCell(caller.c);
+//		Cell c = getCell(caller.c);
 		Coord start = new Coord(caller.c.x, caller.c.y);
 		Coord end = new Coord(target.occupants.getFirst().c.x, target.occupants.getFirst().c.y);
 		int team = caller.teamNumber;
