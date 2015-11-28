@@ -17,7 +17,7 @@
     , "movement" : 2
     , "distance" : 2
     , "code" : [ {"variable" : "currentDir"}
-        , {"word" : { "name" : "moveOne", "comment" : "( -- )", "body" : "1 1 move!" }}
+        , {"word" : { "name" : "moveOne", "comment" : "( -- )", "body" : "currentDir ? 1 move!" }}
         , {"word" : { "name" : "increment", "comment" : "(v -- )", "body" : "1 +" }}
         , {"word" : { "name" : "mod6", "comment" : "(v -- v)", "body" : "6 /mod drop" }}
         , {"word" : { "name" : "changeDir", "comment" : "( -- )", "body" : "currentDir ? increment mod6 currentDir !" }}

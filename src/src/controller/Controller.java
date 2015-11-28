@@ -147,8 +147,8 @@ public class Controller {
 		gb.shoot(caller, id, ir);
 	}
 	
-	public static void move(Robot caller, int id, int ir) {
-		gb.move(caller, id, ir);
+	public static void move(Robot caller, int ir, int id) {
+		gb.move(caller, ir, id);
 	}
 	
 	public static int scan(Robot caller){
