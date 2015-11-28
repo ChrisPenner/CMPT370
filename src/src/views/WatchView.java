@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.event.ChangeEvent;
@@ -22,6 +23,7 @@ public class WatchView extends View {
 	final int winHeight = 500;
 	final int winWidth = 800;
 	JTextArea txtrLogdisplay;
+	JScrollPane txtrScrollPane;
 	
 	public WatchView(int diameter, Cell[][] cells) {
 		this.diameter = diameter;
@@ -71,7 +73,12 @@ public class WatchView extends View {
 		txtrLogdisplay.setWrapStyleWord(true);
 		txtrLogdisplay.setLineWrap(true);
 		txtrLogdisplay.setEditable(false);
-		add(txtrLogdisplay);
+		
+		txtrScrollPane = new JScrollPane(txtrLogdisplay);
+		txtrScrollPane.setBounds(txtrLogdisplay.getBounds());
+		txtrScrollPane.setAutoscrolls(true);
+		txtrScrollPane.setVisible(true);
+		add(txtrScrollPane);
 		
 		hex = new HexGridDisplay(470, diameter, cells);
 		hex.setBounds(10, 10, 470, winHeight-10);
@@ -106,7 +113,7 @@ public class WatchView extends View {
 	public void updateLog(String message) {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
-		this.txtrLogdisplay.append(sdf.format(cal.getTime()) + " --> " + message + "\n-----------------------\n");
+		this.txtrLogdisplay.insert(sdf.format(cal.getTime()) + " --> " + message + "\n-----------------------\n", 0);
 	}
 	
 }
