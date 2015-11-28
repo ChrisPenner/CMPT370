@@ -177,28 +177,24 @@ public class GameBoard {
 		return cells[c.x][c.y];
 	}
 	
-	// TODO: Implement GB.shoot()
 	public void shoot(Robot caller, int id, int ir) {
 		if(ir > 3){
+			System.out.println("Error: tried to shoot at range > 3");
 			return;
 		}
-		int direction = getTeamSpecificDirection(caller.teamNumber, ir, id);
-	}
-	
-	private int getTeamSpecificDirection(int team, int id, int ir){
-		int offset = (team-4) % 6;
-		if(offset < 0){
-			offset = offset*-1;
+		Coord coord = getCoordAtDirAndRange(caller, id, ir);
+		Cell cell = getCell(coord);
+		for(int i = 0; i < cell.occupants.size(); i++){
+			cell.occupants.get(i).health -= caller.firepower;
+			if(cell.occupants.get(i).health <= 0){
+				cell.occupants.remove(i);
+			}
 		}
-		int direction = (id + offset) % 6;
-		
-		return direction;
 	}
 	
-	public void move(Robot caller, int id, int ir) {
-		// assume east team (id==0 is up)
-		Coord c = new Coord(caller.c.x, caller.c.y);
-		int direction = getTeamSpecificDirection(caller.teamNumber, id, ir);
+	private Coord getCoordAtDirAndRange(Robot r, int id, int ir){
+		Coord c = new Coord(r.c.x, r.c.y);
+		int direction = getTeamSpecificDirection(r.teamNumber, id, ir);
 		switch(direction){
 			case 0:
 				for(int i = 0; i < ir; i++){
@@ -232,6 +228,58 @@ public class GameBoard {
 				break;
 			default:
 		}
+		return c;
+		
+	}
+	
+	private int getTeamSpecificDirection(int team, int id, int ir){
+		int offset = (team-4) % 6;
+		if(offset < 0){
+			offset = offset*-1;
+		}
+		int direction = (id + offset) % 6;
+		
+		return direction;
+	}
+	
+	public void move(Robot caller, int id, int ir) {
+		// assume east team (id==0 is up)
+		Coord c = getCoordAtDirAndRange(caller, id, ir);
+//		Coord c = new Coord(caller.c.x, caller.c.y);
+//		int direction = getTeamSpecificDirection(caller.teamNumber, id, ir);
+//		switch(direction){
+//			case 0:
+//				for(int i = 0; i < ir; i++){
+//					c.move1();
+//				}
+//				break;
+//			case 1:
+//				for(int i = 0; i < ir; i++){
+//					c.move2();
+//				}
+//				break;
+//			case 2:
+//				for(int i = 0; i < ir; i++){
+//					c.move3();
+//				}
+//				break;
+//			case 3:
+//				for(int i = 0; i < ir; i++){
+//					c.move4();
+//				}
+//				break;
+//			case 4:
+//				for(int i = 0; i < ir; i++){
+//					c.move5();
+//				}
+//				break;
+//			case 5:
+//				for(int i = 0; i < ir; i++){
+//					c.move6();
+//				}
+//				break;
+//			default:
+//		}
 		moveRobotTo(caller, c);
 	}
 	
@@ -313,13 +361,19 @@ public class GameBoard {
 			
 			// create an array of possible coordinates to search
 			Coord[] xy = {
-					new Coord(position.x, position.y+1),
-					new Coord(position.x, position.y-1),
-					new Coord(position.x-1, position.y-1),
-					new Coord(position.x-1, position.y),
-					new Coord(position.x+1, position.y-1),
-					new Coord(position.x+1, position.y)
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y)
 			};
+			xy[0].move1();
+			xy[1].move2();
+			xy[2].move3();
+			xy[3].move4();
+			xy[4].move5();
+			xy[5].move6();
 			
 			LinkedList<Coord> coordsToSearch = new LinkedList<Coord>();
 			// if each coordinate is valid, add it to a linked list
@@ -346,19 +400,19 @@ public class GameBoard {
 		else if(range == 2) {
 			
 			Coord[] xy = {
-					new Coord(position.x, position.y-2),
-					new Coord(position.x, position.y+2),
-					new Coord(position.x+1, position.y-2),
-					new Coord(position.x+1, position.y+1),
-					new Coord(position.x+2, position.y-2),
-					new Coord(position.x+2, position.y-1),
-					new Coord(position.x+2, position.y),
-					new Coord(position.x-1, position.y-2),
-					new Coord(position.x-1, position.y+1),
-					new Coord(position.x-2, position.y-2),
-					new Coord(position.x-2, position.y-1),
-					new Coord(position.x-2, position.y)
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y)
 			};
+			xy[0].move1(); xy[0].move1(); 
+			xy[1].move2(); xy[1].move2(); 
+			xy[2].move3(); xy[2].move3(); 
+			xy[3].move4(); xy[3].move4(); 
+			xy[4].move5(); xy[4].move5(); 
+			xy[5].move6(); xy[5].move6(); 
 			
 			LinkedList<Coord> coordsToSearch = new LinkedList<Coord>();
 			for(int i = 0; i < xy.length; i++){
@@ -380,25 +434,19 @@ public class GameBoard {
 		else if(range == 3) {
 			
 			Coord[] xy = {
-					new Coord(position.x, position.y-3),
-					new Coord(position.x, position.y+3),
-					new Coord(position.x+1, position.y-3),
-					new Coord(position.x+1, position.y+2),
-					new Coord(position.x+2, position.y-3),
-					new Coord(position.x+2, position.y+1),
-					new Coord(position.x+3, position.y-3),
-					new Coord(position.x+3, position.y-2),
-					new Coord(position.x+3, position.y-1),
-					new Coord(position.x+3, position.y),
-					new Coord(position.x-1, position.y-3),
-					new Coord(position.x-1, position.y+2),
-					new Coord(position.x-2, position.y-3),
-					new Coord(position.x-2, position.y+1),
-					new Coord(position.x-3, position.y-3),
-					new Coord(position.x-3, position.y-2),
-					new Coord(position.x-3, position.y-1),
-					new Coord(position.x-3, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y),
+					new Coord(position.x, position.y)
 			};
+			xy[0].move1(); xy[0].move1(); xy[0].move1();
+			xy[1].move2(); xy[1].move2(); xy[1].move2();
+			xy[2].move3(); xy[2].move3(); xy[2].move3();
+			xy[3].move4(); xy[3].move4(); xy[3].move4();
+			xy[4].move5(); xy[4].move5(); xy[4].move5();
+			xy[5].move6(); xy[5].move6(); xy[5].move6();
 			
 			LinkedList<Coord> coordsToSearch = new LinkedList<Coord>();
 			for(int i = 0; i < xy.length; i++){
@@ -422,9 +470,64 @@ public class GameBoard {
 		
 	}
 	
+	private Robot getNthRobotFromCellsArray(Cell[] cells, int n){
+		
+		int numRobots = 0;
+		for(int i = 0; i < cells.length; i++){
+			for(int j = 0; j < cells[i].occupants.size(); j++){
+				if(numRobots == n){
+					return cells[i].occupants.get(j);
+				}
+				numRobots++;
+			}
+		}
+		return null;
+	}
+	
+	private void getDirectionAndRange(Robot caller, Cell target, int id, int ir){
+		
+		Cell c = getCell(caller.c);
+
+	}
+	
 	// TODO: Implement GB.identify()
 	public RobotIdentityData identify(Robot caller, int identity) {
-		return new RobotIdentityData(0,0,0,0);
+		
+		if(identity > 4){
+			System.out.println("Error: trying to identify robot with identity > 4");
+		}
+		Cell[] totalCells = new Cell[4];
+		int numCells = 0;
+		for(int i = 0; i < 4; i++){
+			Cell[] cells = scan(caller.c, i);
+			for(int j = 0; j < cells.length; j++){
+				if(cells[j] != null){
+					totalCells[numCells] = cells[j];
+				}
+			}
+		}
+		
+		Robot r = getNthRobotFromCellsArray(totalCells, identity);
+		Cell c = null;
+		for(int i = 0; i < totalCells.length; i++){
+			if(totalCells[i].occupants.contains(r)){
+				c = totalCells[i];
+			}
+		}
+		if(r == null){
+			System.out.println("Error in identify(): robot == null");
+			return null;
+		}
+		if(c == null){
+			System.out.println("Error in identify(): cell == null");
+			return null;
+		}
+		Integer ir = new Integer(0);
+		Integer id = new Integer(0);
+		getDirectionAndRange(r, c, id, ir);
+		
+		// teamNumber, range, direction, health
+		return new RobotIdentityData(r.getTeam(), 0, 0, r.getHealth());
 	}
 	
 	// TODO: Implement GB.send()
