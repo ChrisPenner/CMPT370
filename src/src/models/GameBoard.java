@@ -482,10 +482,12 @@ public class GameBoard {
 			if(end.y > start.y){
 				// up
 				id = getTeamSpecificDirection(team, 0);
+				ir = Math.abs(start.y - end.y);
 			}
 			else{
 				//down
 				id = getTeamSpecificDirection(team, 3);
+				ir = Math.abs(start.y - end.y);
 			}
 		}
 		else if(start.x > end.x){
@@ -494,10 +496,12 @@ public class GameBoard {
 				if(end.y >= start.y){
 					// down-left 
 					id = getTeamSpecificDirection(team, 4);
+					ir = Math.abs(start.x - end.x);
 				}
 				else{
 					// up-left
 					id = getTeamSpecificDirection(team, 5);
+					ir = Math.abs(start.x - end.x);
 				}
 			}
 			else{
@@ -505,10 +509,12 @@ public class GameBoard {
 				if(end.y <= start.y){
 					// up-left
 					id = getTeamSpecificDirection(team, 5);
+					ir = Math.abs(start.x - end.x);
 				}
 				else{
 					// down-left
 					id = getTeamSpecificDirection(team, 4);
+					ir = Math.abs(start.x - end.x);
 				}
 			}
 		}
@@ -518,10 +524,12 @@ public class GameBoard {
 				if(end.y >= start.y){
 					// down-right
 					id = getTeamSpecificDirection(team, 2);
+					ir = Math.abs(start.x - end.x);
 				}
 				else{
 					// up-right
 					id = getTeamSpecificDirection(team, 1);
+					ir = Math.abs(start.x - end.x);
 				}
 			}
 			else{
@@ -529,17 +537,18 @@ public class GameBoard {
 				if(end.y <= start.y){
 					// up-right
 					id = getTeamSpecificDirection(team, 1);
+					ir = Math.abs(start.x - end.x);
 				}
 				else{
 					// down-right
 					id = getTeamSpecificDirection(team, 2);
+					ir = Math.abs(start.x - end.x);
 				}
 			}
 		}
 
 	}
 	
-	// TODO: Implement GB.identify()
 	public RobotIdentityData identify(Robot caller, int identity) {
 
 		System.out.println("Identify()");
@@ -582,7 +591,7 @@ public class GameBoard {
 		getDirectionAndRange(r, c, id, ir);
 		
 		// teamNumber, range, direction, health
-		return new RobotIdentityData(r.getTeam(), 0, 0, r.getHealth());
+		return new RobotIdentityData(r.getTeam(), ir, id, r.getHealth());
 	}
 	
 	// TODO: Implement GB.send()
