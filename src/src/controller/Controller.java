@@ -200,11 +200,12 @@ public class Controller {
 //				r.turn();
 //				move(r, 0, 1);
 //				System.out.println("Team 1 Robot 1 (" + r.c.x + ", " + r.c.y + "): " + scan(r));
-				try{
+//				try{
 					Robot r = teams[teamNum].get(robotNum);
 					r.turn();
-				} catch(Exception e){
-				}
+//				} catch(Exception e){
+//					System.out.println(e.getMessage());
+//				}
 				((View) view).updateDisplay();
 				System.out.println("Current turn: " + currentTurn);
 				currentTurn++;
