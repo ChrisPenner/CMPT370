@@ -1,0 +1,24 @@
+{
+    "serial" : 555
+    , "team" : "XY"
+    , "name" : "Simple mover bot"
+    , "version" : 1
+    , "matches" : 26
+    , "wins" : 10
+    , "losses" : 16
+    , "executions" : 37
+    , "lived" : 3
+    , "died" : 26
+    , "health" : 3
+    , "absorbed" : 80
+    , "firepower" : 3
+    , "damages" : 2
+    , "kills" : 10
+    , "movement" : 2
+    , "distance" : 2
+    , "code" : [ {"variable" : "maxRange"}
+        , {"word" : { "name" : "moveABit", "comment" : "( -- )", "body" : "4 1 move!" }}
+        , {"word" : { "name" : "init", "comment" : "( -- )", "body" : "3 maxRange !" }}
+        , {"word" : { "name" : "turn" , "comment" : "( -- )" , "body" : "moveABit" }}
+    ]
+}
