@@ -282,6 +282,19 @@ public class GameBoard {
 	}
 	
 	/**
+	 * Returns the number of robots on a given hex square relative to the
+	 * calling robot.
+	 * @param caller Robot - robot that wants to scan
+	 * @param id the direction of the hex square
+	 * @param il the range of the hex square
+	 * @return int - number of robots on ir,id hex.
+	 */
+	public int hex(Robot caller, int id, int ir){
+		//TODO
+		return 0;
+	}
+	
+	/**
 	 * Helper function
 	 * 	Takes the current position of a robot, and a range.
 	 * 	Scans the board for robots in the given level

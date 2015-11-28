@@ -155,6 +155,10 @@ public class Controller {
 		return gb.scan(caller);
 	}
 	
+	public static int hex(Robot caller, int id, int ir){
+		return gb.hex(caller, id, ir);
+	}
+
 	public static RobotIdentityData identify(Robot caller, int identifier){
 		return gb.identify(caller, identifier);
 	}
