@@ -42,17 +42,17 @@ public class WatchView extends View {
         });
 		add(btnPlay);
 		
-		JButton btnStop = new JButton("Stop");
-		btnStop.setBounds(555, 10, 60, 23);
-		btnStop.addActionListener(new ActionListener() {
+		JButton btnPause = new JButton("Pause");
+		btnPause.setBounds(555, 10, 60, 23);
+		btnPause.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 // Stop execution
 //                System.out.println("You clicked stop");
-            	Controller.stop();
+            	Controller.pause();
             }
         });
-		add(btnStop);
+		add(btnPause);
 		
 		JButton btnStep = new JButton("Step");
 		btnStep.setBounds(620, 10, 60, 23);

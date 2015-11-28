@@ -181,23 +181,21 @@ public class GameBoard {
 		
 		System.out.println("Shoot()");
 		
-		if(ir > 3){
-			System.out.println("Error: tried to shoot at range > 3");
-			return;
-		}
+//		if(ir > 3){
+//			System.out.println("Error: tried to shoot at range > 3");
+//			return;
+//		}
 		Coord coord = getCoordAtDirAndRange(caller, id, ir);
 		try{
 			Cell cell = getCell(coord);
 			for(int i = 0; i < cell.occupants.size(); i++){
 				Robot r = cell.occupants.get(i);
-				r.health -= caller.firepower;
-				if(r.health <= 0){
-					cell.occupants.remove(i);
-				}
-				for(int j = 0; i < teams.length; i++){
-					if(teams[j].contains(r)){
-						teams[j].remove(r);
+				if(r.teamNumber != caller.teamNumber){
+					r.health -= caller.firepower;
+					if(r.health <= 0){
+						cell.occupants.remove(i);
 					}
+					teams[r.teamNumber - 1].remove(r);
 				}
 			}
 		} catch (Exception e){

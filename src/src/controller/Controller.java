@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.hamcrest.Condition.Step;
+
 import parser.Token;
 import views.*;
 
@@ -29,6 +31,10 @@ public class Controller {
 	static JFrame frame;
 	static GameBoard gb;
 	static AtomicBoolean loopInUse = new AtomicBoolean();
+
+	static int teamNum = 0;
+	static int robotNum = 0;
+	static boolean step = false;
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -127,7 +133,7 @@ public class Controller {
 		
 	}
 	
-	public static void stop() {
+	public static void pause() {
 		if(gameIsRunning){
 			System.out.println("Controller says: Stop was pressed");
 			gameIsRunning = false;
@@ -136,6 +142,15 @@ public class Controller {
 	
 	public static void step() {
 		System.out.println("Controller says: Step was pressed");
+		if(gameIsRunning){
+			gameIsRunning = false;
+//			gameTimer.cancel();
+		}
+		else{
+			step = true;
+			gameIsRunning = true;
+			gameTimer.schedule(new GameLoop(), 0, 1000/60);
+		}
 	}
 	
 	public static void changeRate(int rate) {
@@ -176,8 +191,6 @@ public class Controller {
 	}
 	
 	private static class GameLoop extends TimerTask {
-		int teamNum = 0;
-		int robotNum = 0;
 		
 		public void run() {
 			if(loopInUse.compareAndSet(false, true)) {
@@ -216,6 +229,10 @@ public class Controller {
 					currentTurn++;
 					timerLoopCount = 0;
 					robotNum++;
+					if(step){
+						step = false;
+						gameIsRunning = false;
+					}
 				}
 				timerLoopCount++;
 				loopInUse.set(false);
