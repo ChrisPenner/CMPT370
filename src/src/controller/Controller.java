@@ -71,6 +71,13 @@ public class Controller {
 		}
 	}
 	
+	protected static void gameOver(int winningTeam){
+		view = new GameOverView(winningTeam);
+		frame.setContentPane(view);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
 	/**
 	 * 
 	 * @param file
@@ -236,6 +243,26 @@ public class Controller {
 						gameIsRunning = false;
 					}
 				}
+				boolean[] isTeamAlive = new boolean[6];
+				int numTeamsAlive = 0;
+				for(int i = 0; i < teams.length; i++){
+					if(teams[i].size() > 0){
+						isTeamAlive[i] = true;
+						numTeamsAlive++;
+					}
+					else{
+						isTeamAlive[i] = false;
+					}
+				}
+				if(numTeamsAlive == 1){
+					for(int i = 0; i < isTeamAlive.length; i++){
+						if(isTeamAlive[i]){
+							gameOver(i+1);
+						}
+					}
+					gameIsRunning = false;
+				}
+
 				timerLoopCount++;
 				loopInUse.set(false);
 			}
