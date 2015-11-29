@@ -42,7 +42,7 @@ able to write a custom deserializer which overcame these issues.
 As we continued to work on the project, not only did some of the requirement 
 specifications change (for instance having ground of different terrain 
 difficulty) but also our understanding of different elements of the project 
-evolved as we got further into our implementation. We had a very week 
+evolved as we got further into our implementation. We had a very weak 
 understanding of how much of the robot language worked when we started and have 
 needed to adjust our expectations and implementation to fit our new 
 understanding as we continue onwards. An example of this are the identify! and 
@@ -68,10 +68,14 @@ robots from JSON robot files and can construct Robot models with the
 appropriate statistics. It can then allow them to fight in an arena, providing 
 the user with a user interface that allows pausing, playing, and changing the 
 speed of the fight. The game board shows the position of robots on the board 
-and the number of robots on each square. 
+and the number of robots on each square. We also created an "instant match" 
+mode in which the game is played in the background, and the results are displayed
+to the user once the winner has been determined. Finally, we have a test-bench
+mode.  In this mode, the user is able to import robots and execute commands to
+test the functionality of both the robot and the game.
 
-We have not been able to add terrain of different movement difficulties, A 
-testing area, or instant matches. We were also not able to implement the robot 
+We have not been able to add terrain of different movement difficulties. 
+We were also not able to implement the robot 
 librarian software, though this was due to the fact that it was not available 
 for testing and was not made available to groups within reasonable time. Our 
 display leaves much to be desired and doesn't clearly display stats about 
@@ -105,6 +109,11 @@ few seconds, or to use some form of event based triggering system. In the end
 we decided that for a project of this scope it is easiest to use an 'update' 
 method on the view which we can call whenever the underlying data changes.
 
+Due to time constraints and poor planning, we often relied too heavily on 
+public static variables rather than passing the object references to each module
+in our MVC architecture.  Given more time, we would have cleaned up that code
+to ensure only specified modules have access to certain objects.
+
 ## Pair programming and Code Reviews
 
 An inevitable challenge when working with others is that of programming 
@@ -122,7 +131,9 @@ As stated earlier, communication has been a challenge for us, one way that we
 were able to help with spreading our knowledge amongst the group was to pair 
 program when possible, this was particularly useful whenever we were in the 
 process of linking together modules we had written separately, as it allowed us 
-to make sure we were connecting them appropriately and verify that they worked.
+to make sure we were connecting them appropriately and verify that they worked. 
+When pair programming wasn't possible due to scheduling conflicts, we could
+resort to asking questions in our team's group chat.  
 
 Since we have done the majority of our work on a single master branch, we have 
 not been able to do code review on individual 'pull requests' as we would have 
@@ -143,6 +154,7 @@ use and we would pair program to link the modules together in a sensible way.
 The modules we decided on were as follows:
 
 TODO
+
 * Views and GUI 
 * Controller and game logic 
 * Forth Parser and Robot importer 
@@ -193,13 +205,14 @@ Please read the User Guide for more details on how to use the software.
 ## Final Implementation Statistics
 
 TODO
-Total Lines of code:
-Total # of classes:
-Total # of methods:
+
+- Total Lines of code:
+- Total # of classes:
+- Total # of methods:
 
 One member of the group decided to use TDD to develop his part of the 
 application (Chris) and so both the Parser class and Robot class have a small 
-suite of Unittests written using JUnit. These are not as comprehensive as we 
+suite of unit tests written using JUnit. These are not as comprehensive as we 
 would have liked, but we definitely saw the value in having a way to notice 
 regressions as soon as possible. The TDD method was invaluable when working 
 with complex systems like the forth interpreter.
@@ -222,6 +235,8 @@ The following is a view of a gameboard in action where Robots are fighting.
 The following is the results screen, which shows the winner of the match after completion.
 
 ![](Results.png)\  
+
+TODO: Test-Bench screen
 
 ##How to compile:
 
