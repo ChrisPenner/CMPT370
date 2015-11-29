@@ -20,7 +20,8 @@ public class TestBenchView extends WatchView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.commandEntered("");
+				Controller.commandEntered(terminal.getText());
+				terminal.setText("");
 			}
 			
 		});

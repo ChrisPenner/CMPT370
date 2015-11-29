@@ -229,8 +229,8 @@ public class Controller {
 		return gb.recv(caller, fromTeamMember);
 	}
 	
-	public static void commandEntered(String string) {
-		System.out.println("User entered a command");
+	public static void commandEntered(String s) {
+		((TestBenchView) view).updateLog("> " + s);
 	}
 	
 	private static class GameLoop extends TimerTask {

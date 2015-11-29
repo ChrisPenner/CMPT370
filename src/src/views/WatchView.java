@@ -31,7 +31,7 @@ public class WatchView extends View {
 		setLayout(null);
 		
 		JButton btnPlay = new JButton("Play");
-		btnPlay.setBounds(490, 10, 60, 23);
+		btnPlay.setBounds(480, 10, 60, 25);
 		btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
@@ -43,7 +43,7 @@ public class WatchView extends View {
 		add(btnPlay);
 		
 		JButton btnPause = new JButton("Pause");
-		btnPause.setBounds(555, 10, 60, 23);
+		btnPause.setBounds(545, 10, 70, 25);
 		btnPause.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
@@ -55,7 +55,7 @@ public class WatchView extends View {
 		add(btnPause);
 		
 		JButton btnStep = new JButton("Step");
-		btnStep.setBounds(620, 10, 60, 23);
+		btnStep.setBounds(620, 10, 60, 25);
 		btnStep.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
