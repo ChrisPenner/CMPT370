@@ -53,3 +53,22 @@ can use the scrubber to change the speed that moves take place. You may use the
 "Stop" button to pause the match, then use "Play" to resume. The "Step" button 
 will progress the match one robot's turn at a time.
 
+## Using Test View
+
+On the Test View screen, there is a terminal for user input. The following commands are supported:
+
+### help
+Prints out the list of available commands.
+
+### list
+Lists all robots that are on the game board.
+
+### select (int)team (int)robot
+Sets the currently selected robot to the given team and robot.
+
+### kill
+Kills the currently selected robot.
+
+## move (int)x (int)y
+Sets the currently selected robot's position to the given coordinates.
+
