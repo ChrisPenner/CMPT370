@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +16,6 @@ import models.Cell;
 
 public class WatchView extends View {
 	private static final long serialVersionUID = 1L;
-	Canvas canvas;
 	HexGridDisplay hex;
 	int diameter;
 	final int winHeight = 500;

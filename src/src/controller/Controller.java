@@ -34,6 +34,7 @@ public class Controller {
 	static int robotNum = 0;
 	static boolean step = false;
 	static boolean instantMode = false;
+	static boolean testMode = false;
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -57,6 +58,7 @@ public class Controller {
 		frame.pack();
 		frame.setVisible(true);
 		instantMode = false;
+		testMode = false;
 	}
 	
 	public static void confirmRobotsButtonPressed() {
@@ -64,7 +66,13 @@ public class Controller {
 		if(instantMode){
 			play();
 		}
-		else{
+		else if(testMode){
+			view = new TestBenchView(edgeLength, gb.getCells());
+			frame.setContentPane(view);
+			frame.pack();
+			frame.setVisible(true);
+		}
+		else {
 			view = new WatchView(edgeLength, gb.getCells());
 			frame.setContentPane(view);
 			frame.pack();
@@ -120,10 +128,16 @@ public class Controller {
 		frame.pack();
 		frame.setVisible(true);
 		instantMode = true;
+		testMode = false;
 	}
 
 	public static void testBenchButtonPressed() {
-		System.out.println("Controller says: Test Bench Button Pressed");
+		view = new TeamSelectView(frame);
+		frame.setContentPane(view);
+		frame.pack();
+		frame.setVisible(true);
+		instantMode = false;
+		testMode = true;
 	}
 
 	public void start() {
@@ -213,6 +227,10 @@ public class Controller {
 	
 	public static Token recv(Robot caller, int fromTeamMember){
 		return gb.recv(caller, fromTeamMember);
+	}
+	
+	public static void commandEntered(String string) {
+		System.out.println("User entered a command");
 	}
 	
 	private static class GameLoop extends TimerTask {
