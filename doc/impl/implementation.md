@@ -1,5 +1,5 @@
 ---
-title: "CMPT 355 Group A3"
+title: "CMPT 370 Group A3"
 subtitle: "Implementation Document"
 date: "November 18, 2015"
 toc: true
