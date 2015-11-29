@@ -196,9 +196,13 @@ public class Controller {
 	}
 
 	public static void shoot(Robot caller, int id, int ir) {
-		gb.shoot(caller, id, ir);
+		boolean killed = gb.shoot(caller, id, ir);
 		if(!instantMode){
-			((WatchView)view).updateLog("Team " + caller.getTeam() + ", Robot " + caller.getMember()+1 + " shoots: ID=" + id + ", IR=" + ir); 
+			String s = "Team " + caller.getTeam() + ", Robot " + caller.getMember()+1 + " shoots: ID=" + id + ", IR=" + ir;
+			if(killed){
+				s = s + "...killed!";
+			}
+			((WatchView)view).updateLog(s); 
 		}
 	}
 	

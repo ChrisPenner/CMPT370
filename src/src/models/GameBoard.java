@@ -177,7 +177,7 @@ public class GameBoard {
 		return cells[c.x][c.y];
 	}
 	
-	public void shoot(Robot caller, int id, int ir) {
+	public boolean shoot(Robot caller, int id, int ir) {
 		
 		System.out.println("Shoot()");
 		
@@ -194,13 +194,17 @@ public class GameBoard {
 					r.health -= caller.firepower;
 					if(r.health <= 0){
 						cell.occupants.remove(i);
+						teams[r.teamNumber - 1].remove(r);
+						return true;
 					}
-					teams[r.teamNumber - 1].remove(r);
+					return false;
 				}
 			}
 		} catch (Exception e){
 			System.out.println(e.getMessage());
+			return false;
 		}
+		return false;
 	}
 	
 	private Coord getCoordAtDirAndRange(Robot r, int id, int ir){
