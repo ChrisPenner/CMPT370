@@ -59,6 +59,24 @@ public class Robot {
 		}
 	}
 
+	private static class RobotDeserializer implements JsonDeserializer<Robot> {
+		@Override
+		public Robot deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+				throws JsonParseException {
+
+			JsonObject jobject = json.getAsJsonObject();
+			if(jobject.has("script")){
+				jobject = jobject.get("script").getAsJsonObject();
+			} else if(jobject.has("robot")){
+				jobject = jobject.get("robot").getAsJsonObject();
+			}
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.registerTypeAdapter(Code.class, new CodeDeserializer());
+			Gson gson = gsonBuilder.create();
+			Robot r = (Robot) gson.fromJson(jobject, Robot.class);
+			return r;
+		}
+	}
 
 	public static Robot fromJson(String json, int teamNumber){
 		Robot r = fromJson(json);
@@ -68,7 +86,7 @@ public class Robot {
 	
 	public static Robot fromJson(String json){
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(Code.class, new CodeDeserializer());
+		gsonBuilder.registerTypeAdapter(Robot.class, new RobotDeserializer());
 		Gson gson = gsonBuilder.create();
 		Robot r = (Robot) gson.fromJson(json, Robot.class);
 		r.parser = new Parser(r);
