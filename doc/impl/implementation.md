@@ -211,6 +211,10 @@ The following is a view of a gameboard in action where Robots are fighting.
 
 ![](GameBoard.png)\  
 
+The following is the results screen, which shows the winner of the match after completion.
+
+![](Results.png)\  
+
 ##How to compile:
 
 Since we have developed this project using the Eclipse IDE we recommend using 
