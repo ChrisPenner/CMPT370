@@ -9,6 +9,14 @@ toc: true
 
 Implementation Git release tag: ( TAG GOES HERE )
 
+Group A3 Members:
+
+- Chin Wang Lau
+- Chris Penner
+- Evan Salter
+- Erik Schick
+- Vishal Tomar
+
 ## Implementation challenges
 
 Implementing RoboSport is the largest project many of the team members have 

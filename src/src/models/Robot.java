@@ -60,6 +60,12 @@ public class Robot {
 	}
 
 
+	public static Robot fromJson(String json, int teamNumber){
+		Robot r = fromJson(json);
+		r.teamNumber = teamNumber;
+		return r;
+	}
+	
 	public static Robot fromJson(String json){
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Code.class, new CodeDeserializer());
@@ -106,7 +112,7 @@ public class Robot {
 	}
 
 	public int getTeam() {
-		return 0;
+		return teamNumber;
 	}
 	
 	public void kill() {

@@ -109,7 +109,7 @@ public class Controller {
 			Scanner sn = new Scanner( file );
 			String fileString = sn.useDelimiter("\\A").next();
 			Robot robot = new Robot();
-			robot = Robot.fromJson(fileString);
+			robot = Robot.fromJson(fileString, team);
 			if(!gb.addRobot(robot, team)){
 				System.out.println("failed.  Team already at max capacity\n");
 			}
