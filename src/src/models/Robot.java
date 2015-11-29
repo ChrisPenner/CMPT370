@@ -81,8 +81,16 @@ public class Robot {
 		return health;
 	}
 	
-	protected void setHealth(int amount) {
+	/**
+	 * Returns false if robot dies
+	 */
+	protected boolean setHealth(int amount) {
 		health = amount;
+		if(health == 0) {
+			died++;
+			return false;
+		}
+		return true;
 	}
 
 	public int getMovesLeft() {
@@ -99,5 +107,9 @@ public class Robot {
 
 	public int getTeam() {
 		return 0;
+	}
+	
+	public void kill() {
+		setHealth(0);
 	}
 }

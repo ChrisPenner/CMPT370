@@ -35,6 +35,7 @@ public class Controller {
 	static boolean step = false;
 	static boolean instantMode = false;
 	static boolean testMode = false;
+	static Robot currentRobot = null;
 	
 	@SuppressWarnings("unchecked")
 	public Controller() {
@@ -230,7 +231,66 @@ public class Controller {
 	}
 	
 	public static void commandEntered(String s) {
-		((TestBenchView) view).updateLog("> " + s);
+		try {
+			((TestBenchView) view).updateLog("> " + s);
+			Scanner sn = new Scanner(s);
+			if(!sn.hasNext()) {
+				((TestBenchView) view).updateLog("command error");
+				sn.close();
+				return;
+			}
+			String command = sn.next();
+			if(command.equals("help")) {
+				((TestBenchView) view).updateLog("list, select (int)team (int)robot, kill, move (int)x (int)y");
+			}
+			else if(command.equals("list")) {
+				LinkedList<Robot>[] t = gb.getTeams();
+				for(int list = 0; list < t.length; list++) {
+					for(int r = 0; r < t[list].size(); r++) {
+						((TestBenchView) view).updateLog("Team " + (list + 1) + " Robot " + (r + 1) + ": " + t[list].get(r).name);
+					}
+				}
+			}
+			else if(command.equals("select")) {
+				if(!sn.hasNextInt()) {
+					((TestBenchView) view).updateLog("command error");
+					sn.close();
+					return;
+				}
+				int team = sn.nextInt();
+				int robot = sn.nextInt();
+				currentRobot = gb.getTeams()[team-1].get(robot-1);
+			}
+			else if(command.equals("kill")) {
+				if(currentRobot == null) {
+					((TestBenchView) view).updateLog("command error");
+					sn.close();
+					return;
+				}
+				gb.removeRobot(currentRobot);
+				currentRobot = null;
+				((TestBenchView) view).updateDisplay();
+			}
+			else if(command.equals("move")) {
+				if(!sn.hasNextInt() || currentRobot == null) {
+					((TestBenchView) view).updateLog("command error");
+					sn.close();
+					return;
+				}
+				int x = sn.nextInt();
+				int y = sn.nextInt();
+				Coord c = new Coord(x, y);
+				gb.moveRobotTo(currentRobot, c);
+				((TestBenchView) view).updateDisplay();
+			}
+			else {
+				((TestBenchView) view).updateLog("command not recognized, try \"help\"");
+			}
+			
+			sn.close();
+		} catch (Exception e) {
+			((TestBenchView) view).updateLog("command error");
+		}
 	}
 	
 	private static class GameLoop extends TimerTask {

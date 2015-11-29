@@ -258,7 +258,7 @@ public class GameBoard {
 		moveRobotTo(caller, c);
 	}
 	
-	private boolean moveRobotTo(Robot r, Coord c){
+	public boolean moveRobotTo(Robot r, Coord c){
 		try{
 			if(getCell(c).isValid()){
 				// move robot
@@ -278,6 +278,12 @@ public class GameBoard {
 			return false;
 		}
 
+	}
+	
+	public void removeRobot(Robot r) {
+		if(cells[r.c.x][r.c.y].getOccupants().contains(r)) {
+			cells[r.c.x][r.c.y].getOccupants().remove(r);
+		}
 	}
 	
 	/**

@@ -111,7 +111,7 @@ public class WatchView extends View {
 	public void updateLog(String message) {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
-		this.txtrLogdisplay.insert(sdf.format(cal.getTime()) + " --> " + message + "\n-----------------------\n", 0);
+		this.txtrLogdisplay.append(sdf.format(cal.getTime()) + " --> " + message + "\n-----------------------\n");
 	}
 	
 }
