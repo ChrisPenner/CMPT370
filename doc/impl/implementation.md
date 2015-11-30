@@ -7,7 +7,7 @@ toc: true
 
 -------------------------------------------------------------
 
-Implementation Git release tag: ( TAG GOES HERE )
+Implementation Git release tag name: "Implementation"
 
 Group A3 Members:
 
