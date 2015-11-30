@@ -55,6 +55,11 @@ will progress the match one robot's turn at a time.
 
 ## Using Test View
 
+![](TestBench.png)\  
+
+The test view reacts similarly to Match View, but has additional functionality 
+to interact with the robots.
+
 On the Test View screen, there is a terminal for user input. The following commands are supported:
 
 ### help
@@ -69,6 +74,5 @@ Sets the currently selected robot to the given team and robot.
 ### kill
 Kills the currently selected robot.
 
-## move (int)x (int)y
+### move (int)x (int)y
 Sets the currently selected robot's position to the given coordinates.
-
