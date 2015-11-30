@@ -74,15 +74,16 @@ to the user once the winner has been determined. Finally, we have a test-bench
 mode.  In this mode, the user is able to import robots and execute commands to
 test the functionality of both the robot and the game.
 
-We have not been able to add terrain of different movement difficulties. 
-We were also not able to implement the robot 
+We were able to assign different movement difficulties to each cell, though
+the robots currently do not pay attention to these difficulties.  We simply
+ran out of time to fully implement it.  However, the difficulties are dispalyed
+on the game board through the use of green, yellow, and red colourings on the 
+hex tiles. We were also not able to implement the robot 
 librarian software, though this was due to the fact that it was not available 
 for testing and was not made available to groups within reasonable time. Our 
 display leaves much to be desired and doesn't clearly display stats about 
 robots involved with the fight, and we would have added a lot of styling 
 changes to the project if we had more time available.
-
-TODO... userguide?
 
 ## Design deficiencies
 
@@ -109,7 +110,7 @@ few seconds, or to use some form of event based triggering system. In the end
 we decided that for a project of this scope it is easiest to use an 'update' 
 method on the view which we can call whenever the underlying data changes.
 
-Due to time constraints and poor planning, we often relied too heavily on 
+Due to time constraints and less-than-optimal planning, we often relied too heavily on 
 public static variables rather than passing the object references to each module
 in our MVC architecture.  Given more time, we would have cleaned up that code
 to ensure only specified modules have access to certain objects.
@@ -153,11 +154,9 @@ implement that module and provide an interface for each of the other modules to
 use and we would pair program to link the modules together in a sensible way. 
 The modules we decided on were as follows:
 
-TODO
-
-* Views and GUI 
-* Controller and game logic 
-* Forth Parser and Robot importer 
+* Views and GUI - Erik
+* Controller and game logic - Evan
+* Forth Parser and Robot importer - Chris
 
 ## Use of External Libraries
 
@@ -204,11 +203,9 @@ Please read the User Guide for more details on how to use the software.
 
 ## Final Implementation Statistics
 
-TODO
-
-- Total Lines of code:
-- Total # of classes:
-- Total # of methods:
+- Total Lines of code: 3285
+- Total # of classes: 22
+- Total # of methods: 178
 
 One member of the group decided to use TDD to develop his part of the 
 application (Chris) and so both the Parser class and Robot class have a small 
@@ -217,7 +214,7 @@ would have liked, but we definitely saw the value in having a way to notice
 regressions as soon as possible. The TDD method was invaluable when working 
 with complex systems like the forth interpreter.
 
-## Screenshots:
+## Screenshots
 
 The following is our Main menu where the user can select which sort of game 
 mode they'd like to try.
@@ -236,9 +233,11 @@ The following is the results screen, which shows the winner of the match after c
 
 ![](Results.png)\  
 
-TODO: Test-Bench screen
+The following is the test-bench screen, which allows the user to execute commands on a robot to test the gameplay.
 
-##How to compile:
+![](TestBench.png)\  
+
+##How to compile
 
 Since we have developed this project using the Eclipse IDE we recommend using 
 Eclipse to build and manage the project. Firstly you must import the project by 
