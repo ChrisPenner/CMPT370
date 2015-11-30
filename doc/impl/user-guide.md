@@ -17,9 +17,11 @@ Please start the provided software and you will see the following screen:
 
 ![](MainMenu.png)\  
 
-This menu presents you with 3 options. Presently only the "Watch Match" option 
-is functional. The other 2 options will be implemented in future releases of 
-the software.
+This menu presents you with 3 options:
+
+- Watch Match: Watch the game being played out on the game board
+- Instant Mode: Have the computer play the match instantly and display the results
+- Test Bench: Manually run commands on specific robots to test their functionality
 
 To watch a RoboSport match, please select the "Watch Match" option by clicking 
 the appropriate button.
