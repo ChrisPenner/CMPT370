@@ -1,6 +1,8 @@
 package views;
 
+import java.awt.Color;
 import java.awt.Graphics;
+
 import javax.swing.JPanel;
 
 import models.Cell;
@@ -44,6 +46,21 @@ public class HexGridDisplay extends JPanel {
 						xPoint[i] = spacing + (int) (x*spacing + (spacing/1.5f)*Math.cos(i*2*Math.PI/6));
 						yPoint[i] = spacing + vertOffset + (int) (y*spacing + (spacing/1.7f)*Math.sin(i*2*Math.PI/6));
 					}
+					int difficulty = cells[x][y].getDifficulty();
+					switch(difficulty){
+					case 0:
+						g.setColor(Color.GREEN);
+						break;
+					case 1:
+						g.setColor(Color.YELLOW);
+						break;
+					case 2:
+						g.setColor(Color.RED);
+						break;
+					}
+					g.fillPolygon(xPoint, yPoint, 6);
+					g.setColor(Color.black);
+					g.drawPolygon(xPoint, yPoint, 6);
 					if(cells[x][y].getOccupants() != null) {
 						int count = cells[x][y].getOccupants().size();
 						if(count > 0) {
@@ -53,7 +70,6 @@ public class HexGridDisplay extends JPanel {
 										spacing + vertOffset + y*spacing + (getFontMetrics(getFont()).getHeight() / 4));
 						}
 					}
-					g.drawPolygon(xPoint, yPoint, 6);
 				}
 			}
 		}
