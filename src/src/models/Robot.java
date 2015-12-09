@@ -15,6 +15,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+/**
+ * A Class representing a Robot, it's stats and its code.
+ *
+ */
 public class Robot {
 	public Coord c;
 	Parser parser;
@@ -39,7 +43,13 @@ public class Robot {
 	int distance;
 	public Code code = new Code();
 	
+	/**
+	 * Utility class for decoding a robot's Gson.
+	 */
 	private static class CodeDeserializer implements JsonDeserializer<Code> {
+		/**
+		 * This is handled by the Gson library.
+		 */
 		@Override
 		public Code deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 				throws JsonParseException {
@@ -59,7 +69,13 @@ public class Robot {
 		}
 	}
 
+	/**
+	 * A utility class to help with Gson deserialization.
+	 */
 	private static class RobotDeserializer implements JsonDeserializer<Robot> {
+		/**
+		 * This is handled by the Gson library.
+		 */
 		@Override
 		public Robot deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 				throws JsonParseException {
@@ -78,12 +94,23 @@ public class Robot {
 		}
 	}
 
+	/**
+	 * Return the Robot class specified by a Robot JSON file.
+	 * @param json The JSON string representing the robot.
+	 * @param teamNumber The team number to assign to the robot.
+	 * @return The constructed robot.
+	 */
 	public static Robot fromJson(String json, int teamNumber){
 		Robot r = fromJson(json);
 		r.teamNumber = teamNumber;
 		return r;
 	}
 	
+	/**
+	 * Return the Robot class specified by a Robot JSON file.
+	 * @param json The JSON string representing the robot.
+	 * @return The constructed robot.
+	 */
 	public static Robot fromJson(String json){
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Robot.class, new RobotDeserializer());
@@ -93,20 +120,32 @@ public class Robot {
 		return r;
 	}
 	
+	/**
+	 * Initialized the robot as specified by its code.
+	 */
 	public void init(){
 		parser.init();
 	}
 
+	/**
+	 * Run one turn for the robot.
+	 */
 	public void turn(){
 		parser.turn();
 	}
 	
+	/**
+	 * Returns the health of the robot.
+	 * @return health
+	 */
 	public int getHealth(){
 		return health;
 	}
 	
 	/**
-	 * Returns false if robot dies
+	 * Sets the health of the robot
+	 * @param amount The value to set health to.
+	 * @return Returns false if robot dies
 	 */
 	protected boolean setHealth(int amount) {
 		health = amount;
@@ -117,22 +156,41 @@ public class Robot {
 		return true;
 	}
 
+	/**
+	 * Return the number of movements remaining to make.
+	 * @return moves left
+	 */
 	public int getMovesLeft() {
 		return 0;
 	}
 
+	/**
+	 * Return the Robot's firepower.
+	 * @return firepower level
+	 */
 	public int getFirepower() {
 		return 0;
 	}
 
+	/**
+	 * Return the Robot's member number.
+	 * @return member number
+	 */
 	public int getMember() {
 		return 0;
 	}
 
+	/**
+	 * Return the Robot's team number.
+	 * @return team number
+	 */
 	public int getTeam() {
 		return teamNumber;
 	}
 	
+	/**
+	 * Kill the robot.
+	 */
 	public void kill() {
 		setHealth(0);
 	}

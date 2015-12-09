@@ -8,8 +8,15 @@ import models.Robot;
 
 import org.junit.Test;
 
+/**
+ * Holder for our unit tests of Parser.
+ */
 public class ParserTest {
 	String baseJson = "{}";
+
+	/**
+	 * Test whether the parser correctly handles 'True'
+	 */
   @Test
   public void parseTrue() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -20,6 +27,9 @@ public class ParserTest {
 	  assertEquals(first.type, Token.BOOLEAN);
   }
 
+	/**
+	 * Test whether the parser correctly handles 'False'
+	 */
   @Test
   public void parseFalse() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -30,6 +40,9 @@ public class ParserTest {
 	  assertEquals(first.type, Token.BOOLEAN);
   }
 
+	/**
+	 * Test whether the parser correctly handles integers.
+	 */
   @Test
   public void parseInt() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -41,6 +54,9 @@ public class ParserTest {
 	  assertEquals(first.type, Token.INT);
   }
 
+	/**
+	 * Test whether the parser correctly handles floats
+	 */
   @Test
   public void parseDouble() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -52,6 +68,9 @@ public class ParserTest {
 	  assertEquals(first.type, Token.DOUBLE);
   }
 
+	/**
+	 * Test whether the parser correctly handles arbitrary symbols. 
+	 */
   @Test
   public void parseSymbol() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -61,6 +80,9 @@ public class ParserTest {
 	  assertEquals(first.type, Token.SYMBOL);
   }
   
+	/**
+	 * Test whether the parser correctly handles strings.
+	 */
   @Test
   public void parseStrings() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -70,6 +92,9 @@ public class ParserTest {
 	  assertEquals(first.type, Token.STRING);
   }
   
+	/**
+	 * Test whether the parser correctly handles multiple tokens
+	 */
   @Test
   public void parseMultipleTokens() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -87,7 +112,9 @@ public class ParserTest {
   }
   
   
-  //Test running a lists of tokens.
+	/**
+	 * Test whether the parser correctly handles addition
+	 */
   @Test
   public void runAddition() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -97,6 +124,9 @@ public class ParserTest {
 	  assertEquals(first.ivalue, 4);
   } 
 
+	/**
+	 * Test whether the parser correctly handles multiplication
+	 */
   @Test
   public void runMultiplication() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -106,6 +136,9 @@ public class ParserTest {
 	  assertEquals(first.ivalue, 6);
   } 
   
+	/**
+	 * Test whether the parser correctly handles "or"
+	 */
   @Test
   public void runOr() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -125,6 +158,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, false);
   } 
   
+	/**
+	 * Test whether the parser correctly handles 'and'
+	 */
   @Test
   public void runAnd() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -144,6 +180,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, false);
   } 
 
+	/**
+	 * Test whether the parser correctly handles 'invert'
+	 */
   @Test
   public void runInvert() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -158,6 +197,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, true);
   } 
 
+	/**
+	 * Test whether the parser correctly handles 'drop'
+	 */
   @Test
   public void runDrop() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -167,6 +209,9 @@ public class ParserTest {
 	  assertEquals(first.ivalue, 2);
   } 
 
+	/**
+	 * Test whether the parser correctly handles 'dup'
+	 */
   @Test
   public void runDup() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -178,6 +223,9 @@ public class ParserTest {
 	  assertEquals(second.ivalue, 2);
   } 
 
+	/**
+	 * Test whether the parser correctly handles 'swap'
+	 */
   @Test
   public void runSwap() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -189,6 +237,9 @@ public class ParserTest {
 	  assertEquals(second.ivalue, 2);
   }
 
+	/**
+	 * Test whether the parser correctly handles 'rot'
+	 */
   @Test
   public void runRot() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -202,6 +253,9 @@ public class ParserTest {
 	  assertEquals(2, third.ivalue);
   }
 
+	/**
+	 * Test whether the parser correctly handles 'mod'
+	 */
   @Test
   public void runMod() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -213,6 +267,9 @@ public class ParserTest {
 	  assertEquals(second.ivalue, 1);
   }
 
+	/**
+	 * Test whether the parser correctly handles '>'
+	 */
   @Test
   public void runGt() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -232,6 +289,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, false);
   }
 
+	/**
+	 * Test whether the parser correctly handles '>='
+	 */
   @Test
   public void runGte() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -251,6 +311,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, true);
   }
 
+	/**
+	 * Test whether the parser correctly handles '<'
+	 */
   @Test
   public void runLt() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -270,6 +333,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, false);
   }
 
+	/**
+	 * Test whether the parser correctly handles '<=
+	 */
   @Test
   public void runLte() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -289,6 +355,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, true);
   }
 
+	/**
+	 * Test whether the parser correctly handles '='
+	 */
   @Test
   public void runEq() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -303,6 +372,9 @@ public class ParserTest {
 	  assertEquals(first.bvalue, true);
   }
 
+	/**
+	 * Test whether the parser correctly handles 'variable'
+	 */
   @Test
   public void runVariables() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -318,6 +390,9 @@ public class ParserTest {
 	  assertEquals(first.ivalue, 0);
   }
 
+	/**
+	 * Test whether the parser correctly handles 'if'
+	 */
   @Test
   public void runIf() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -332,6 +407,9 @@ public class ParserTest {
 	  assertEquals("nope", first.svalue);
   }
   
+	/**
+	 * Test whether the parser correctly handles nested 'if's
+	 */
   @Test
   public void nestedIf() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -364,6 +442,9 @@ public class ParserTest {
 	  assertEquals("False, False", first.svalue);
   }
   
+	/**
+	 * Test whether the parser correctly handles macros (ie. ':')
+	 */
   @Test
   public void runMacro() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -395,6 +476,9 @@ public class ParserTest {
 	  assertEquals(2, first.ivalue);
   }
   
+	/**
+	 * Test whether the defineWord method works
+	 */
   @Test
   public void testDefineWord() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -405,6 +489,9 @@ public class ParserTest {
 	  assertEquals(52, first.ivalue);
   }
 
+	/**
+	 * Test whether the defineVariable method works
+	 */
   @Test
   public void testDefineVariable() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -415,6 +502,9 @@ public class ParserTest {
 	  assertEquals(0, first.ivalue);
   }
 
+	/**
+	 * Test the behaviour of 'do' loops.
+	 */
   @Test
   public void runDoLoop() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -430,6 +520,9 @@ public class ParserTest {
 
   }
   
+	/**
+	 * Test the behaviour of nested 'do' loops.
+	 */
   @Test
   public void runNestedDoLoop() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -458,6 +551,9 @@ public class ParserTest {
 	  assertEquals(18, first.ivalue);
   }
   
+	/**
+	 * Test the behaviour of 'until' loops.
+	 */
   @Test
   public void runUntilLoop() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -481,6 +577,9 @@ public class ParserTest {
 	  assertEquals(4, first.ivalue);
   }
 
+	/**
+	 * Test the behaviour of nested 'until' loops.
+	 */
   @Test
   public void nestedUntilLoop() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -510,6 +609,9 @@ public class ParserTest {
 	  assertEquals(52, first.ivalue);
   }
 	  
+	/**
+	 * Test the behaviour of everything together.
+	 */
   @Test
   public void integrationTest() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
@@ -551,6 +653,9 @@ public class ParserTest {
 	  assertEquals(50, first.ivalue);
   }
 
+	/**
+	 * Test the behaviour of 'random' keyword
+	 */
   @Test
   public void runRandom() {
 	  Parser p = new Parser(Robot.fromJson(baseJson));
