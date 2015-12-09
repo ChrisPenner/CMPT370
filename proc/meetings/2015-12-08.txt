@@ -1,0 +1,22 @@
+Wednesday, December 8, 2015
+
+Attendance:
+	Evan Salter
+	Chris Penner
+	Erik Schick
+	Chin Wang Lau
+
+Need:
+	- Javadocs - Everybody does their own
+	- User Manual - Mitch
+		- What works, what doesn't
+		- Typical use
+		- How to use
+	- "As Built" description - Erik (but everybody contributes their own stuff)
+		- Work rememaining, time estimate
+		- Things that didn't get done
+		- Remaining bugs
+	- Testing - Evan (everybody contributes stuff from their own section)
+		- Talk about how tested
+		- How many things have tests
+		- Talk about how bugs were fixed
